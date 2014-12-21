@@ -50,6 +50,9 @@ export WINEARCH="win32"
 
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
-export PATH=$PATH:/home/jaume/.gem/ruby/2.1.0/bin
+export PATH=$PATH:$HOME/.gem/ruby/2.1.0/bin
+export PATH=$PATH:$HOME/bin
 
 [[ $TTY == "/dev/tty1" ]] && exec startx
+
+alias top=htop
