@@ -57,3 +57,11 @@
 ;(require 'ido)
 ;(ido-mode t)
 
+(setq ido-enable-flex-matching t)
+(setq ido-everywhere t)
+(ido-mode 1)
+
+(global-set-key (kbd "C-p") 'find-file)
+(define-key evil-normal-state-map "\C-p" 'find-file)
+
+;(require 'evil-cfg)
