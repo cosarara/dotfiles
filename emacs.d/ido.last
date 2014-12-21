@@ -1,0 +1,48 @@
+;;; -*- coding: utf-8 -*-
+
+;; ----- ido-last-directory-list -----
+(
+ ("/home/jaume/.emacs.d/" . "stuff/")
+ ("/home/jaume/dotfiles/" . "emacs.d/")
+ ("/home/jaume/projects/blue-spider/" . "bluespider/")
+ ("/home/jaume/projects/" . "blue-spider/")
+ ("/home/jaume/" . ".emacs.d/")
+)
+
+;; ----- ido-work-directory-list -----
+(
+ "/home/jaume/.emacs.d/stuff/"
+ "/home/jaume/"
+ "/home/jaume/projects/blue-spider/bluespider/"
+)
+
+;; ----- ido-work-file-list -----
+(
+ "evil-cfg.el"
+ ".emacs"
+ "mapped_gui.py"
+)
+
+;; ----- ido-dir-file-cache -----
+(
+ ("/home/jaume/" (21628 57310 996052 307000) ".gnome2/" ".frictionalgames/" ".npm/" ".titan_attacks/" ".lgp/" ".gstreamer-0.10/" ".jitsi/" ".wiithon/" ".zprofile" ".bobsGame/" ".nvimrc" ".openspades/" ".systemshock2/" ".zsh-update" ".fontconfig/" ".olliolli/" ".wineprefixes/" ".renpy/" ".nviminfo" ".chocolate-doom/" ".cmake/" ".HitboxTeam/" ".vim.old/" ".Osmos/" ".radare2/" ".icons/" ".adobe/" ".cargo/" "RPGXP/" ".radare2_history" ".wine/" ".PlayOnLinux/" ".spring/" ".WorldOfGoo/" ".Braid/" ".vegastrike/" ".obmxdg.xml" ".mypaint/" ".ogre/" ".titan_attacks_2.01/" "Music/" ".local/" ".arduino15/" "vms/" ".appdata/" ".p7zip" ".magick/" ".gitk" "My Games/" ".bash_logout" ".cgminer/" ".gtk-recordmydesktop" ".compose-cache/" ".gimp-2.8/" "Templates/" "VirtualBox VMs/" "radare2/" ".Seed Framework/" ".swp" ".vbam/" ".ipynb_checkpoints/" ".mysql_history" ".doomsday/" ".droid_assault/" ".vimrc" ".dynamitejack/" ".gog-tux/" ".gvfs/" ".etwolf/" ".macromedia/" ".killingfloor/" ".codered/" ".zynaddsubfxXML.cfg" ".nv/" ".profile" ".bashrc" "projects/" ".servo/" ".histfile" ".designer/" ".pulse-cookie" ".Prison Architect/" ".scribus/" ".mednafen/" ".warzone2100-3.1/" ".Xauthority" ".gervill/" ".atom/" ".kde4/" ".fgfs/" ".distlib/" ".frozenbyte/" ".gksu.lock" "aur/" ".feathercoin/" ".vnc/" "connect.sh" ".pylint-gui-history" "Sync/" ".gitignore" ".runicgames/" ".dbus/" ".ipython/" ".chntpw_history" "GTA San Andreas User Files/" ".idlerc/" ".cups/" ".rigsofrods/" ".ultratron_3.03/" ".lcs/" ".qtsixa2/" "ENIGMA/" "secure/" "horari.txt" ".Skype/" ".recently-used" ".minetest/" ".guile" ".thumbnails/" ".jackdrc.old" ".warsow-1.5/" ".directory" ".radare_history" ".zhistory" "RH/" "env/" ".gtk-bookmarks" ".mplayer/" ".tsung/" ".Broken Rules/" ".swo" ".emacs.d/" ".config/" ".purple/" ".qt/" ".steampath" ".install.sh" ".ssr/" ".bitcoin/" "PlayOnLinux's virtual drives/" ".gmrun_history" ".audacity-data/" "backup/" "Calibre Library/" ".gdbinit" ".qemu-launcher/" ".lexaloffle/" ".pcsxr/" ".ICEauthority" ".nethackrc" "audio/" "dotfiles/" ".gitconfig" ".klei/" ".steam/" ".steampid" ".conkyrc" ".terasology/" "terasology/" ".LUFTRAUSERS/" ".redeclipse/" ".python_history" "Desktop/" ".cpan/" ".wxHexEditor" "games/" "Emulation/" ".subversion/" ".ghc/" "256colors2.pl" ".zshrc" ".emacs" ".paradoxinteractive/" ".dosbox/" ".wxvbam/" ".zsh/" ".fltk/" ".fretsonfire/" ".arduino/" "coses/" ".VirtualBox/" ".radarerc" ".qmc2/" ".primecoin/" "sketchbook/" ".0verkill" ".dolphin-emu/" ".Anomaly 2/" ".term2048.scores" ".vvvvvv/" ".crawl/" ".texlive/" ".lesshst" ".mono/" ".viminfo" ".xinitrc" ".ultratron/" ".jssc/" ".mame/" ".limbo/" ".kde/" "compartida/" ".openshot/" ".m2/" ".pki/" ".wine_test/" ".zcompdump" "tmp/" "Public/" ".keystore" ".qt-recordmydesktop" ".irssi/" ".torcs/" ".8BitMMO/" "rogue.save" "utils/" ".Anomaly/" ".thunderbird/" ".springrc" ".milkytracker_config" "Videos/" ".q3a/" ".node-gyp/" ".gem/" ".nvidia-settings-rc" ".rvm/" ".cache/" ".bzr.log" ".gnome/" "Pictures/" ".perlbrew/" ".asepriterc" ".launcher_log/" ".armagetronad/" ".OilRush/" ".dhexrc" ".gnupg/" ".dogecoin/" ".rnd" ".ssh/" ".syncthing/" ".vimperator/" ".android/" ".lugaru/" ".tclsh_history" ".java/" ".gphoto/" ".xchat2/" ".mozilla/" "en_US.UTF-8/" ".AbiSuite/" "bin/" ".xonotic/" ".vimgolf/" ".guile_history" ".gtkrc-1.2-gnome2" "Bioshock/" "Steam/" ".pylint.d/" ".vdrift/" ".esd_auth" ".fofix/" "logs/" ".twotribes/" ".gitignore_global" "contrasenyes.kdb" "hashbang.sh" ".log/" ".bastetrc" ".litecoin/" ".links/" ".bash_profile" ".zsnes/" "vba-sdl-h-src.tar.gz" ".zsh_history" ".tile/" ".shellrc" ".jackdrc" ".sidhe/" ".maxima_history" ".pcsx/" ".hardinfo/" ".snes9x/" "devkitpro/" ".radare2rc" ".vbam_history" ".gtkrc-2.0" ".org/" ".mixxx/" ".solar2/" ".gtkrc.mine" ".droid_assault_1.92/" ".dearesther/" "Documents/" ".mtpaint" "Downloads/" ".joystick" ".bash_history" ".bastetscores" ".desura/" ".ocrfeeder/" ".ppcoin/" ".cddb/" ".eclipse/" ".pip/" ".gdmap/" "rogue.scr" ".tesseract/" ".speed-dreams-2/" ".vim/" ".gnome2_private/" "../" "./")
+
+ ("/home/jaume/.emacs.d/stuff/" (21628 56824 666576 647000) "evenhold-theme/" "../" "evil-cfg.el" "./" "nyan-mode/")
+
+ ("/home/jaume/.emacs.d/" (21628 49938 946139 228000) "auto-save-list/" "stuff/" "elpa/" "url/" "games/" "../" "./" "projectile-bookmarks.eld")
+
+ ("/home/jaume/dotfiles/emacs.d/" (21628 49938 946139 228000) "auto-save-list/" "stuff/" "elpa/" "url/" "games/" "../" "./" "projectile-bookmarks.eld")
+
+ ("/home/jaume/dotfiles/" (21628 56487 189243 57000) ".git/" "emacs~" "emacs" "zprofile" "vimrc" "zshrc" "gitignore" "#emacs#" "vim/" "../" "emacs.d/" "./" ".#emacs" "zsh/" "install.sh")
+
+ ("/home/jaume/projects/blue-spider/bluespider/" (21620 46821 504667 832000) "__pycache__/" "mapped_text.py" "__init__.py" "fast.pyx" "mapped.py" "gui_connections.py" "../" "map_printer.py" "./" "mapped_gui.py" "fast.c" "lz77.py" "text_translate.py" "window.py" "structures.py" "qmapview.py" "data/")
+
+ ("/home/jaume/projects/blue-spider/" (21628 33897 707251 692000) ".git/" "__pycache__/" "README.txt" "tags" "test.py" ".gitignore" "bluespider/" "LICENSE" "setup.py" "mapped.ui" "bluespider-qt" "TAGS" "../" "speedtest.py" "utils/" "appdirs.py" "build/" "./" "bluespider-cli")
+
+ ("/home/jaume/projects/" (21613 65491 58512 846000) "oldrustgb_again/" "red-alien/" "platform/" "ASC_v1.1/" "market/" "gbemu/" "xboxdrv/" "rl/" "Secret-Tool/" "tubu/" "rustgb/" "minetest_android/" "BSv0.5/" "ogre/" "piet/" "black-mage/" "baks/" "mars/" "tree-editor/" "vba-sdl-h/" "3d-gba/" "../" "blender/" "blue-spider/" "demos/" "tmp/" "radare_thumb/" "eclipse-workspace/" "./" "_rustdb_old/" "searchbox/" "hexedit/" "ino/" "random/" "old/" "os/" "pokearcheologist/" "monogame/" "MEH/" "GBAUtils/" "AG-2.0/" "gbemu.tar.gz")
+
+ ("/home/jaume/.emacs.d/elpa/evil-20141119.205/" (21628 32284 439962 283000) "evil-command-window.elc" "evil-maps.el" "version.info" "evil-states.el" "evil-types.elc" "evil-macros.elc" "evil-integration.elc" "evil.el" "evil-commands.elc" "evil.info" "evil-ex.elc" "evil-autoloads.el" "evil-common.elc" "evil-core.elc" "evil-maps.elc" "evil-vars.el" "evil-core.el" "evil-autoloads.el~" "macros.info" "evil-macros.el" "evil-types.el" "fdl-1.3.info" "evil-repeat.elc" "evil-search.elc" "../" "evil-command-window.el" "evil-pkg.el" "evil-common.el" "evil.elc" "evil-digraphs.elc" "evil-integration.el" "./" "evil-commands.el" "dir" "evil-search.el" "evil-digraphs.el" "evil-vars.elc" "evil-repeat.el" "evil-states.elc" "evil-ex.el")
+)
+
+;; ----- ido-unc-hosts-cache -----
+t
