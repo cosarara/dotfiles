@@ -4,3 +4,4 @@ __pycache__
 .gdb_history
 *~
 *log
+.directory
