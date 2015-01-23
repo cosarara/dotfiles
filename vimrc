@@ -9,6 +9,7 @@ map <F3> :TlistToggle<CR>
 map <F5> :!make<CR><CR>
 au BufNewFile,BufRead *.pks set filetype=pks
 au BufNewFile,BufRead *.rs set filetype=rust
+au BufNewFile,BufRead *.php set tabstop=4 shiftwidth=4
 
 
 command -bar Hexmode call ToggleHex()
