@@ -1,0 +1,30 @@
+[submodule "emacs.d/stuff/nyan-mode"]
+	path = emacs.d/stuff/nyan-mode
+	url = git@github.com:TeMPOraL/nyan-mode.git
+[submodule "emacs.d/stuff/evenhold-theme"]
+	path = emacs.d/stuff/evenhold-theme
+	url = git@github.com:evenhold/evenhold-theme.git
+[submodule "vim/bundle/emmet-vim"]
+	path = vim/bundle/emmet-vim
+	url = https://github.com/mattn/emmet-vim.git
+[submodule "vim/bundle/rust.vim"]
+	path = vim/bundle/rust.vim
+	url = https://github.com/wting/rust.vim.git
+[submodule "vim/bundle/vim-commandcaps"]
+	path = vim/bundle/vim-commandcaps
+	url = https://github.com/takac/vim-commandcaps
+[submodule "vim/bundle/ctrlp.vim"]
+	path = vim/bundle/ctrlp.vim
+	url = https://github.com/kien/ctrlp.vim.git
+[submodule "vim/bundle/taglist.vim"]
+	path = vim/bundle/taglist.vim
+	url = https://github.com/vim-scripts/taglist.vim.git
+[submodule "vim/bundle/nerdtree"]
+	path = vim/bundle/nerdtree
+	url = https://github.com/scrooloose/nerdtree.git
+[submodule "vim/bundle/tabular"]
+	path = vim/bundle/tabular
+	url = https://github.com/godlygeek/tabular.git
+[submodule "vim/bundle/nerdcommenter"]
+	path = vim/bundle/nerdcommenter
+	url = https://github.com/scrooloose/nerdcommenter.git
