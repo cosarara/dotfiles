@@ -65,3 +65,7 @@
 (define-key evil-normal-state-map "\C-p" 'find-file)
 
 ;(require 'evil-cfg)
+
+; slime
+(setq inferior-lisp-program "clisp") 
+(setq slime-contribs '(slime-fancy))
