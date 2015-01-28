@@ -1,30 +1,33 @@
-(require 'package) ;; You might already have this line
+;; packages
+(require 'package)
 (add-to-list 'package-archives
              '("melpa" . "http://melpa.org/packages/") t)
 (when (< emacs-major-version 24)
   ;; For important compatibility libraries like cl-lib
   (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
-(package-initialize) ;; You might already have this line
+(package-initialize)
 
+;; evil
 (evil-mode 1)
 (define-key evil-normal-state-map (kbd "q") nil)
 
-; path
+;; path
 (add-to-list 'load-path "~/.emacs.d/stuff")
 
-; theme
+;; theme
 (load-theme 'wombat)
-;(require 'evenhold-theme "evenhold-theme/evenhold-theme.el")
+;;(require 'evenhold-theme "evenhold-theme/evenhold-theme.el")
 
-; pitch black pls
-;(add-to-list 'default-frame-alist '(background-color . "black"))
-;(set-background-color "black")
+;; pitch black pls
+;;(add-to-list 'default-frame-alist '(background-color . "black"))
+;;(set-background-color "black")
 
 (when (window-system)
   (tool-bar-mode -1)
   (set-frame-size (selected-frame) 140 56)
-;  (scroll-bar-mode -1)
-)
+;;  (scroll-bar-mode -1)
+  (column-number-mode 1))
+
 (add-hook 'prog-mode-hook (lambda () (linum-mode 1)))
 (linum-mode +1)
 (require 'nyan-mode "nyan-mode/nyan-mode.el")
@@ -50,12 +53,11 @@
 (define-key minibuffer-local-must-match-map [escape] 'minibuffer-keyboard-quit)
 (define-key minibuffer-local-isearch-map [escape] 'minibuffer-keyboard-quit)
 
-; lal
 (show-paren-mode 1)
 
-; fuzzy
-;(require 'ido)
-;(ido-mode t)
+;; fuzzy
+;;(require 'ido)
+;;(ido-mode t)
 
 (setq ido-enable-flex-matching t)
 (setq ido-everywhere t)
@@ -64,8 +66,8 @@
 (global-set-key (kbd "C-p") 'find-file)
 (define-key evil-normal-state-map "\C-p" 'find-file)
 
-;(require 'evil-cfg)
+;;(require 'evil-cfg)
 
-; slime
+;; slime
 (setq inferior-lisp-program "clisp") 
 (setq slime-contribs '(slime-fancy))
