@@ -71,3 +71,6 @@
 ;; slime
 (setq inferior-lisp-program "clisp") 
 (setq slime-contribs '(slime-fancy))
+
+;; rust
+(require 'rust-mode)
