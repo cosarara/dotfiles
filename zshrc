@@ -1,4 +1,5 @@
 zstyle ':completion:*' completer _expand _complete _ignored _correct _approximate
+#zstyle ':completion:*' matcher-list 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 zstyle :compinstall filename '/home/cosarara/.zshrc'
 
 autoload -U compinit promptinit
