@@ -26,7 +26,7 @@
 
 (when (window-system)
   (tool-bar-mode -1)
-  (set-frame-size (selected-frame) 140 56)
+;;  (set-frame-size (selected-frame) 140 56)
 ;;  (scroll-bar-mode -1)
   (column-number-mode 1))
 
@@ -130,3 +130,6 @@
 (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
+
+; ido-switch-buffer
+(define-key evil-motion-state-map "gb" 'ido-switch-buffer)
