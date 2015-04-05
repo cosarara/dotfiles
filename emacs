@@ -57,6 +57,8 @@
 
 (show-paren-mode 1)
 
+(setq-default show-trailing-whitespace t)
+
 ;; fuzzy
 ;;(require 'ido)
 ;;(ido-mode t)
@@ -71,7 +73,7 @@
 ;;(require 'evil-cfg)
 
 ;; slime
-(setq inferior-lisp-program "clisp") 
+(setq inferior-lisp-program "clisp")
 (setq slime-contribs '(slime-fancy))
 
 ;; rust
@@ -88,7 +90,6 @@
 ; '(php-mode-force-pear t)
  '(tab-width 4)
  '(web-mode-code-indent-offset 4))
-
 
 (defun my-web-mode-hook ()
   "Hooks for Web mode."
@@ -130,3 +131,26 @@
 (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
+
+
+;; C #if 0 as comments pls
+(defun my-cpp-highlight ()
+  "highlight c/c++ #if 0 #endif macros"
+  ;; (interactive)
+  (setq cpp-known-face 'default)
+  (setq cpp-unknown-face 'default)
+  (setq cpp-known-writable 't)
+  (setq cpp-unknown-writable 't)
+  (setq cpp-edit-list '(("0" font-lock-comment-face default both)
+                        ("1" default font-lock-comment-face both)))
+  (cpp-highlight-buffer t))
+
+(add-hook 'c-mode-common-hook 'my-cpp-highlight)
+
+(add-hook 'python-mode-hook
+		  (lambda ()
+			(setq indent-tabs-mode nil)
+			(setq tab-width 4)
+			(setq python-indent 4)))
+
+
