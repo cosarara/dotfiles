@@ -15,7 +15,9 @@ setopt appendhistory autocd extendedglob
 bindkey -e
 
 #prompt steeef
-source ~/.zsh/steeef.zsh-theme
+#source ~/.zsh/steeef.zsh-theme
+source ~/.zsh/steeef_custom.zsh-theme
+#source ~/.zsh/mh.zsh-theme
 
 source ~/.zsh/editor.zsh
 
@@ -48,8 +50,13 @@ export EDITOR="vim"
 export VISUAL="vim"
 export WINEDLLOVERRIDES="winemenubuilder.exe=d"
 export WINEARCH="win32"
+export TERMINAL="konsole"
+export BROWSER="firefox"
+export QT_STYLE_OVERRIDE="breeze"
 
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
+
+export SDL_VIDEO_MINIMIZE_ON_FOCUS_LOSS=0
 
 export PATH=$PATH:$HOME/.gem/ruby/2.1.0/bin
 export PATH=$PATH:$HOME/bin
