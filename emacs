@@ -26,7 +26,7 @@
 
 (when (window-system)
   (tool-bar-mode -1)
-  (set-frame-size (selected-frame) 140 56)
+;;  (set-frame-size (selected-frame) 140 56)
 ;;  (scroll-bar-mode -1)
   (column-number-mode 1))
 
@@ -132,6 +132,8 @@
 (add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
 
+; ido-switch-buffer
+(define-key evil-motion-state-map "gb" 'ido-switch-buffer)
 
 ;; C #if 0 as comments pls
 (defun my-cpp-highlight ()
@@ -147,10 +149,12 @@
 
 (add-hook 'c-mode-common-hook 'my-cpp-highlight)
 
+(setq-default c-basic-offset 4)
+
 (add-hook 'python-mode-hook
 		  (lambda ()
 			(setq indent-tabs-mode nil)
 			(setq tab-width 4)
-			(setq python-indent 4)))
-
+			(setq python-indent 4)
+			(setq electric-indent-chars (delq ?: electric-indent-chars))))
 

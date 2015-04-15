@@ -46,13 +46,13 @@ export DEVKITPRO=~/devkitpro
 export DEVKITARM=$DEVKITPRO/devkitARM
 export TONCCODE=$DEVKITPRO/tonc
 
+export TERMINAL="termite"
 export EDITOR="vim"
 export VISUAL="vim"
 export WINEDLLOVERRIDES="winemenubuilder.exe=d"
 export WINEARCH="win32"
-export TERMINAL="konsole"
 export BROWSER="firefox"
-export QT_STYLE_OVERRIDE="breeze"
+#export QT_STYLE_OVERRIDE="breeze"
 
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
@@ -66,3 +66,5 @@ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib
 [[ $TTY == "/dev/tty1" ]] && exec startx
 
 alias top=htop
+
+eval $(dircolors ~/.dircolors)
