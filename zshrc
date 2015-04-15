@@ -44,6 +44,7 @@ export DEVKITPRO=~/devkitpro
 export DEVKITARM=$DEVKITPRO/devkitARM
 export TONCCODE=$DEVKITPRO/tonc
 
+export TERMINAL="termite"
 export EDITOR="vim"
 export VISUAL="vim"
 export WINEDLLOVERRIDES="winemenubuilder.exe=d"
@@ -59,3 +60,5 @@ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib
 [[ $TTY == "/dev/tty1" ]] && exec startx
 
 alias top=htop
+
+eval $(dircolors ~/.dircolors)
