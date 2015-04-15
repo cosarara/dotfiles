@@ -149,10 +149,12 @@
 
 (add-hook 'c-mode-common-hook 'my-cpp-highlight)
 
+(setq-default c-basic-offset 4)
+
 (add-hook 'python-mode-hook
 		  (lambda ()
 			(setq indent-tabs-mode nil)
 			(setq tab-width 4)
-			(setq python-indent 4)))
-
+			(setq python-indent 4)
+			(setq electric-indent-chars (delq ?: electric-indent-chars))))
 
