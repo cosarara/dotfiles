@@ -67,8 +67,8 @@
 (setq ido-everywhere t)
 (ido-mode 1)
 
-(global-set-key (kbd "C-p") 'find-file)
-(define-key evil-normal-state-map "\C-p" 'find-file)
+;;(global-set-key (kbd "C-p") 'find-file)
+;;(define-key evil-normal-state-map "\C-p" 'find-file)
 
 ;;(require 'evil-cfg)
 
@@ -161,3 +161,9 @@
 (add-hook 'eww-mode-hook
 		  (lambda ()
 			(setq show-trailing-whitespace nil)))
+
+; projectile
+(projectile-global-mode)
+(setq projectile-enable-caching t)
+(global-set-key (kbd "C-p") 'projectile-find-file)
+(define-key evil-normal-state-map "\C-p" 'projectile-find-file)
