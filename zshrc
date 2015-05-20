@@ -68,3 +68,4 @@ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib
 alias top=htop
 
 eval $(dircolors ~/.dircolors)
+alias ssh='TERM=xterm-256color ssh'
