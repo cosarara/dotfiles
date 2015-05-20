@@ -46,7 +46,7 @@ export DEVKITPRO=~/devkitpro
 export DEVKITARM=$DEVKITPRO/devkitARM
 export TONCCODE=$DEVKITPRO/tonc
 
-export TERMINAL="termite"
+export TERMINAL="konsole"
 export EDITOR="vim"
 export VISUAL="vim"
 export WINEDLLOVERRIDES="winemenubuilder.exe=d"
