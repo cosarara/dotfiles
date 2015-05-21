@@ -58,8 +58,8 @@ export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quo
 
 export SDL_VIDEO_MINIMIZE_ON_FOCUS_LOSS=0
 
-export PATH=$PATH:$HOME/.gem/ruby/2.1.0/bin
-export PATH=$PATH:$HOME/bin
+export PATH=$HOME/.gem/ruby/2.1.0/bin:$PATH
+export PATH=$HOME/bin:$PATH
 
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib
 
@@ -68,4 +68,5 @@ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib
 alias top=htop
 
 eval $(dircolors ~/.dircolors)
-alias ssh='TERM=xterm-256color ssh'
+#alias ssh='TERM=xterm-256color ssh'
+ssh-add -l >/dev/null || alias ssh='ssh-add -l >/dev/null || ssh-add && unalias ssh; ssh'
