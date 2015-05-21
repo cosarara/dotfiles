@@ -53,3 +53,10 @@ function ToggleHex()
   let &modifiable=l:oldmodifiable
 endfunction
 
+noremap n h
+noremap i j
+noremap o k
+noremap h l
+noremap l o
+noremap ; i
+noremap m n
