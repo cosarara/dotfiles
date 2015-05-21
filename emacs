@@ -158,8 +158,34 @@
 			(setq python-indent 4)
 			(setq electric-indent-chars (delq ?: electric-indent-chars))))
 
+(add-hook 'eww-mode-hook
+		  (lambda ()
+			(setq show-trailing-whitespace nil)))
+
 ; projectile
 (projectile-global-mode)
 (setq projectile-enable-caching t)
 (global-set-key (kbd "C-p") 'projectile-find-file)
 (define-key evil-normal-state-map "\C-p" 'projectile-find-file)
+
+(define-minor-mode evil-norman-mode
+  "Evil dvorak mode allows you to use evil using the dvorak keyboard layout.  Contributions are welcome."
+  :lighter " EM"
+  :keymap (make-sparse-keymap))
+
+(evil-define-key 'visual evil-norman-mode-map
+  "h" 'evil-forward-char
+  "n" 'evil-backward-char
+  "o" 'evil-previous-line
+  "i" 'evil-next-line
+  ";" 'evil-insert)
+
+(evil-define-key 'normal evil-norman-mode-map
+  "h" 'evil-forward-char
+  "n" 'evil-backward-char
+  "o" 'evil-previous-line
+  "i" 'evil-next-line
+  ";" 'evil-insert
+  "l" 'evil-open-below)
+
+(evil-norman-mode 1)

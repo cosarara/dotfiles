@@ -10,6 +10,7 @@ map <F5> :!make<CR><CR>
 au BufNewFile,BufRead *.pks set filetype=pks
 au BufNewFile,BufRead *.rs set filetype=rust
 au BufNewFile,BufRead *.php set tabstop=4 shiftwidth=4
+au BufNewFile,BufRead *.qml set tabstop=4 shiftwidth=4
 
 
 command -bar Hexmode call ToggleHex()
@@ -52,3 +53,10 @@ function ToggleHex()
   let &modifiable=l:oldmodifiable
 endfunction
 
+noremap n h
+noremap i j
+noremap o k
+noremap h l
+noremap l o
+noremap ; i
+noremap m n
