@@ -189,3 +189,4 @@
   "l" 'evil-open-below)
 
 (evil-norman-mode 1)
+
