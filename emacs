@@ -168,25 +168,47 @@
 (global-set-key (kbd "C-p") 'projectile-find-file)
 (define-key evil-normal-state-map "\C-p" 'projectile-find-file)
 
-(define-minor-mode evil-norman-mode
-  "Evil dvorak mode allows you to use evil using the dvorak keyboard layout.  Contributions are welcome."
-  :lighter " EM"
-  :keymap (make-sparse-keymap))
 
-(evil-define-key 'visual evil-norman-mode-map
-  "h" 'evil-forward-char
-  "n" 'evil-backward-char
-  "o" 'evil-previous-line
-  "i" 'evil-next-line
-  ";" 'evil-insert)
+(define-key evil-normal-state-map "h" 'evil-forward-char)
+(define-key evil-normal-state-map "n" 'evil-backward-char)
+(define-key evil-normal-state-map "o" 'evil-previous-line)
+(define-key evil-normal-state-map "i" 'evil-next-line)
+(define-key evil-normal-state-map ";" 'evil-insert)
+(define-key evil-normal-state-map "l" 'evil-open-below)
+(define-key evil-normal-state-map "m" 'evil-search-next)
+(define-key evil-normal-state-map "M" 'evil-search-previous)
 
-(evil-define-key 'normal evil-norman-mode-map
-  "h" 'evil-forward-char
-  "n" 'evil-backward-char
-  "o" 'evil-previous-line
-  "i" 'evil-next-line
-  ";" 'evil-insert
-  "l" 'evil-open-below)
+(define-key evil-visual-state-map "h" 'evil-forward-char)
+(define-key evil-visual-state-map "n" 'evil-backward-char)
+(define-key evil-visual-state-map "o" 'evil-previous-line)
+(define-key evil-visual-state-map "i" 'evil-next-line)
+(define-key evil-visual-state-map ";" 'evil-insert)
+(define-key evil-visual-state-map "m" 'evil-search-next)
+(define-key evil-normal-state-map "M" 'evil-search-previous)
 
-(evil-norman-mode 1)
-
+;;(define-minor-mode evil-norman-mode
+;;  "Evil norman mode"
+;;  :lighter " EM"
+;;  :keymap (make-sparse-keymap))
+;;
+;;(evil-define-key 'visual evil-norman-mode-map
+;;  "h" 'evil-forward-char
+;;  "n" 'evil-backward-char
+;;  "o" 'evil-previous-line
+;;  "i" 'evil-next-line
+;;  ";" 'evil-insert)
+;;
+;;(evil-define-key 'normal evil-norman-mode-map
+;;  "h" 'evil-forward-char
+;;  "n" 'evil-backward-char
+;;  "o" 'evil-previous-line
+;;  "i" 'evil-next-line
+;;  ";" 'evil-insert
+;;  "l" 'evil-open-below
+;;  "m" 'evil-search-next)
+;;
+;;;;(evil-norman-mode 1)
+;;
+;;(add-hook 'evil-mode-hook
+;;		  (lambda ()
+;;			(evil-norman-mode 1)))
