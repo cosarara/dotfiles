@@ -19,6 +19,18 @@ bindkey -e
 source ~/.zsh/steeef_custom.zsh-theme
 #source ~/.zsh/mh.zsh-theme
 
+case "$TERM" in
+"dumb")
+    PS1="> "
+    ;;
+xterm*|rxvt*|eterm*|screen*)
+    PS1=$PS1
+    ;;
+*)
+    PS1="> "
+    ;;
+esac
+
 source ~/.zsh/editor.zsh
 
 # enable color support of ls and also add handy aliases
@@ -46,7 +58,7 @@ export DEVKITPRO=~/devkitpro
 export DEVKITARM=$DEVKITPRO/devkitARM
 export TONCCODE=$DEVKITPRO/tonc
 
-export TERMINAL="konsole"
+export TERMINAL="sakura"
 export EDITOR="vim"
 export VISUAL="vim"
 export WINEDLLOVERRIDES="winemenubuilder.exe=d"
