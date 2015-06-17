@@ -98,6 +98,7 @@
 )
 
 (add-hook 'web-mode-hook  'my-web-mode-hook)
+(add-to-list 'auto-mode-alist '("\\.mako\\'" . web-mode))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -212,3 +213,5 @@
 ;;(add-hook 'evil-mode-hook
 ;;		  (lambda ()
 ;;			(evil-norman-mode 1)))
+
+(setq backup-directory-alist            '((".*" . "~/.saves")))
