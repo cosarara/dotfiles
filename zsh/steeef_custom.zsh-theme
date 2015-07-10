@@ -91,7 +91,12 @@ function steeef_precmd {
 }
 add-zsh-hook precmd steeef_precmd
 
+function userhost_precmd {
+	[[ "$SSH_CONNECTION" != '' ]] && prompt_userhost='%F{red%}%n%f %F{cyan%}%m%f '
+}
+add-zsh-hook precmd userhost_precmd
+
 #PROMPT=$'
 #%{$red%}%n%{$reset_color%} at %{$orange%}%m%{$reset_color%} in %{$limegreen%}%~%{$reset_color%} $vcs_info_msg_0_$(virtualenv_info)%{$reset_color%}
 #$ '
-PROMPT=$'%F{red%}%n%{$reset_color%} %F{cyan%}%m%{$reset_color%} %F{blue%}%~%{$reset_color%} $vcs_info_msg_0_$(virtualenv_info)%F{blue%}\n> %{$reset_color%}'
+PROMPT=$'${prompt_userhost}%F{blue%}%~%{$reset_color%} $vcs_info_msg_0_$(virtualenv_info)\n%(?.%F{cyan}.%F{red})> %{$reset_color%}'
