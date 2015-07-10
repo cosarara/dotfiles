@@ -2,3 +2,5 @@ vim/.netrwhist
 /emacs.d/ido.last
 /emacs.d/tramp
 /emacs.d/projectile-bookmarks.eld
+nvim/plugged
+nvim/.*
