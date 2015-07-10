@@ -1,3 +1,5 @@
+# zshrc
+
 zstyle ':completion:*' completer _expand _complete _ignored _correct _approximate
 #zstyle ':completion:*' matcher-list 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 zstyle :compinstall filename '/home/cosarara/.zshrc'
@@ -25,6 +27,7 @@ case "$TERM" in
     ;;
 xterm*|rxvt*|eterm*|screen*)
     PS1=$PS1
+    TERM='xterm-256color' # at least till sakura gets its shit together
     ;;
 *)
     PS1="> "
@@ -44,6 +47,9 @@ if [ -x /usr/bin/dircolors ]; then
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
 fi
+
+alias l='ls'
+alias ll='ls -l'
 
 alias maxima=rmaxima
 
@@ -75,6 +81,8 @@ export PATH=$HOME/bin:$PATH
 
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib
 
+export NVIM_TUI_ENABLE_TRUE_COLOR=1
+
 [[ $TTY == "/dev/tty1" ]] && exec startx
 
 alias top=htop
@@ -82,3 +90,6 @@ alias top=htop
 eval $(dircolors ~/.dircolors)
 #alias ssh='TERM=xterm-256color ssh'
 ssh-add -l >/dev/null || alias ssh='ssh-add -l >/dev/null || ssh-add && unalias ssh; ssh'
+
+#fortune -a | cowsay -f $(ls /usr/share/cows/ | shuf -n1)
+fortune | cowsay -f /usr/share/cows/hellokitty.cow
