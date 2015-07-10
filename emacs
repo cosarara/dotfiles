@@ -185,7 +185,14 @@
 (define-key evil-visual-state-map "i" 'evil-next-line)
 (define-key evil-visual-state-map ";" 'evil-insert)
 (define-key evil-visual-state-map "m" 'evil-search-next)
-(define-key evil-normal-state-map "M" 'evil-search-previous)
+(define-key evil-visual-state-map "M" 'evil-search-previous)
+
+(define-key evil-window-map "h" 'windmove-right)
+(define-key evil-window-map "n" 'windmove-left)
+(define-key evil-window-map "o" 'windmove-up)
+(define-key evil-window-map "i" 'windmove-down)
+
+(define-key evil-normal-state-map "L" 'evil-set-marker)
 
 ;;(define-minor-mode evil-norman-mode
 ;;  "Evil norman mode"
@@ -215,3 +222,4 @@
 ;;			(evil-norman-mode 1)))
 
 (setq backup-directory-alist            '((".*" . "~/.saves")))
+(setq magit-last-seen-setup-instructions "1.4.0")
