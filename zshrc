@@ -86,6 +86,7 @@ export NVIM_TUI_ENABLE_TRUE_COLOR=1
 [[ $TTY == "/dev/tty1" ]] && exec startx
 
 alias top=htop
+alias vim=nvim
 
 eval $(dircolors ~/.dircolors)
 #alias ssh='TERM=xterm-256color ssh'
