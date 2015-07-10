@@ -82,3 +82,4 @@ alias top=htop
 eval $(dircolors ~/.dircolors)
 #alias ssh='TERM=xterm-256color ssh'
 ssh-add -l >/dev/null || alias ssh='ssh-add -l >/dev/null || ssh-add && unalias ssh; ssh'
+export ANDROID_NDK_PATH=/opt/android-ndk
