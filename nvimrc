@@ -35,8 +35,10 @@ Plug 'https://github.com/Shougo/unite.vim.git'
 Plug 'https://github.com/aperezdc/vim-template.git'
 Plug 'https://github.com/rust-lang/rust.vim.git'
 Plug 'https://github.com/AndrewRadev/linediff.vim.git'
-"Plug 'https://github.com/kovisoft/slimv.git'
+Plug 'https://github.com/kovisoft/slimv.git'
 "Plug 'https://github.com/JazzCore/ctrlp-cmatcher.git''
+Plug 'https://github.com/rust-lang/rust.vim.git'
+
 "" Plugin options
 "Plug 'nsf/gocode', { 'tag': 'v.20150303', 'rtp': 'vim' }
 "" Plugin outside ~/.vim/plugged with post-update hook
@@ -100,3 +102,5 @@ nnoremap <space>/ :Unite grep:. -auto-preview -auto-highlight -no-split<cr>
 nnoremap <silent><Leader><C-]> <C-w><C-]><C-w>T
 
 autocmd BufEnter * silent! lcd %:p:h
+"let g:slimv_swank_cmd ='! xterm -e sbcl --load ~/utils/start-swank.lisp &' "
+

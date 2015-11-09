@@ -17,3 +17,5 @@ if [[ ! -d "$TMPPREFIX" ]]; then
 fi
 
 eval $(ssh-agent)
+
+source .profile
