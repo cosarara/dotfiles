@@ -33,8 +33,9 @@ Plug 'https://github.com/bling/vim-airline.git'
 Plug 'https://github.com/FelikZ/ctrlp-py-matcher.git'
 Plug 'https://github.com/majutsushi/tagbar.git'
 Plug 'https://github.com/JazzCore/ctrlp-cmatcher.git'
-"Plug 'https://github.com/kovisoft/slimv.git'
+Plug 'https://github.com/kovisoft/slimv.git'
 "Plug 'https://github.com/JazzCore/ctrlp-cmatcher.git''
+Plug 'https://github.com/rust-lang/rust.vim.git'
 
 "" Plugin options
 "Plug 'nsf/gocode', { 'tag': 'v.20150303', 'rtp': 'vim' }
@@ -88,4 +89,6 @@ set laststatus=2
 " neither seems faster
 "let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
 "let g:ctrlp_match_func = {'match' : 'matcher#cmatch' }
+
+"let g:slimv_swank_cmd ='! xterm -e sbcl --load ~/utils/start-swank.lisp &' "
 
