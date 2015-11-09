@@ -5,46 +5,44 @@ set autoindent
 set hidden
 set wildmenu
 set clipboard=unnamedplus
-set smartcase
+set ignorecase smartcase
+set autochdir
 
 au BufNewFile,BufRead *.php set tabstop=4 shiftwidth=4
+au BufNewFile,BufRead,FileType c set tabstop=4 shiftwidth=4
+au BufNewFile,BufRead,FileType cpp set tabstop=4 shiftwidth=4
 
 call plug#begin('~/.nvim/plugged')
-
 "" Make sure you use single quotes
-"Plug 'junegunn/seoul256.vim'
-"Plug 'junegunn/vim-easy-align'
-"
 "" Group dependencies, vim-snippets depends on ultisnips
 "Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
-"
 "" On-demand loading
 "Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 "Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
-"
-"" Using git URL
-"Plug 'https://github.com/junegunn/vim-github-dashboard.git'
 Plug 'https://github.com/ctrlpvim/ctrlp.vim.git'
-"Plug 'https://github.com/sheerun/vim-wombat-scheme.git'
-"Plug 'git@github.com:vim-scripts/Wombat.git'
 Plug 'https://github.com/MPiccinato/wombat256.git'
-Plug 'https://github.com/thomd/vim-wasabi-colorscheme.git'
+Plug 'https://github.com/cosarara97/vim-wasabi-colorscheme.git'
 Plug 'https://github.com/bling/vim-airline.git'
 Plug 'https://github.com/FelikZ/ctrlp-py-matcher.git'
 Plug 'https://github.com/majutsushi/tagbar.git'
 Plug 'https://github.com/JazzCore/ctrlp-cmatcher.git'
+Plug 'https://github.com/evidens/vim-twig.git'
+Plug 'https://github.com/tpope/vim-fugitive.git'
+Plug 'https://github.com/rking/ag.vim'
+Plug 'https://github.com/tikhomirov/vim-glsl.git'
+Plug 'https://github.com/Shougo/vimproc.vim.git'
+Plug 'https://github.com/Shougo/unite.vim.git'
+Plug 'https://github.com/aperezdc/vim-template.git'
+Plug 'https://github.com/rust-lang/rust.vim.git'
+Plug 'https://github.com/AndrewRadev/linediff.vim.git'
 "Plug 'https://github.com/kovisoft/slimv.git'
 "Plug 'https://github.com/JazzCore/ctrlp-cmatcher.git''
-
 "" Plugin options
 "Plug 'nsf/gocode', { 'tag': 'v.20150303', 'rtp': 'vim' }
-"
 "" Plugin outside ~/.vim/plugged with post-update hook
 "Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
-"
 "" Unmanaged plugin (manually installed and updated)
 "Plug '~/my-prototype-plugin'
-
 call plug#end()
 
 "colorscheme wombat256
@@ -71,10 +69,13 @@ let mapleader = "\<Space>"
 nnoremap <CR> :noh<CR><CR>
 nnoremap <leader>p :CtrlPTag<CR>
 nnoremap <silent> <Leader>t :TagbarToggle<CR>
-nnoremap <Leader>b :b 
+"nnoremap <Leader>b :b 
 nnoremap <Leader>n :bn<CR> 
+nnoremap <Leader>N :bp<CR> 
 
 set laststatus=2
+
+command! Bbspaces %s/\s\+$
 
 " breaks tag search
 "let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden
@@ -89,3 +90,13 @@ set laststatus=2
 "let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
 "let g:ctrlp_match_func = {'match' : 'matcher#cmatch' }
 
+call unite#filters#matcher_default#use(['matcher_fuzzy'])
+
+"nnoremap <leader>e :Unite -quick-match buffer<cr>
+nnoremap <leader>e :Unite -start-insert buffer<cr>
+nnoremap <leader>f :Unite -start-insert file<cr>
+nnoremap <space>/ :Unite grep:. -auto-preview -auto-highlight -no-split<cr>
+
+nnoremap <silent><Leader><C-]> <C-w><C-]><C-w>T
+
+autocmd BufEnter * silent! lcd %:p:h

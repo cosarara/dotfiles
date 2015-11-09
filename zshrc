@@ -11,8 +11,8 @@ promptinit
 # End of lines added by compinstall
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.histfile
-HISTSIZE=1000
-SAVEHIST=1000
+HISTSIZE=10000000
+SAVEHIST=10000000
 setopt appendhistory autocd extendedglob
 bindkey -e
 
@@ -25,7 +25,7 @@ case "$TERM" in
 "dumb")
     PS1="> "
     ;;
-xterm*|rxvt*|eterm*|screen*)
+xterm*|rxvt*|eterm*|screen*|st*)
     PS1=$PS1
     TERM='xterm-256color' # at least till sakura gets its shit together
     ;;
@@ -64,7 +64,7 @@ export DEVKITPRO=~/devkitpro
 export DEVKITARM=$DEVKITPRO/devkitARM
 export TONCCODE=$DEVKITPRO/tonc
 
-export TERMINAL="sakura"
+export TERMINAL="mate-terminal"
 export EDITOR="vim"
 export VISUAL="vim"
 export WINEDLLOVERRIDES="winemenubuilder.exe=d"
