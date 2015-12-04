@@ -33,10 +33,16 @@ values."
      python
      html
      php
-     common-lisp
-     ;;perl
      c-c++
      csharp
+     java
+     latex
+     nim
+     rust
+     scheme
+     sql
+     common-lisp
+     yaml
      ;; (shell :variables
      ;;        shell-default-height 30
      ;;        shell-default-position 'bottom)
