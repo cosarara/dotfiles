@@ -30,6 +30,7 @@ for file in $files; do
 	[[ $file == "install.sh" ]] && continue
 	if [ -e ~/.$file ]; then
 		echo "Moving existing dotfile $file from ~ to $olddir"
+		echo mv ~/.$file $olddir
 		mv ~/.$file $olddir
 	fi
 	echo "Creating symlink to $file in home directory."
