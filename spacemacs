@@ -28,12 +28,15 @@ values."
      emacs-lisp
      git
      markdown
-     org
+     ;;org-plus-contrib
      lua
      python
      html
+     php
+     common-lisp
      ;;perl
      c-c++
+     csharp
      ;; (shell :variables
      ;;        shell-default-height 30
      ;;        shell-default-position 'bottom)
@@ -49,6 +52,10 @@ values."
    dotspacemacs-additional-packages '()
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '()
+   ;;dotspacemacs-excluded-packages
+   ;;'(
+   ;;  smartparens
+   ;;  )
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
    ;; are declared in a layer which is not a member of
    ;; the list `dotspacemacs-configuration-layers'. (default t)
@@ -84,9 +91,9 @@ values."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(sanityinc-tomorrow-night
-                         sanityinc-tomorrow-day
-                         wombat)
+   dotspacemacs-themes '(my-wombat
+                         sanityinc-tomorrow-night
+                         sanityinc-tomorrow-day)
               ;;           spacemacs-dark
               ;;           spacemacs-light
               ;;           solarized-light
@@ -98,8 +105,9 @@ values."
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font. `powerline-scale' allows to quickly tweak the mode-line
    ;; size to make separators look not too crappy.
-   dotspacemacs-default-font '("Source Code Pro"
-                               :size 13
+   ;;dotspacemacs-default-font '("Source Code Pro"
+   dotspacemacs-default-font '("terminus"
+                               :size 14
                                :weight normal
                                :width normal
                                :powerline-scale 1.2)
@@ -201,6 +209,7 @@ values."
   "Initialization function for user code.
 It is called immediately after `dotspacemacs/init'.  You are free to put any
 user code."
+  (load-file "~/.emacs.d/my-wombat-theme.el")
   )
 
 (defun dotspacemacs/user-config ()
@@ -222,6 +231,7 @@ layers configuration. You are free to put any user code."
   (evil-define-key 'normal evil-org-mode-map
     "o" 'evil-previous-line
     "O" '(lambda () (interactive) (evil-org-eol-call 'org-meta-return))
+    ;"O" 'org-meta-return
     "l" '(lambda () (interactive) (evil-org-eol-call 'clever-insert-item))
     "gn" 'outline-up-heading
     "gi" (if (fboundp 'org-forward-same-level) ;to be backward compatible with older org version
@@ -253,7 +263,42 @@ layers configuration. You are free to put any user code."
   (define-key evil-window-map "n" 'windmove-left)
   (define-key evil-window-map "o" 'windmove-up)
   (define-key evil-window-map "i" 'windmove-down)
+
+  (define-key evil-normal-state-map (kbd "C-p") 'helm-projectile-find-file)
+  ;;(evil-define-key 'normal prog-mode-map
+  ;;  (kbd "C-p") 'helm-projectile-find-file)
+  ;;(add-hook 'prog-mode-hook (lambda ()
+  ;;          (define-key evil-normal-state-map (kbd "C-p")
+  ;;            'helm-projectile-find-file)))
+
+  (require 'smartparens)
+  (sp-pair "'" nil :actions :rem)
+  (sp-pair "\"" nil :actions :rem)
+  ;(add-hook 'python-mode-hook
+  ;          'turn-off-smartparens-mode)
+
+  (setq inferior-lisp-program "sbcl")
+
+  (add-to-list 'auto-mode-alist '("\\.php\\'" . web-mode))
+
+  (setq org-export-backends '(beamer html latex md gfm))
+
+;;  (setq projectile-tags-command "ctags --exclude=periphlib --exclude=build -Re -f \"%s\" %s")
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(custom-safe-themes
+   (quote
+    ("73a2f0be1e371265d9f02259b80c3597c2dd2aab7955c2e8f4fc6eb80496f67e" default))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(default ((t (:family "Terminus" :foundry "xos4" :slant normal :weight normal :height 105 :width normal)))))
