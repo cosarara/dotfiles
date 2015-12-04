@@ -66,27 +66,9 @@ alias ansicat=~/utils/ansicat.py
 #alias la='ls -A'
 #alias l='ls -CF'
 
-export DEVKITPRO=~/devkitpro
-export DEVKITARM=$DEVKITPRO/devkitARM
-export DEVKITPPC=$DEVKITPRO/devkitPPC
-
-export PATH=$PATH:$DEVKITARM/bin
-export TONCCODE=$DEVKITPRO/tonc
-
-export TERMINAL="mate-terminal"
-export EDITOR="vim"
-export VISUAL="vim"
-export WINEDLLOVERRIDES="winemenubuilder.exe=d"
-export WINEARCH="win32"
-export BROWSER="firefox"
-#export QT_STYLE_OVERRIDE="breeze"
-
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
 export SDL_VIDEO_MINIMIZE_ON_FOCUS_LOSS=0
-
-export PATH=$HOME/.gem/ruby/2.1.0/bin:$PATH
-export PATH=$HOME/bin:$PATH
 
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib
 
@@ -102,11 +84,5 @@ eval $(dircolors ~/.dircolors)
 #alias ssh='TERM=xterm-256color ssh'
 ssh-add -l >/dev/null || alias ssh='ssh-add -l >/dev/null || ssh-add && unalias ssh; ssh'
 
-export ANDROID_NDK_PATH=/opt/android-ndk
-
 #fortune -a | cowsay -f $(ls /usr/share/cows/ | shuf -n1)
 fortune | cowsay -f /usr/share/cows/hellokitty.cow
-export NPM_PACKAGES=/home/jaume/.npm-packages
-export NODE_PATH=/home/jaume/.npm-packages/lib/node_modules:
-export PATH=/home/jaume/.npm-packages/bin:/home/jaume/bin:/home/jaume/.gem/ruby/2.1.0/bin:/home/jaume/bin:/home/jaume/.gem/ruby/2.1.0/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/opt/adobe-air-sdk/bin:/opt/android-ndk:/opt/android-sdk/tools:/opt/cuda/bin:/usr/lib/jvm/default/bin:/opt/kde/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/jaume/devkitpro/devkitARM/bin:/home/jaume/devkitpro/devkitARM/bin
-export JPM_FIREFOX_BINARY=/usr/bin/firefox
