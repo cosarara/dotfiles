@@ -28,8 +28,8 @@ values."
      emacs-lisp
      git
      markdown
-     ;;org-plus-contrib
      lua
+     org
      python
      html
      php
@@ -301,7 +301,13 @@ layers configuration. You are free to put any user code."
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
    (quote
-    ("73a2f0be1e371265d9f02259b80c3597c2dd2aab7955c2e8f4fc6eb80496f67e" default))))
+    ("73a2f0be1e371265d9f02259b80c3597c2dd2aab7955c2e8f4fc6eb80496f67e" default)))
+ '(org-file-apps
+   (quote
+    ((auto-mode . emacs)
+     ("\\.mm\\'" . default)
+     ("\\.x?html?\\'" . default)
+     ("\\.pdf\\'" . "zathura %s")))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
