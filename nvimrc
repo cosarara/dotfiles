@@ -35,7 +35,7 @@ Plug 'https://github.com/Shougo/unite.vim.git'
 Plug 'https://github.com/aperezdc/vim-template.git'
 Plug 'https://github.com/rust-lang/rust.vim.git'
 Plug 'https://github.com/AndrewRadev/linediff.vim.git'
-Plug 'https://github.com/kovisoft/slimv.git'
+"Plug 'https://github.com/kovisoft/slimv.git'
 "Plug 'https://github.com/JazzCore/ctrlp-cmatcher.git''
 Plug 'https://github.com/rust-lang/rust.vim.git'
 

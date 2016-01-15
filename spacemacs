@@ -28,8 +28,8 @@ values."
      emacs-lisp
      git
      markdown
-     ;;org-plus-contrib
      lua
+     org
      python
      html
      php
@@ -215,7 +215,8 @@ values."
   "Initialization function for user code.
 It is called immediately after `dotspacemacs/init'.  You are free to put any
 user code."
-  (load-file "~/.emacs.d/my-wombat-theme.el")
+ ;; (load-file "~/.emacs.d/private/my-wombat-theme.el")
+  (add-to-list 'custom-theme-load-path "~/.emacs.d/private/")
   )
 
 (defun dotspacemacs/user-config ()
@@ -247,6 +248,7 @@ layers configuration. You are free to put any user code."
              'org-backward-same-level
            'org-backward-heading-same-level)
     "gh" 'outline-next-visible-heading
+    "J" 'evil-join
     )
 ;  (define-key evil-org-mode-map "h" 'evil-forward-char)
 ;  (define-key evil-org-mode-map "n" 'evil-backward-char)
@@ -308,7 +310,13 @@ layers configuration. You are free to put any user code."
  '(safe-local-variable-values
    (quote
 	((eval
-	  (setq-default c-basic-offset 4 tab-width 4 indent-tabs-mode t))))))
+	  (setq-default c-basic-offset 4 tab-width 4 indent-tabs-mode t)))))
+ '(org-file-apps
+   (quote
+    ((auto-mode . emacs)
+     ("\\.mm\\'" . default)
+     ("\\.x?html?\\'" . default)
+     ("\\.pdf\\'" . "zathura %s")))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
