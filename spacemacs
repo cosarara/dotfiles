@@ -290,6 +290,9 @@ layers configuration. You are free to put any user code."
   (setq org-export-backends '(beamer html latex md gfm))
 
 ;;  (setq projectile-tags-command "ctags --exclude=periphlib --exclude=build -Re -f \"%s\" %s")
+  (setq-default c-basic-offset 4
+                tab-width 4
+                indent-tabs-mode t)
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
@@ -301,7 +304,11 @@ layers configuration. You are free to put any user code."
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
    (quote
-    ("73a2f0be1e371265d9f02259b80c3597c2dd2aab7955c2e8f4fc6eb80496f67e" default))))
+	("73a2f0be1e371265d9f02259b80c3597c2dd2aab7955c2e8f4fc6eb80496f67e" default)))
+ '(safe-local-variable-values
+   (quote
+	((eval
+	  (setq-default c-basic-offset 4 tab-width 4 indent-tabs-mode t))))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
