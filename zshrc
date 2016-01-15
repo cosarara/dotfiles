@@ -54,6 +54,10 @@ if [ -x /usr/bin/dircolors ]; then
     alias egrep='egrep --color=auto'
 fi
 
+# to only uncomment as a dirty hack if I want changes
+# applied to new shells or something
+#source ~/.profile
+
 alias l='ls'
 alias ll='ls -l'
 
@@ -66,19 +70,12 @@ alias ansicat=~/utils/ansicat.py
 #alias la='ls -A'
 #alias l='ls -CF'
 
-export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
-
-export SDL_VIDEO_MINIMIZE_ON_FOCUS_LOSS=0
-
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib
-
-export NVIM_TUI_ENABLE_TRUE_COLOR=1
-
 [[ $TTY == "/dev/tty1" ]] && exec startx
 
 alias top=htop
 alias vim=nvim
 alias visualizer='nausea /tmp/mpd.fifo'
+alias visualizer2='cava -i fifo -p /tmp/mpd.fifo'
 
 eval $(dircolors ~/.dircolors)
 #alias ssh='TERM=xterm-256color ssh'

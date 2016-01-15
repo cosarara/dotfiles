@@ -27,3 +27,18 @@ export WINEARCH="win32"
 export BROWSER="firefox"
 #export QT_STYLE_OVERRIDE="breeze"
 
+export WINEPREFIX="$HOME/.wine"
+
+export BSPWM_TREE=/tmp/bspwm.tree
+export BSPWM_HISTORY=/tmp/bspwm.history
+export BSPWM_STACK=/tmp/bspwm.stack
+export PANEL_FIFO=/tmp/panel_fifo
+export XDG_MUSIC_DIR=~/music
+
+export GOPATH=~/coses/go
+export PATH=$GOPATH/bin:$PATH
+
+export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
+export SDL_VIDEO_MINIMIZE_ON_FOCUS_LOSS=0
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib
+export NVIM_TUI_ENABLE_TRUE_COLOR=1
