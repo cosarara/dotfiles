@@ -215,7 +215,8 @@ values."
   "Initialization function for user code.
 It is called immediately after `dotspacemacs/init'.  You are free to put any
 user code."
-  (load-file "~/.emacs.d/my-wombat-theme.el")
+ ;; (load-file "~/.emacs.d/private/my-wombat-theme.el")
+  (add-to-list 'custom-theme-load-path "~/.emacs.d/private/")
   )
 
 (defun dotspacemacs/user-config ()
@@ -247,6 +248,7 @@ layers configuration. You are free to put any user code."
              'org-backward-same-level
            'org-backward-heading-same-level)
     "gh" 'outline-next-visible-heading
+    "J" 'evil-join
     )
 ;  (define-key evil-org-mode-map "h" 'evil-forward-char)
 ;  (define-key evil-org-mode-map "n" 'evil-backward-char)
