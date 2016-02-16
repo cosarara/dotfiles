@@ -232,8 +232,11 @@ layers configuration. You are free to put any user code."
   (define-key evil-normal-state-map "i" 'evil-next-line)
   (define-key evil-normal-state-map ";" 'evil-insert)
   (define-key evil-normal-state-map "l" 'evil-open-below)
-  (define-key evil-normal-state-map "k" 'evil-search-next)
-  (define-key evil-normal-state-map "K" 'evil-search-previous)
+  (define-key evil-normal-state-map "k" 'evil-ex-search-next)
+  (define-key evil-normal-state-map "K" 'evil-ex-search-previous)
+
+  (define-key evil-normal-state-map "/" 'evil-ex-search-forward)
+  (define-key evil-visual-state-map "/" 'evil-ex-search-forward)
 
   (evil-define-key 'normal evil-org-mode-map
     "o" 'evil-previous-line
@@ -264,8 +267,8 @@ layers configuration. You are free to put any user code."
   (define-key evil-visual-state-map "o" 'evil-previous-line)
   (define-key evil-visual-state-map "i" 'evil-next-line)
   (define-key evil-visual-state-map ";" 'evil-insert)
-  (define-key evil-visual-state-map "k" 'evil-search-next)
-  (define-key evil-visual-state-map "K" 'evil-search-previous)
+  (define-key evil-visual-state-map "k" 'evil-ex-search-next)
+  (define-key evil-visual-state-map "K" 'evil-ex-search-previous)
 
   (define-key evil-window-map "h" 'windmove-right)
   (define-key evil-window-map "n" 'windmove-left)
@@ -295,6 +298,8 @@ layers configuration. You are free to put any user code."
   (setq-default c-basic-offset 4
                 tab-width 4
                 indent-tabs-mode t)
+
+  (setq evil-search-module 'evil-search)
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
