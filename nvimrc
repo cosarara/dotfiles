@@ -10,7 +10,7 @@ set clipboard=unnamedplus
 set ignorecase smartcase
 "set autochdir
 
-au BufNewFile,BufRead *.php set tabstop=4 shiftwidth=4
+au BufNewFile,BufRead,FileType php set tabstop=4 shiftwidth=4 expandtab
 au BufNewFile,BufRead,FileType c set tabstop=4 shiftwidth=4
 au BufNewFile,BufRead,FileType cpp set tabstop=4 shiftwidth=4
 
@@ -35,7 +35,7 @@ Plug 'https://github.com/rking/ag.vim'
 Plug 'https://github.com/tikhomirov/vim-glsl.git'
 Plug 'https://github.com/Shougo/vimproc.vim.git'
 Plug 'https://github.com/Shougo/unite.vim.git'
-Plug 'https://github.com/aperezdc/vim-template.git'
+Plug 'https://github.com/cosarara97/vim-template.git'
 Plug 'https://github.com/rust-lang/rust.vim.git'
 Plug 'https://github.com/AndrewRadev/linediff.vim.git'
 "Plug 'https://github.com/kovisoft/slimv.git'
@@ -43,6 +43,9 @@ Plug 'https://github.com/AndrewRadev/linediff.vim.git'
 Plug 'https://github.com/rust-lang/rust.vim.git'
 Plug 'https://github.com/bronson/vim-trailing-whitespace.git'
 Plug 'https://github.com/dag/vim-fish.git'
+Plug 'https://github.com/skammer/vim-css-color.git'
+
+Plug '~/projects/zig/doc/vim'
 
 "" Plugin options
 "Plug 'nsf/gocode', { 'tag': 'v.20150303', 'rtp': 'vim' }
@@ -57,9 +60,12 @@ call plug#end()
 "colorscheme wombat256
 colorscheme wasabi256
 
+let g:airline#extensions#tabline#enabled = 1
 "let g:airline_theme='molokai'
 let g:airline_theme='base16_default'
 let g:airline_powerline_fonts = 1
+
+let g:email = 'jaume@delclos.com'
 
 noremap k n
 noremap K N
@@ -115,7 +121,8 @@ nnoremap <space>/ :Unite grep:. -auto-preview -auto-highlight -no-split<cr>
 
 nnoremap <silent><Leader><C-]> <C-w><C-]><C-w>T
 
-autocmd BufEnter * silent! lcd %:p:h
+" kinda like autochdir?
+"autocmd BufEnter * silent! lcd %:p:h
 "let g:slimv_swank_cmd ='! xterm -e sbcl --load ~/utils/start-swank.lisp &' "
 
 
