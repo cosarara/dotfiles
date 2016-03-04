@@ -1,3 +1,5 @@
+set shell=zsh
+
 syntax on
 filetype plugin indent on
 set nu
@@ -40,6 +42,7 @@ Plug 'https://github.com/AndrewRadev/linediff.vim.git'
 "Plug 'https://github.com/JazzCore/ctrlp-cmatcher.git''
 Plug 'https://github.com/rust-lang/rust.vim.git'
 Plug 'https://github.com/bronson/vim-trailing-whitespace.git'
+Plug 'https://github.com/dag/vim-fish.git'
 
 "" Plugin options
 "Plug 'nsf/gocode', { 'tag': 'v.20150303', 'rtp': 'vim' }
