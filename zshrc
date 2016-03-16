@@ -77,7 +77,7 @@ alias vim=nvim
 alias visualizer='nausea /tmp/mpd.fifo'
 alias visualizer2='cava -i fifo -p /tmp/mpd.fifo'
 
-eval $(dircolors ~/.dircolors)
+#eval $(dircolors ~/.dircolors)
 #alias ssh='TERM=xterm-256color ssh'
 #
 if ! pgrep -u $USER ssh-agent > /dev/null; then
@@ -90,6 +90,6 @@ ssh-add -l >/dev/null || alias ssh='ssh-add -l >/dev/null || ssh-add && unalias 
 
 #fortune -a | cowsay -f $(ls /usr/share/cows/ | shuf -n1)
 fortune | cowsay -f /usr/share/cows/hellokitty.cow
-. /etc/profile.d/fzf.zsh
 
+. /etc/profile.d/fzf.zsh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
