@@ -41,6 +41,7 @@ Plug 'https://github.com/AndrewRadev/linediff.vim.git'
 Plug 'https://github.com/rust-lang/rust.vim.git'
 Plug 'https://github.com/bronson/vim-trailing-whitespace.git'
 Plug 'https://github.com/skammer/vim-css-color.git'
+Plug 'https://github.com/hynek/vim-python-pep8-indent.git'
 
 Plug '~/projects/zig/doc/vim'
 
@@ -90,7 +91,9 @@ nnoremap <Leader>n :bn<CR>
 nnoremap <Leader>N :bp<CR>
 
 nnoremap <c-f> :Files<cr>
+nnoremap <Leader>f :Files<cr>
 nnoremap <c-b> :Buffers<cr>
+nnoremap <Leader>b :Buffers<cr>
 
 set laststatus=2
 
