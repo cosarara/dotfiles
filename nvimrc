@@ -13,6 +13,7 @@ set ignorecase smartcase
 au BufNewFile,BufRead,FileType php set tabstop=4 shiftwidth=4 expandtab
 au BufNewFile,BufRead,FileType c set tabstop=4 shiftwidth=4
 au BufNewFile,BufRead,FileType cpp set tabstop=4 shiftwidth=4
+au BufNewFile,BufRead,FileType asciidoc set nospell
 
 call plug#begin('~/.config/nvim/plugged')
 "" Make sure you use single quotes
@@ -21,29 +22,41 @@ call plug#begin('~/.config/nvim/plugged')
 "" On-demand loading
 "Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 "Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
-Plug 'https://github.com/ctrlpvim/ctrlp.vim.git'
-Plug 'https://github.com/MPiccinato/wombat256.git'
-Plug 'https://github.com/cosarara97/vim-wasabi-colorscheme.git'
-Plug 'https://github.com/bling/vim-airline.git'
-Plug 'https://github.com/vim-airline/vim-airline-themes.git'
-Plug 'https://github.com/FelikZ/ctrlp-py-matcher.git'
-Plug 'https://github.com/majutsushi/tagbar.git'
-Plug 'https://github.com/JazzCore/ctrlp-cmatcher.git'
-Plug 'https://github.com/evidens/vim-twig.git'
-Plug 'https://github.com/tpope/vim-fugitive.git'
-Plug 'https://github.com/rking/ag.vim'
-Plug 'https://github.com/tikhomirov/vim-glsl.git'
-Plug 'https://github.com/Shougo/vimproc.vim.git'
-Plug 'https://github.com/Shougo/unite.vim.git'
-Plug 'https://github.com/cosarara97/vim-template.git'
-Plug 'https://github.com/rust-lang/rust.vim.git'
-Plug 'https://github.com/AndrewRadev/linediff.vim.git'
-"Plug 'https://github.com/kovisoft/slimv.git'
-"Plug 'https://github.com/JazzCore/ctrlp-cmatcher.git''
-Plug 'https://github.com/rust-lang/rust.vim.git'
-Plug 'https://github.com/bronson/vim-trailing-whitespace.git'
-Plug 'https://github.com/dag/vim-fish.git'
-Plug 'https://github.com/skammer/vim-css-color.git'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'MPiccinato/wombat256'
+Plug 'cosarara97/vim-wasabi-colorscheme'
+Plug 'bling/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'FelikZ/ctrlp-py-matcher'
+Plug 'majutsushi/tagbar'
+Plug 'JazzCore/ctrlp-cmatcher'
+Plug 'evidens/vim-twig'
+Plug 'tpope/vim-fugitive'
+Plug 'rking/ag.vim'
+Plug 'tikhomirov/vim-glsl'
+Plug 'Shougo/vimproc.vim'
+Plug 'Shougo/unite.vim'
+Plug 'cosarara97/vim-template'
+Plug 'rust-lang/rust.vim'
+Plug 'AndrewRadev/linediff.vim'
+"Plug 'kovisoft/slimv'
+"Plug 'JazzCore/ctrlp-cmatcher''
+Plug 'rust-lang/rust.vim'
+Plug 'bronson/vim-trailing-whitespace'
+Plug 'dag/vim-fish'
+Plug 'morhetz/gruvbox'
+Plug 'ap/vim-css-color'
+
+"Plug 'asciidoc/vim-asciidoc'
+"Plug 'mjakl/vim-asciidoc'
+"Plug 'powerman/asciidoc', { 'branch': 'powerman', 'rtp': 'vim' }
+
+Plug 'vim-scripts/ingo-library'
+Plug 'vim-scripts/SyntaxRange'
+Plug 'dahu/vimple'
+Plug 'dahu/Asif'
+Plug 'Raimondi/VimRegStyle'
+Plug 'dahu/vim-asciidoc'
 
 Plug '~/projects/zig/doc/vim'
 
@@ -57,8 +70,16 @@ Plug 'junegunn/fzf.vim'
 "Plug '~/my-prototype-plugin'
 call plug#end()
 
+let g:gruvbox_italic=1
 "colorscheme wombat256
 colorscheme wasabi256
+"colorscheme gruvbox
+
+"set background=dark
+
+let vimple_init_vars = 0
+
+"let g:vim_asciidoc_folding_disabled=1
 
 let g:airline#extensions#tabline#enabled = 1
 "let g:airline_theme='molokai'
