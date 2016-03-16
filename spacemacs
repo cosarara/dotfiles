@@ -217,6 +217,7 @@ It is called immediately after `dotspacemacs/init'.  You are free to put any
 user code."
  ;; (load-file "~/.emacs.d/private/my-wombat-theme.el")
   (add-to-list 'custom-theme-load-path "~/.emacs.d/private/")
+  (setq exec-path-from-shell-check-startup-files nil)
   )
 
 (defun dotspacemacs/user-config ()
