@@ -58,6 +58,8 @@ Plug 'dahu/Asif'
 Plug 'Raimondi/VimRegStyle'
 Plug 'dahu/vim-asciidoc'
 
+Plug 'hynek/vim-python-pep8-indent'
+
 Plug '~/projects/zig/doc/vim'
 
 "" Plugin options
@@ -114,7 +116,9 @@ nnoremap <Leader>n :bn<CR>
 nnoremap <Leader>N :bp<CR>
 
 nnoremap <c-f> :Files<cr>
+nnoremap <Leader>f :Files<cr>
 nnoremap <c-b> :Buffers<cr>
+nnoremap <Leader>b :Buffers<cr>
 
 set laststatus=2
 

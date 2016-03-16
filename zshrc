@@ -78,15 +78,19 @@ alias visualizer='nausea /tmp/mpd.fifo'
 alias visualizer2='cava -i fifo -p /tmp/mpd.fifo'
 
 #eval $(dircolors ~/.dircolors)
+#
+alias stopwifi='sudo systemctl stop netctl-auto@wlp2s0'
+alias killbg='kill ${${(v)jobstates##*:*:}%=*}'
+
 #alias ssh='TERM=xterm-256color ssh'
 #
-if ! pgrep -u $USER ssh-agent > /dev/null; then
-    ssh-agent > ~/.ssh-agent-thing
-fi
-if [[ "$SSH_AGENT_PID" == "" ]]; then
-    eval $(<~/.ssh-agent-thing)
-fi
-ssh-add -l >/dev/null || alias ssh='ssh-add -l >/dev/null || ssh-add && unalias ssh; ssh'
+#if ! pgrep -u $USER ssh-agent > /dev/null; then
+#    ssh-agent > ~/.ssh-agent-thing
+#fi
+#if [[ "$SSH_AGENT_PID" == "" ]]; then
+#    eval $(<~/.ssh-agent-thing)
+#fi
+#ssh-add -l >/dev/null || alias ssh='ssh-add -l >/dev/null || ssh-add && unalias ssh; ssh'
 
 #fortune -a | cowsay -f $(ls /usr/share/cows/ | shuf -n1)
 fortune | cowsay -f /usr/share/cows/hellokitty.cow
