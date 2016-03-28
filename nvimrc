@@ -8,6 +8,7 @@ set hidden
 set wildmenu
 set clipboard=unnamedplus
 set ignorecase smartcase
+set linebreak
 "set autochdir
 
 au BufNewFile,BufRead,FileType php set tabstop=4 shiftwidth=4 expandtab
