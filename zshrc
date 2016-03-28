@@ -31,7 +31,7 @@ case "$TERM" in
 "dumb")
     PS1="> "
     ;;
-xterm*|rxvt*|eterm*|screen*|st*)
+xterm*|rxvt*|eterm*|screen*|st*|linux*)
     PS1=$PS1
 #    TERM='xterm-256color' # at least till sakura gets its shit together
     ;;
