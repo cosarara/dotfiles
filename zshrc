@@ -25,6 +25,9 @@ case "$COLORTERM" in
 	"mate-terminal")
 		TERM='xterm-256color'
 		;;
+	"truecolor")
+		TERM='xterm-256color'
+		;;
 esac
 
 case "$TERM" in
@@ -97,6 +100,9 @@ fortune | cowsay -f /usr/share/cows/hellokitty.cow
 
 . /etc/profile.d/fzf.zsh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+#ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=cyan'
 
 PATH="/home/jaume/perl5/bin${PATH+:}${PATH}"; export PATH;
 PERL5LIB="/home/jaume/perl5/lib/perl5${PERL5LIB+:}${PERL5LIB}"; export PERL5LIB;
