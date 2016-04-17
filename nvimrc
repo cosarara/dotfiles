@@ -47,6 +47,8 @@ Plug 'bronson/vim-trailing-whitespace'
 Plug 'dag/vim-fish'
 Plug 'morhetz/gruvbox'
 Plug 'ap/vim-css-color'
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
+autocmd! User YouCompleteMe if !has('vim_starting') | call youcompleteme#Enable() | endif
 
 "Plug 'asciidoc/vim-asciidoc'
 "Plug 'mjakl/vim-asciidoc'
@@ -79,6 +81,8 @@ colorscheme wasabi256
 "colorscheme gruvbox
 
 "set background=dark
+
+let g:ycm_server_python_interpreter = "/usr/bin/python3"
 
 let vimple_init_vars = 0
 
