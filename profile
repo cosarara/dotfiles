@@ -15,8 +15,6 @@ export NPM_PACKAGES=/home/jaume/.npm-packages
 export NODE_PATH=/home/jaume/.npm-packages/lib/node_modules:
 export PATH=$NPM_PACKAGES/bin:$PATH
 
-export PATH=/home/jaume/.perl6/2015.12/bin:$PATH
-
 PATH="$(ruby -e 'print Gem.user_dir')/bin:$PATH"
 
 export ANDROID_NDK_PATH=/opt/android-ndk
