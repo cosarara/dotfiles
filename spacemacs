@@ -301,6 +301,20 @@ layers configuration. You are free to put any user code."
                 indent-tabs-mode t)
 
   (setq evil-search-module 'evil-search)
+
+  ;; 1. hook flyspell into org-mode
+  (add-hook 'org-mode-hook 'flyspell-mode)
+  (add-hook 'org-mode-hook 'flyspell-buffer)
+
+  ;; 2. ignore message flags
+  (setq flyspell-issue-message-flag nil)
+
+  ;; 3. ignore tex commands
+  (add-hook 'org-mode-hook (lambda () (setq ispell-parser 'tex)))
+  (defun flyspell-ignore-tex ()
+	(interactive)
+	(set (make-variable-buffer-local 'ispell-parser) 'tex))
+  (add-hook 'org-mode-hook 'flyspell-ignore-tex)
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
