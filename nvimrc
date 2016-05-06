@@ -15,6 +15,7 @@ au BufNewFile,BufRead,FileType php set tabstop=4 shiftwidth=4 expandtab
 au BufNewFile,BufRead,FileType c set tabstop=4 shiftwidth=4
 au BufNewFile,BufRead,FileType cpp set tabstop=4 shiftwidth=4
 au BufNewFile,BufRead,FileType asciidoc set nospell
+au BufNewFile,BufRead *.nfo edit ++enc=cp437
 
 call plug#begin('~/.config/nvim/plugged')
 "" Make sure you use single quotes
@@ -73,6 +74,8 @@ Plug 'junegunn/fzf', { 'dir': '~/.config/nvim/fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 "" Unmanaged plugin (manually installed and updated)
 "Plug '~/my-prototype-plugin'
+Plug 'jceb/vim-orgmode'
+Plug 'tpope/vim-speeddating'
 call plug#end()
 
 let g:gruvbox_italic=1
@@ -145,9 +148,9 @@ command! Bbspaces %s/\s\+$
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
 
 "nnoremap <leader>e :Unite -quick-match buffer<cr>
-nnoremap <leader>e :Unite -start-insert buffer<cr>
-nnoremap <leader>f :Unite -start-insert file<cr>
-nnoremap <space>/ :Unite grep:. -auto-preview -auto-highlight -no-split<cr>
+"nnoremap <leader>e :Unite -start-insert buffer<cr>
+"nnoremap <leader>f :Unite -start-insert file<cr>
+"nnoremap <space>/ :Unite grep:. -auto-preview -auto-highlight -no-split<cr>
 
 nnoremap <silent><Leader><C-]> <C-w><C-]><C-w>T
 
