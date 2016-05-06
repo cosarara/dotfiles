@@ -68,6 +68,17 @@ alias maxima=rmaxima
 
 alias ansicat=~/utils/ansicat.py
 
+function unzipd() {
+	zip=$(readlink -f -- "$1")
+	dir="$(basename -- "$1" .zip)"
+	if [[ -d "$dir" ]]; then
+		echo dir exists
+		return
+	fi
+	mkdir -- "$dir"
+	unzip "$zip" -d ./"$dir"
+}
+
 # some more ls aliases
 #alias ll='ls -l'
 #alias la='ls -A'
