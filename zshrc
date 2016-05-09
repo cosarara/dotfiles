@@ -109,7 +109,7 @@ alias killbg='kill ${${(v)jobstates##*:*:}%=*}'
 #fortune -a | cowsay -f $(ls /usr/share/cows/ | shuf -n1)
 fortune | cowsay -f /usr/share/cows/hellokitty.cow
 
-. /etc/profile.d/fzf.zsh
+. /usr/share/fzf/key-bindings.zsh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
