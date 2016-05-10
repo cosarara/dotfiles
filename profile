@@ -22,8 +22,8 @@ export ANDROID_NDK_PATH=/opt/android-ndk
 export JPM_FIREFOX_BINARY=/usr/bin/firefox
 
 export TERMINAL="mate-terminal"
-export EDITOR="vim"
-export VISUAL="vim"
+export EDITOR="nvim"
+export VISUAL="nvim"
 export WINEDLLOVERRIDES="winemenubuilder.exe=d"
 export WINEARCH="win32"
 export BROWSER="firefox"
