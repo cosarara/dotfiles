@@ -33,9 +33,6 @@ function bar {
 		-B "$COLOR_BACKGROUND"
 }
 
-panel_bar 0 < "$PANEL_FIFO" | bar 1914x$PANEL_HEIGHT+3+3 | sh &
-panel_bar 1 < "$PANEL_FIFO"2 | bar 1914x$PANEL_HEIGHT+1923+3 | sh &
-
 function lower_panel {
 	bspc subscribe node_state | while read msg m d wid name state ; do
 		panel_wid=$(xdo id -a "$1")
@@ -43,7 +40,19 @@ function lower_panel {
 	done
 }
 
-lower_panel "${PANEL_WM_NAME}" &
-lower_panel "${PANEL_WM_NAME}2" &
+if [[ $(hostname) = "altair" ]]; then
+	panel_bar 0 < "$PANEL_FIFO" | bar 1914x$PANEL_HEIGHT+3+3 | sh &
+	panel_bar 1 < "$PANEL_FIFO"2 | bar 1914x$PANEL_HEIGHT+1923+3 | sh &
+	lower_panel "${PANEL_WM_NAME}" &
+	lower_panel "${PANEL_WM_NAME}2" &
+elif [[ $(hostname) = "evangelion" && $(bspc query -M | wc -l) -eq 2 ]]; then
+	panel_bar 0 < "$PANEL_FIFO"2 | bar 1440x$PANEL_HEIGHT+0+0 | sh &
+	panel_bar 1 < "$PANEL_FIFO" | bar 1600x$PANEL_HEIGHT+1440+0 | sh &
+	lower_panel "${PANEL_WM_NAME}" &
+	lower_panel "${PANEL_WM_NAME}2" &
+elif [[ $(hostname) = "evangelion" ]]; then
+	panel_bar 0 < "$PANEL_FIFO" | bar 1600x$PANEL_HEIGHT+0+0 | sh &
+	lower_panel "${PANEL_WM_NAME}" &
+fi
 
 wait

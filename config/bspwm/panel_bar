@@ -25,6 +25,9 @@ while read -r line ; do
 			music+="%{A:bash -c 'if mpc | grep playing; then mpc pause; else mpc play; fi':}"
 			music+="%{A5:mpc volume -5:}%{A4:mpc volume +5:}${music_icon} "
 			music+="${line#???}%{A}%{A}%{A} %{B-}%{F-}"
+			if [[ -z ${line#???} ]]; then # mpd not running
+				music=""
+			fi
 			;;
 		W*)
 			# bspwm's state

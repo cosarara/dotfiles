@@ -7,8 +7,12 @@ cnt_mpd=${upd_vol}
 
 while :; do
   # MPD
-  if [ $((cnt_mpd++)) -eq ${upd_mpd} ]; then
-    printf "%s%s\n" "MPD" "$(mpc current -f '[[%artist% - ]%title%]|[%file%]' 2>&1 | head -c 70)"
+  if [[ $((cnt_mpd++)) -eq ${upd_mpd} ]]; then
+    if [[ -n $(pidof mpd) ]]; then
+      printf "%s%s\n" "MPD" "$(mpc current -f '[[%artist% - ]%title%]|[%file%]' 2>&1 | head -c 70)"
+    else
+      printf "%s%s\n" "MPD" ""
+    fi
     cnt_mpd=0
   fi
   sleep 1s;

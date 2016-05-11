@@ -21,11 +21,23 @@ bspc config ignore_ewmh_focus true
 
 #bspc monitor -d I II III IV V VI VII VIII IX X
 
-bspc monitor HDMI-0 -n R
-bspc monitor DVI-I-1 -n L
-#bspc monitor R -s L
-bspc monitor L -d I II III IV V VI VII VIII IX X
-bspc monitor R -d I II III IV V VI VII VIII IX X
+if [[ $(bspc query -M | wc -l) -eq 2 ]]; then
+	if [[ $(hostname) = "altair" ]]; then
+		bspc monitor HDMI-0 -n R
+		bspc monitor DVI-I-1 -n L
+	elif [[ $(hostname) = "evangelion" ]]; then
+		bspc monitor DP1 -n L
+		bspc monitor eDP1 -n R
+	else
+		bspc monitor ^1 -n L
+		bspc monitor ^2 -n R
+	fi
+	#bspc monitor R -s L
+	bspc monitor L -d I II III IV V VI VII VIII IX X
+	bspc monitor R -d I II III IV V VI VII VIII IX X
+else
+	bspc monitor -d I II III IV V VI VII VIII IX X
+fi
 
 #bspc rule -a mplayer2 state=floating
 bspc rule -a Steam follow=no floating=on

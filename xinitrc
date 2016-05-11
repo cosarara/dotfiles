@@ -1,6 +1,27 @@
 #!/bin/sh
 
-echo $@ $WM
+userresources=$HOME/.Xresources
+usermodmap=$HOME/.Xmodmap
+sysresources=/etc/X11/xinit/.Xresources
+sysmodmap=/etc/X11/xinit/.Xmodmap
+
+# merge in defaults and keymaps
+
+if [ -f $sysresources ]; then
+    xrdb -merge $sysresources
+fi
+
+if [ -f $sysmodmap ]; then
+    xmodmap $sysmodmap
+fi
+
+if [ -f "$userresources" ]; then
+    xrdb -merge -I$HOME "$userresources"
+fi
+
+if [ -f "$usermodmap" ]; then
+    xmodmap "$usermodmap"
+fi
 
 if [ -d /etc/X11/xinit/xinitrc.d ]; then
   for f in /etc/X11/xinit/xinitrc.d/*; do
@@ -9,7 +30,7 @@ if [ -d /etc/X11/xinit/xinitrc.d ]; then
   unset f
 fi
 
-#source /etc/X11/xinit/xserverrc
+[[ -f ~/coses/monitor.sh ]] && ~/coses/monitor.sh
 
 export QT_QPA_PLATFORMTHEME="qt5ct"
 export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
@@ -28,28 +49,44 @@ ibus-daemon -drx
 
 [[ $POLKIT != "no" ]] && lxpolkit &
 
-if [ -z ${WM+x} ]; then
-	WM=$1
-fi
-
 xset +fp $HOME/.local/share/fonts/
 
 xsetroot -cursor_name left_ptr
-[[ -f ~/.Xresources ]] && xrdb -merge -I$HOME ~/.Xresources
 
 randwallpaper
 
-case $WM in
-    gnome) exec gnome-session;;
-    kde) exec startkde;;
-    xfce) exec startxfce4;;
-    openbox) exec openbox-session;;
-    i3) exec i3;;
-    #bspwm) sxhkd & exec bspwm;;
-    bspwm) exec .config/bspwm/wm;;
-    xmonad) exec xmonad;;
-    awesome) exec awesome;;
-    mwm) exec mwm;;
-    fvwm) exec fvwm-themes-start;;
-    *) exec .config/bspwm/wm;;
+default_session=bspwm
+
+session=${1:-$default_session}
+
+# lol wat is dis
+if [ "$1" = "xterm" ]; then
+	session=${2:-$default_session}
+fi
+
+case $session in
+    awesome           ) exec awesome;;
+    bspwm             ) exec ~/.config/bspwm/wm;;
+    catwm             ) exec catwm;;
+    cinnamon          ) exec cinnamon-session;;
+    dwm               ) exec dwm;;
+    enlightenment     ) exec enlightenment_start;;
+    ede               ) exec startede;;
+    fluxbox           ) exec startfluxbox;;
+    gnome             ) exec gnome-session;;
+    gnome-classic     ) exec gnome-session --session=gnome-classic;;
+    i3|i3wm           ) exec i3;;
+    icewm             ) exec icewm-session;;
+    jwm               ) exec jwm;;
+    kde               ) exec startkde;;
+    mate              ) exec mate-session;;
+    monster|monsterwm ) exec monsterwm;;
+    notion            ) exec notion;;
+    openbox           ) exec openbox-session;;
+    unity             ) exec unity;;
+    xfce|xfce4        ) exec startxfce4;;
+    xmonad            ) exec xmonad;;
+    # No known session, try to run it as command
+    *) exec $1;;
+    #*) echo $session not known >> log;;
 esac
