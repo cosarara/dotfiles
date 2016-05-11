@@ -30,6 +30,7 @@ echo $files
 for file in $files; do
 	[[ $file == "install.sh" ]] && continue
 	[[ $file == "config" ]] && continue
+	[[ $file == "fonts" ]] && continue
 	if [ -e ~/.$file ]; then
 		echo "Moving existing dotfile $file from ~ to $olddir"
 		echo mv ~/.$file $olddir
