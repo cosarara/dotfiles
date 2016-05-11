@@ -1,0 +1,38 @@
+#! /bin/sh
+
+source ~/.config/bspwm/profile
+
+sxhkd &
+
+#randwallpaper
+
+compton --config /home/jaume/.config/compton &
+
+bspc config border_width         2
+bspc config window_gap          12
+
+bspc config split_ratio          0.52
+bspc config borderless_monocle   true
+bspc config gapless_monocle      true
+bspc config focus_by_distance    true
+#bspc config history_aware_focus  true
+bspc config focus_follows_pointer true
+bspc config ignore_ewmh_focus true
+
+#bspc monitor -d I II III IV V VI VII VIII IX X
+
+bspc monitor HDMI-0 -n R
+bspc monitor DVI-I-1 -n L
+#bspc monitor R -s L
+bspc monitor L -d I II III IV V VI VII VIII IX X
+bspc monitor R -d I II III IV V VI VII VIII IX X
+
+#bspc rule -a mplayer2 state=floating
+bspc rule -a Steam follow=no floating=on
+
+panel &
+
+if [ -e "$BSPWM_STATE" ] ; then
+	bspc wm -l "$BSPWM_STATE"
+	rm "$BSPWM_STATE"
+fi

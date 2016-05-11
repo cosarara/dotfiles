@@ -1,0 +1,5 @@
+#! /bin/bash
+
+while true ; do
+	bspwm 2> /tmp/bspwm_error.log || break
+done

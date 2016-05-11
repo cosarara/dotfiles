@@ -1,5 +1,6 @@
 #!/bin/bash
 # This script creates symlinks from the home directory to any desired dotfiles in ~/dotfiles
+# use at your own risk
 
 dir=~/dotfiles                    # dotfiles directory
 olddir=~/dotfiles_old             # old dotfiles backup directory
@@ -28,6 +29,7 @@ echo $files
 # move any existing dotfiles in homedir to dotfiles_old directory, then create symlinks from the homedir to any files in the ~/dotfiles directory specified in $files
 for file in $files; do
 	[[ $file == "install.sh" ]] && continue
+	[[ $file == "config" ]] && continue
 	if [ -e ~/.$file ]; then
 		echo "Moving existing dotfile $file from ~ to $olddir"
 		echo mv ~/.$file $olddir

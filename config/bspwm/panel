@@ -1,0 +1,49 @@
+#! /bin/sh
+
+if xdo id -a "$PANEL_WM_NAME" > /dev/null ; then
+	printf "%s\n" "The panel is already running." >&2
+	exit 1
+fi
+
+trap 'trap - TERM; kill 0' INT TERM QUIT EXIT
+
+[ -e "$PANEL_FIFO" ] && rm "$PANEL_FIFO"
+[ -e "$PANEL_FIFO"2 ] && rm "$PANEL_FIFO"2
+mkfifo "$PANEL_FIFO"
+mkfifo "$PANEL_FIFO"2
+
+bspc config top_padding $PANEL_HEIGHT
+bspc subscribe report > "$PANEL_FIFO" &
+bspc subscribe report > "$PANEL_FIFO"2 &
+xtitle -sf 'T%s' > "$PANEL_FIFO" &
+xtitle -sf 'T%s' > "$PANEL_FIFO"2 &
+clock -sf 'S%a %d-%m %H:%M' > "$PANEL_FIFO" &
+clock -sf 'S%a %d-%m %H:%M' > "$PANEL_FIFO"2 &
+mpd_info > "$PANEL_FIFO" &
+mpd_info > "$PANEL_FIFO"2 &
+
+. panel_colors
+
+function bar {
+	lemonbar -a 32 -n "$PANEL_WM_NAME" \
+		-g $1 \
+		-f "$PANEL_FONT" \
+		-f "$PANEL_ICON_FONT" \
+		-F "$COLOR_FOREGROUND" \
+		-B "$COLOR_BACKGROUND"
+}
+
+panel_bar 0 < "$PANEL_FIFO" | bar 1914x$PANEL_HEIGHT+3+3 | sh &
+panel_bar 1 < "$PANEL_FIFO"2 | bar 1914x$PANEL_HEIGHT+1923+3 | sh &
+
+function lower_panel {
+	bspc subscribe node_state | while read msg m d wid name state ; do
+		panel_wid=$(xdo id -a "$1")
+		[ $name = "fullscreen" -a $state = "on" ] && xdo below -t $wid $panel_wid
+	done
+}
+
+lower_panel "${PANEL_WM_NAME}" &
+lower_panel "${PANEL_WM_NAME}2" &
+
+wait

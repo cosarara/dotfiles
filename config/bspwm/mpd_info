@@ -1,0 +1,15 @@
+#! /bin/bash
+
+# stolen from https://github.com/electro7/dotfiles/tree/master/.i3/lemonbar
+
+upd_mpd=4
+cnt_mpd=${upd_vol}
+
+while :; do
+  # MPD
+  if [ $((cnt_mpd++)) -eq ${upd_mpd} ]; then
+    printf "%s%s\n" "MPD" "$(mpc current -f '[[%artist% - ]%title%]|[%file%]' 2>&1 | head -c 70)"
+    cnt_mpd=0
+  fi
+  sleep 1s;
+done
