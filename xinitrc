@@ -55,7 +55,7 @@ xsetroot -cursor_name left_ptr
 
 randwallpaper
 
-default_session=bspwm
+default_session=awesome
 
 session=${1:-$default_session}
 

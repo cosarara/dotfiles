@@ -36,7 +36,10 @@ function bar {
 function lower_panel {
 	bspc subscribe node_state | while read msg m d wid name state ; do
 		panel_wid=$(xdo id -a "$1")
-		[ $name = "fullscreen" -a $state = "on" ] && xdo below -t $wid $panel_wid
+		if [ $name = "fullscreen" -a $state = "on" ]; then
+			xdo below -t $wid $panel_wid
+			xdo raise $wid
+		fi
 	done
 }
 
