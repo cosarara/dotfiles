@@ -1,0 +1,8 @@
+#!/bin/bash
+
+while true; do
+	perc="$((100 * $(cat /sys/class/power_supply/BAT1/energy_now) / $(cat /sys/class/power_supply/BAT1/energy_full) ))"
+	status=$(cat /sys/class/power_supply/BAT1/status)
+	echo "BAT ${perc} ${status}"
+        sleep 2;
+done

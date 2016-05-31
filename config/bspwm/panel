@@ -21,6 +21,11 @@ clock -sf 'S%a %d-%m %H:%M' > "$PANEL_FIFO" &
 clock -sf 'S%a %d-%m %H:%M' > "$PANEL_FIFO"2 &
 mpd_info > "$PANEL_FIFO" &
 mpd_info > "$PANEL_FIFO"2 &
+if [[ $(hostname) = "evangelion" ]]; then
+	battery_info > "$PANEL_FIFO" &
+	battery_info > "$PANEL_FIFO"2 &
+fi
+
 
 . panel_colors
 
@@ -36,8 +41,10 @@ function bar {
 function lower_panel {
 	bspc subscribe node_state | while read msg m d wid name state ; do
 		panel_wid=$(xdo id -a "$1")
+		trayer_wid=$(xdo id -N trayer -n panel || true)
 		if [ $name = "fullscreen" -a $state = "on" ]; then
 			xdo below -t $wid $panel_wid
+			xdo below -t $wid $trayer_wid || true
 			xdo raise $wid
 		fi
 	done

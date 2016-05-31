@@ -41,6 +41,9 @@ alt + Right
 alt + Left
 	mpc prev
 
+ctrl + alt + x
+	pkill -f 'x11grab'
+
 # make sxhkd reload its configuration files:
 #super + Escape
 #	pkill -USR1 -x sxhkd
@@ -100,6 +103,9 @@ super + {p,b,comma,period}
 super + {_,shift + }c
 	bspc node -f {next,prev}
 
+alt + {_,shift + }Tab
+	bspc node -f {next,prev}
+
 # focus the next/previous desktop
 super + bracket{left,right}
 	bspc desktop -f {prev,next}
@@ -126,6 +132,9 @@ alt + {_,shift + }{1-9,0}
 super + ctrl + {h,j,k,l}
 	bspc node -p {west,south,north,east}
 
+alt + ctrl + {n,i,o,h}
+	bspc node -p {west,south,north,east}
+
 # preselect the ratio
 super + ctrl + {1-9}
 	bspc node -o 0.{1-9}
@@ -134,12 +143,14 @@ super + ctrl + {1-9}
 super + ctrl + space
 	bspc node -p cancel
 
+alt + ctrl + space
+	bspc node -p cancel
+
 # cancel the preselection for the focused desktop
 super + ctrl + shift + space
 	bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
 
-ctrl + alt + x
-	pkill -f 'x11grab'
+alt + ctrl + shift + space
 
 #
 # resize tiled/floating
@@ -179,6 +190,9 @@ alt + shift + e
 	pkill -x panel; bspc quit 1
 
 alt + Escape
+	pkill -USR1 -x sxhkd;
+
+alt + shift + r
 	pkill -x panel; \
 	pkill -USR1 -x sxhkd; \
 	pkill -x compton; \

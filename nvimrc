@@ -11,6 +11,8 @@ set ignorecase smartcase
 set linebreak
 "set autochdir
 
+cmap w!! w !sudo tee %
+
 au BufNewFile,BufRead,FileType php set tabstop=4 shiftwidth=4 expandtab
 au BufNewFile,BufRead,FileType c set tabstop=4 shiftwidth=4
 au BufNewFile,BufRead,FileType cpp set tabstop=4 shiftwidth=4
@@ -77,7 +79,8 @@ Plug 'junegunn/fzf.vim'
 "" Unmanaged plugin (manually installed and updated)
 "Plug '~/my-prototype-plugin'
 Plug 'jceb/vim-orgmode'
-Plug 'tpope/vim-speeddating'
+"Plug 'tpope/vim-speeddating'
+Plug 'mhinz/vim-startify'
 call plug#end()
 
 let g:gruvbox_italic=1

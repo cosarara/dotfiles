@@ -53,12 +53,16 @@ xset +fp $HOME/.local/share/fonts/
 
 xsetroot -cursor_name left_ptr
 
-randwallpaper
+#randwallpaper
 
 default_session=awesome
 
 session=${WM:-$default_session}
 session=${1:-$session}
+
+#if [[ $(hostname) == "evangelion" ]]; then
+#	default_session=bspwm
+#fi
 
 # lol wat is dis
 if [ "$1" = "xterm" ]; then
