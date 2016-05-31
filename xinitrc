@@ -57,9 +57,9 @@ xsetroot -cursor_name left_ptr
 
 default_session=awesome
 
-if [[ $(hostname) == "evangelion" ]]; then
-	default_session=bspwm
-fi
+#if [[ $(hostname) == "evangelion" ]]; then
+#	default_session=bspwm
+#fi
 
 session=${1:-$default_session}
 
