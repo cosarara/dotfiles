@@ -24,11 +24,12 @@ while read -r line ; do
 			# battery info
 			perc=$(echo ${line#????} | cut -d' ' -f1)
 			stat=$(echo ${line#????} | cut -d" " -f2)
+			info=" BAT ${perc}% "
 			if [[ "$stat" == "Discharging" ]]; then
-				bat="%{F$COLOR_URGENT_FG} ${perc}% %{F-}"
+				bat="%{F$COLOR_URGENT_FG}${info}%{F-}"
 			else
 				#bat="%{F$COLOR_BATT_FG} ${perc}% ⚡ %{F-}"
-				bat="%{F$COLOR_BATT_FG} ${perc}% %{F-}"
+				bat="%{F$COLOR_BATT_FG}${info}%{F-}"
 			fi
 			;;
 		MPD*)
