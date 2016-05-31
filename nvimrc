@@ -64,6 +64,8 @@ Plug 'dahu/vim-asciidoc'
 
 Plug 'hynek/vim-python-pep8-indent'
 
+"Plug 'tomtom/tcomment_vim'
+
 Plug '~/projects/zig/doc/vim'
 
 "" Plugin options
@@ -86,6 +88,7 @@ colorscheme wasabi256
 "set background=dark
 
 let g:ycm_server_python_interpreter = "/usr/bin/python3"
+let g:ycm_global_ycm_extra_conf = '~/dotfiles/ycm.py'
 
 let vimple_init_vars = 0
 
@@ -102,8 +105,10 @@ noremap k n
 noremap K N
 
 noremap n h
-noremap i j
-noremap o k
+"noremap i j
+"noremap o k
+noremap <silent> <expr> i (v:count == 0 ? 'gj' : 'j')
+noremap <silent> <expr> o (v:count == 0 ? 'gk' : 'k')
 noremap h l
 noremap l o
 noremap ; i
