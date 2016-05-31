@@ -44,3 +44,6 @@ export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quo
 export SDL_VIDEO_MINIMIZE_ON_FOCUS_LOSS=0
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib
 export NVIM_TUI_ENABLE_TRUE_COLOR=1
+export PATH=~/.rakudobrew/bin:$PATH
+
+export MAKEFLAGS=-j5
