@@ -57,7 +57,8 @@ randwallpaper
 
 default_session=awesome
 
-session=${1:-$default_session}
+session=${WM:-$default_session}
+session=${1:-$session}
 
 # lol wat is dis
 if [ "$1" = "xterm" ]; then
@@ -86,6 +87,7 @@ case $session in
     unity             ) exec unity;;
     xfce|xfce4        ) exec startxfce4;;
     xmonad            ) exec xmonad;;
+    fvwm              ) exec fvwm-themes-start;;
     # No known session, try to run it as command
     *) exec $1;;
     #*) echo $session not known >> log;;
