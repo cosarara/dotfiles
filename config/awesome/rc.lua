@@ -16,6 +16,8 @@ require("applicationsmenu")
 local lain = require("lain")
 local round = require("awful.util").round
 
+local vicious = require("vicious")
+
 local common = require("awful.widget.common")
 
 local dpi = require("beautiful").xresources.apply_dpi
@@ -201,6 +203,12 @@ comp:update()
 comp:buttons(awful.util.table.join(
 	awful.button({ }, 1, function () comp:toggle() end)
 ))
+
+local hostname = io.popen("uname -n"):read()
+local batterywidget = wibox.widget.textbox()
+if hostname == "evangelion" then
+	vicious.register(batterywidget, vicious.widgets.bat, " $1 $2% ", 5, "BAT1")
+end
 
 -- {{{ Wallpaper
 if beautiful.wallpaper then
@@ -430,6 +438,7 @@ for s = 1, screen.count() do
     end
     right_layout:add(separator)
     right_layout:add(comp)
+    right_layout:add(batterywidget)
     right_layout:add(musicwidget.widget)
     right_layout:add(mytextclock)
     right_layout:add(mylayoutbox[s])
