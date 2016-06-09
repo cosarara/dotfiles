@@ -57,11 +57,12 @@ xsetroot -cursor_name left_ptr
 
 default_session=awesome
 
+session=${WM:-$default_session}
+session=${1:-$session}
+
 #if [[ $(hostname) == "evangelion" ]]; then
 #	default_session=bspwm
 #fi
-
-session=${1:-$default_session}
 
 # lol wat is dis
 if [ "$1" = "xterm" ]; then
@@ -90,6 +91,7 @@ case $session in
     unity             ) exec unity;;
     xfce|xfce4        ) exec startxfce4;;
     xmonad            ) exec xmonad;;
+    fvwm              ) exec fvwm-themes-start;;
     # No known session, try to run it as command
     *) exec $1;;
     #*) echo $session not known >> log;;
