@@ -16,6 +16,7 @@ cmap w!! w !sudo tee %
 au BufNewFile,BufRead,FileType php set tabstop=4 shiftwidth=4 expandtab
 au BufNewFile,BufRead,FileType c set tabstop=4 shiftwidth=4
 au BufNewFile,BufRead,FileType cpp set tabstop=4 shiftwidth=4
+au BufNewFile,BufRead,FileType lua set tabstop=4 shiftwidth=4 expandtab
 au BufNewFile,BufRead,FileType asciidoc set nospell
 au BufNewFile,BufRead *.nfo edit ++enc=cp437
 
