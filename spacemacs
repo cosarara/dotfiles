@@ -49,13 +49,17 @@ values."
      ;; spell-checking
      syntax-checking
      ;; version-control
-     themes-megapack
+     ;;themes-megapack
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages then consider to create a layer, you can also put the
    ;; configuration in `dotspacemacs/config'.
-   dotspacemacs-additional-packages '()
+   dotspacemacs-additional-packages
+   '(
+	 color-theme-sanityinc-tomorrow
+	 hlinum
+	 )
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '()
    ;;dotspacemacs-excluded-packages
@@ -97,9 +101,10 @@ values."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(my-wombat
-                         sanityinc-tomorrow-night
-                         sanityinc-tomorrow-day)
+   dotspacemacs-themes '( my-wombat
+                         ;;sanityinc-tomorrow-night
+                         ;;sanityinc-tomorrow-day)
+                          )
               ;;           spacemacs-dark
               ;;           spacemacs-light
               ;;           solarized-light
@@ -225,7 +230,23 @@ user code."
  This function is called at the very end of Spacemacs initialization after
 layers configuration. You are free to put any user code."
   (setq powerline-default-separator 'arrow-fade)
+  (spaceline-compile)
   (add-hook 'prog-mode-hook #'linum-mode)
+  ;;(fringe-mode '(5 . 15))
+
+  ;;(spacemacs/toggle-highlight-current-line-globally-off)
+  (show-smartparens-global-mode -1)
+  (hlinum-activate)
+
+  (define-key evil-normal-state-map [return]
+	(lambda () (interactive) (progn
+							   (evil-ex-nohighlight)
+							   (evil-ret))))
+
+  (define-key spacemacs-buffer-mode-map "h" 'evil-forward-char)
+  (define-key spacemacs-buffer-mode-map "n" 'evil-backward-char)
+  (define-key spacemacs-buffer-mode-map "o" 'evil-previous-line)
+  (define-key spacemacs-buffer-mode-map "i" 'evil-next-line)
 
   (define-key evil-normal-state-map "h" 'evil-forward-char)
   (define-key evil-normal-state-map "n" 'evil-backward-char)
@@ -315,6 +336,13 @@ layers configuration. You are free to put any user code."
 	(interactive)
 	(set (make-variable-buffer-local 'ispell-parser) 'tex))
   (add-hook 'org-mode-hook 'flyspell-ignore-tex)
+
+  ;; font
+  dotspacemacs-default-font '("terminus"
+							  :size 14
+							  :weight normal
+							  :width normal
+							  :powerline-scale 1.2)
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
@@ -324,19 +352,21 @@ layers configuration. You are free to put any user code."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(ansi-color-names-vector
+   ["#242424" "#e5786d" "#95e454" "#cae682" "#8ac6f2" "#333366" "#ccaa8f" "#f6f3e8"])
  '(custom-safe-themes
    (quote
-	("73a2f0be1e371265d9f02259b80c3597c2dd2aab7955c2e8f4fc6eb80496f67e" default)))
+	("cd9b3aacc978a56c806e9440ee8d5a218b80b25f0f0921f60b91ca45ccaf161c" "75b24c84a493cc3e7020dc26bc53d4365a8fdc53de5bf513eb3be2b2fa3e817e" "815474adb35500791b25db745918e60b3fe14352d81b992dba9ab46d476ebe66" "4e31266a5f721d734b9a0340a691065af39e2cf7ca4e48bcd0e269db10e7bae9" "a8f5dc4c7897ed51e954a4a3a929f11653fa924cadd06af91b5e2eca949ffbfd" "86ed5d5a1cfc675b4044bea0ddd8467205c1445679e188016d6562109629af7f" "06f0b439b62164c6f8f84fdda32b62fb50b6d00e8b01c2208e55543a6337433a" "82d2cac368ccdec2fcc7573f24c3f79654b78bf133096f9b40c20d97ec1d8016" "73a2f0be1e371265d9f02259b80c3597c2dd2aab7955c2e8f4fc6eb80496f67e" default)))
+ '(org-file-apps
+   (quote
+	((auto-mode . emacs)
+	 ("\\.mm\\'" . default)
+	 ("\\.x?html?\\'" . default)
+	 ("\\.pdf\\'" . "zathura %s"))))
  '(safe-local-variable-values
    (quote
 	((eval
-	  (setq-default c-basic-offset 4 tab-width 4 indent-tabs-mode t)))))
- '(org-file-apps
-   (quote
-    ((auto-mode . emacs)
-     ("\\.mm\\'" . default)
-     ("\\.x?html?\\'" . default)
-     ("\\.pdf\\'" . "zathura %s")))))
+	  (setq-default c-basic-offset 4 tab-width 4 indent-tabs-mode t))))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
