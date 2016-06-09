@@ -60,8 +60,8 @@ theme.music_color = "#F28380"
 -- }}}
 
 -- {{{ Borders
-theme.useless_gap = 0
-theme.useless_gap_width   = 10
+theme.useless_gap = 8
+--theme.useless_gap_width   = 10
 theme.border_width  = 1
 theme.border_normal = "#3F3F3F"
 --theme.border_normal = "#747474"

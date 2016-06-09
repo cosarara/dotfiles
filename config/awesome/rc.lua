@@ -2,7 +2,16 @@
 local gears = require("gears")
 local awful = require("awful")
 awful.rules = require("awful.rules")
-local spawn = require("awful.spawn")
+awful.util = require("awful.util")
+local util = awful.util
+local err
+local spawn
+if not pcall(function() spawn = require("awful.spawn") end) then
+    spawn = {}
+    spawn.util = awful.util.spawn
+    spawn.pread = awful.util.pread
+    spawn.with_shell = awful.util.spawn_with_shell
+end
 require("awful.autofocus")
 -- Widget and layout library
 local wibox = require("wibox")
@@ -18,12 +27,28 @@ local round = require("awful.util").round
 
 local common = require("awful.widget.common")
 
-local dpi = require("beautiful").xresources.apply_dpi
-
-local util = require("awful.util")
+local dpi -- = require("beautiful").xresources.apply_dpi
+pcall(function() dpi = require("beautiful").xresources.apply_dpi end)
+if not dpi then
+    dpi = function(a) return a end
+end
 
 local capi = { screen = screen,
                client = client }
+
+if not awful.util.ensure_pango_color then
+    awful.util.ensure_pango_color = function (a) return a end
+end
+
+local round = round
+if not round then
+    local floor = math.floor
+    round = function (x)
+        return floor(x + 0.5)
+    end
+end
+
+local gaps = true
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -85,15 +110,31 @@ theme.layout_uselesspiral = theme.beautiful_icons .. "spiralw.png"
 theme.layout_uselesstile  = theme.beautiful_icons .. "tilew.png"
 
 -- Table of layouts to cover with awful.layout.inc, order matters.
-local layouts =
+--local layouts = {}
+
+layouts =
 {
-    lain.layout.uselesstile,
-    lain.layout.uselessfair,
+    awful.layout.suit.tile,
+    awful.layout.suit.fair,
     lain.layout.termfair,
-    lain.layout.uselesspiral,
+    awful.layout.suit.spiral,
     awful.layout.suit.floating,
     awful.layout.suit.max.fullscreen,
 }
+if gaps then
+    --layouts =
+    --{
+    --    lain.layout.uselesstile,
+    --    lain.layout.uselessfair,
+    --    lain.layout.termfair,
+    --    lain.layout.uselesspiral,
+    --    awful.layout.suit.floating,
+    --    awful.layout.suit.max.fullscreen,
+    --}
+    theme.useless_gap = 8
+else
+    size_hints_honor = false
+end
 
 lain.layout.termfair.nmaster = 3
 lain.layout.termfair.ncol = 1
@@ -159,21 +200,21 @@ musicwidget.ldecorator = (separator_text.."<span font_desc='"..theme.icon_font..
 musicwidget.rdecorator = separator_text
 -- Set all the servers to work with (here can be any servers you use)
 musicwidget.servers = {
-	{ server = "localhost",
-	port = 6600 }
+    { server = "localhost",
+    port = 6600 }
 }
 -- Set the buttons of the widget
 musicwidget:register_buttons(
 {
-	{ "", awesompd.MOUSE_LEFT, musicwidget:command_playpause() },
-	{ "Control", awesompd.MOUSE_SCROLL_UP, musicwidget:command_prev_track() },
-	{ "Control", awesompd.MOUSE_SCROLL_DOWN, musicwidget:command_next_track() },
-	{ "", awesompd.MOUSE_SCROLL_UP, musicwidget:command_volume_up() },
-	{ "", awesompd.MOUSE_SCROLL_DOWN, musicwidget:command_volume_down() },
-	{ "", awesompd.MOUSE_RIGHT, musicwidget:command_show_menu() },
-	{ "", "XF86AudioLowerVolume", musicwidget:command_volume_down() },
-	{ "", "XF86AudioRaiseVolume", musicwidget:command_volume_up() },
-	{ modkey, "Pause", musicwidget:command_playpause() }
+    { "", awesompd.MOUSE_LEFT, musicwidget:command_playpause() },
+    { "Control", awesompd.MOUSE_SCROLL_UP, musicwidget:command_prev_track() },
+    { "Control", awesompd.MOUSE_SCROLL_DOWN, musicwidget:command_next_track() },
+    { "", awesompd.MOUSE_SCROLL_UP, musicwidget:command_volume_up() },
+    { "", awesompd.MOUSE_SCROLL_DOWN, musicwidget:command_volume_down() },
+    { "", awesompd.MOUSE_RIGHT, musicwidget:command_show_menu() },
+    { "", "XF86AudioLowerVolume", musicwidget:command_volume_down() },
+    { "", "XF86AudioRaiseVolume", musicwidget:command_volume_up() },
+    { modkey, "Pause", musicwidget:command_playpause() }
 })
 musicwidget:run() -- After all configuration is done, run the widget
 
@@ -183,32 +224,43 @@ comp = wibox.widget.textbox()
 --comp.running = false
 
 comp.update = function(self)
-	self.running = spawn.pread("pgrep compton") ~= ""
-	comp:set_text(comp.running and " C- " or " C+ ")
+    self.running = spawn.pread("pgrep compton") ~= ""
+    comp:set_text(comp.running and " C- " or " C+ ")
 end
 
 comp.toggle = function(self)
-	if self.running then
-		spawn.spawn("killall compton", false)
-	else
-		spawn.spawn("compton --config /home/jaume/.config/compton", false)
-	end
-	self:update()
+    if self.running then
+        spawn.spawn("killall compton", false)
+    else
+        spawn.spawn("compton --config /home/jaume/.config/compton", false)
+    end
+    self:update()
 end
 
 comp:update()
 
 comp:buttons(awful.util.table.join(
-	awful.button({ }, 1, function () comp:toggle() end)
+    awful.button({ }, 1, function () comp:toggle() end)
 ))
 
 -- {{{ Wallpaper
-if beautiful.wallpaper then
+--if beautiful.wallpaper then
+--    for s = 1, screen.count() do
+--        gears.wallpaper.maximized(beautiful.wallpaper, s, true)
+--    end
+--end
+-- }}}
+
+local padding = 0
+
+function set_paddings()
     for s = 1, screen.count() do
-        gears.wallpaper.maximized(beautiful.wallpaper, s, true)
+        awful.screen.padding(screen[s],
+        {top = padding, bottom = padding, left = padding, right = padding})
     end
 end
--- }}}
+
+set_paddings()
 
 -- {{{ Tags
 -- Define a tag table which hold all screen tags.
@@ -248,10 +300,10 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 -- Î
 -- {{{ Wibox
 -- Create a textclock widget
-mytextclock = awful.widget.textclock(
-	" <span color='"..util.ensure_pango_color(theme.clock_color)..
-	"'><span font_desc='"..theme.icon_font..
-	"'>Õ</span> %a %d-%m %H:%M</span> ")
+mytextclock = wibox.widget.textclock(
+    " <span color='"..util.ensure_pango_color(theme.clock_color)..
+    "'><span font_desc='"..theme.icon_font..
+    "'>Õ</span> %a %d-%m %H:%M</span> ")
 
 -- Create a wibox for each screen and add it
 mywibox = {}
@@ -269,121 +321,121 @@ mytaglist.buttons = awful.util.table.join(
 mytasklist = {}
 mytasklist.buttons = awful.util.table.join(
                      awful.button({ }, 1, function (c)
-                                              if c == client.focus then
-                                                  c.minimized = true
-                                              else
-                                                  -- Without this, the following
-                                                  -- :isvisible() makes no sense
-                                                  c.minimized = false
-                                                  if not c:isvisible() then
-                                                      awful.tag.viewonly(c:tags()[1])
-                                                  end
-                                                  -- This will also un-minimize
-                                                  -- the client, if needed
-                                                  client.focus = c
-                                                  c:raise()
-                                              end
-                                          end),
+                         if c == client.focus then
+                             c.minimized = true
+                         else
+                             -- Without this, the following
+                             -- :isvisible() makes no sense
+                             c.minimized = false
+                             if not c:isvisible() then
+                                 awful.tag.viewonly(c:tags()[1])
+                             end
+                             -- This will also un-minimize
+                             -- the client, if needed
+                             client.focus = c
+                             c:raise()
+                         end
+                     end),
                      awful.button({ }, 3, function ()
-                                              if instance then
-                                                  instance:hide()
-                                                  instance = nil
-                                              else
-                                                  instance = awful.menu.clients({ width=250 })
-                                              end
-                                          end),
+                         if instance then
+                             instance:hide()
+                             instance = nil
+                         else
+                             instance = awful.menu.clients({ width=250 })
+                         end
+                     end),
                      awful.button({ }, 4, function ()
-                                              awful.client.focus.byidx(1)
-                                              if client.focus then client.focus:raise() end
-                                          end),
+                         awful.client.focus.byidx(1)
+                         if client.focus then client.focus:raise() end
+                     end),
                      awful.button({ }, 5, function ()
-                                              awful.client.focus.byidx(-1)
-                                              if client.focus then client.focus:raise() end
-                                          end))
+                         awful.client.focus.byidx(-1)
+                         if client.focus then client.focus:raise() end
+                     end))
 
 function my_list_update_(w, buttons, label, data, objects)
-	-- update the widgets, creating them if needed
-	w:reset()
-	for i, o in ipairs(objects) do
-		local ib, tb, bgb, tbm, ibm, l
-		ib = wibox.widget.imagebox()
-		tb = wibox.widget.textbox()
-		bgb = wibox.widget.background()
-		--tbm = wibox.layout.margin(tb, dpi(4), dpi(4))
-		--ibm = wibox.layout.margin(ib, dpi(4))
-		--l = wibox.layout.fixed.horizontal()
-		local text, bg, bg_image, icon = label(o)
-		if not pcall(tb.set_markup, tb, text) then
-			tb:set_markup("<i>&lt;Invalid text&gt;</i>")
-		end
-		--tb = wibox.widget.textbox("AAA")
-		w:add(tb)
-	end
+    -- update the widgets, creating them if needed
+    w:reset()
+    for i, o in ipairs(objects) do
+        local ib, tb, bgb, tbm, ibm, l
+        ib = wibox.widget.imagebox()
+        tb = wibox.widget.textbox()
+        bgb = wibox.container.background()
+        --tbm = wibox.container.margin(tb, dpi(4), dpi(4))
+        --ibm = wibox.container.margin(ib, dpi(4))
+        --l = wibox.layout.fixed.horizontal()
+        local text, bg, bg_image, icon = label(o)
+        if not pcall(tb.set_markup, tb, text) then
+            tb:set_markup("<i>&lt;Invalid text&gt;</i>")
+        end
+        --tb = wibox.widget.textbox("AAA")
+        w:add(tb)
+    end
 end
 
 function make_list_update(margin)
-	local function my_list_update(w, buttons, label, data, objects)
-	    -- update the widgets, creating them if needed
-	    w:reset()
-	    for i, o in ipairs(objects) do
-		local cache = data[o]
-		local ib, tb, bgb, tbm, ibm, l
-		if cache then
-		    ib = cache.ib
-		    tb = cache.tb
-		    bgb = cache.bgb
-		    tbm = cache.tbm
-		    ibm = cache.ibm
-		else
-		    ib = wibox.widget.imagebox()
-		    tb = wibox.widget.textbox()
-		    bgb = wibox.widget.background()
-		    tbm = wibox.layout.margin(tb, dpi(margin), dpi(margin))
-		    ibm = wibox.layout.margin(ib, dpi(4))
-		    l = wibox.layout.fixed.horizontal()
+    local function my_list_update(w, buttons, label, data, objects)
+        -- update the widgets, creating them if needed
+        w:reset()
+        for i, o in ipairs(objects) do
+        local cache = data[o]
+        local ib, tb, bgb, tbm, ibm, l
+        if cache then
+            ib = cache.ib
+            tb = cache.tb
+            bgb = cache.bgb
+            tbm = cache.tbm
+            ibm = cache.ibm
+        else
+            ib = wibox.widget.imagebox()
+            tb = wibox.widget.textbox()
+            bgb = wibox.container.background()
+            tbm = wibox.container.margin(tb, dpi(margin), dpi(margin))
+            ibm = wibox.container.margin(ib, dpi(4))
+            l = wibox.layout.fixed.horizontal()
 
-		    -- All of this is added in a fixed widget
-		    l:fill_space(true)
-		    l:add(ibm)
-		    l:add(tbm)
+            -- All of this is added in a fixed widget
+            l:fill_space(true)
+            l:add(ibm)
+            l:add(tbm)
 
-		    -- And all of this gets a background
-		    bgb:set_widget(l)
+            -- And all of this gets a background
+            bgb:set_widget(l)
 
-		    bgb:buttons(common.create_buttons(buttons, o))
+            bgb:buttons(common.create_buttons(buttons, o))
 
-		    data[o] = {
-			ib  = ib,
-			tb  = tb,
-			bgb = bgb,
-			tbm = tbm,
-			ibm = ibm,
-		    }
-		end
+            data[o] = {
+            ib  = ib,
+            tb  = tb,
+            bgb = bgb,
+            tbm = tbm,
+            ibm = ibm,
+            }
+        end
 
-		local text, bg, bg_image, icon = label(o, tb)
-		-- The text might be invalid, so use pcall.
-		if text == nil or text == "" then
-		    tbm:set_margins(0)
-		else
-		    if not pcall(tb.set_markup, tb, text) then
-			tb:set_markup("<i>&lt;Invalid text&gt;</i>")
-		    end
-		end
-		bgb:set_bg(bg)
-		if type(bg_image) == "function" then
-		    bg_image = bg_image(tb,o,m,objects,i)
-		end
-		bgb:set_bgimage(bg_image)
-		if icon then
-		    ib:set_image(icon)
-		else
-		    ibm:set_margins(0)
-		end
-		w:add(bgb)
-	   end
-	end
-	return my_list_update
+        local text, bg, bg_image, icon = label(o, tb)
+        -- The text might be invalid, so use pcall.
+        if text == nil or text == "" then
+            tbm:set_margins(0)
+        else
+            if not pcall(tb.set_markup, tb, text) then
+            tb:set_markup("<i>&lt;Invalid text&gt;</i>")
+            end
+        end
+        bgb:set_bg(bg)
+        if type(bg_image) == "function" then
+            bg_image = bg_image(tb,o,m,objects,i)
+        end
+        bgb:set_bgimage(bg_image)
+        if icon then
+            ib:set_image(icon)
+        else
+            ibm:set_margins(0)
+        end
+        w:add(bgb)
+       end
+    end
+    return my_list_update
 end
 
 for s = 1, screen.count() do
@@ -400,20 +452,20 @@ for s = 1, screen.count() do
     -- Create a taglist widget
     --mytaglist[s] = awful.widget.taglist(s, awful.widget.taglist.filter.noempty, mytaglist.buttons, nil, common.list_update)
     mytaglist[s] = awful.widget.taglist(s, awful.widget.taglist.filter.noempty,
-    	mytaglist.buttons, nil, make_list_update(7))
-    --local margin_layout = wibox.layout.margin(mytaglist[s], 3, 2, 5, 4)
+        mytaglist.buttons, nil, make_list_update(7))
+    --local margin_layout = wibox.container.margin(mytaglist[s], 3, 2, 5, 4)
 
     -- Create a tasklist widget
     --mytasklist[s] = awful.widget.tasklist(s, awful.widget.tasklist.filter.currenttags, mytasklist.buttons)
     mytasklist[s] = awful.widget.tasklist(s, awful.widget.tasklist.filter.currenttags, mytasklist.buttons,
-    	nil, make_list_update(15), wibox.layout.fixed.horizontal())
+        nil, make_list_update(15), wibox.layout.fixed.horizontal())
 
     -- Create the wibox
-    mywibox[s] = awful.wibox({
-	    position = "top",
-	    screen = s,
-	    font = theme.font,
-	    height = round(beautiful.get_font_height(theme.font) * 2 + 5)
+    mywibox[s] = awful.wibar({
+        position = "top",
+        screen = s,
+        font = theme.font,
+        height = round(beautiful.get_font_height(theme.font) * 2 + 5)
     })
 
     -- Widgets that are aligned to the left
@@ -425,30 +477,36 @@ for s = 1, screen.count() do
     -- Widgets that are aligned to the right
     local right_layout = wibox.layout.fixed.horizontal()
     if s == 1 then
-	    right_layout:add(separator)
-	    right_layout:add(wibox.layout.margin(wibox.widget.systray(), 2, 2, 0, 0))
+        right_layout:add(separator)
+        right_layout:add(wibox.container.margin(wibox.widget.systray(), 2, 2, 0, 0))
     end
     right_layout:add(separator)
     right_layout:add(comp)
     right_layout:add(musicwidget.widget)
     right_layout:add(mytextclock)
     right_layout:add(mylayoutbox[s])
-    local mright_layout = wibox.layout.margin(right_layout, 0, 5, 5, 5)
+    local mright_layout = wibox.container.margin(right_layout, 0, 5, 5, 5)
 
     -- Now bring it all together (with the tasklist in the middle)
     local layout = wibox.layout.align.horizontal()
     layout:set_left(left_layout)
     --layout:set_middle(mytasklist[s])
-    --layout:set_middle(wibox.layout.margin(mytasklist[s], 5, 5, 0, 0))
-    local mtasklist = wibox.layout.margin(mytasklist[s], 5, 5, 0, 0)
+    --layout:set_middle(wibox.container.margin(mytasklist[s], 5, 5, 0, 0))
+    local mtasklist = wibox.container.margin(mytasklist[s], 5, 5, 0, 0)
     local cmtasklist = wibox.layout.align.horizontal()
     cmtasklist:set_expand("none")
     cmtasklist:set_middle(mtasklist)
-    layout:set_middle(wibox.layout.margin(cmtasklist, 5, 5, 0, 0))
+    layout:set_middle(wibox.container.margin(cmtasklist, 5, 5, 0, 0))
     layout:set_right(mright_layout)
 
-    local bgb = wibox.widget.background(layout, theme.bg_normal)
-    local mlayout = wibox.layout.margin(bgb, 5, 5, 5, 0)
+    local bgb = wibox.container.background(layout, theme.bg_normal)
+
+    local mlayout = {}
+    if gaps then
+        mlayout = wibox.container.margin(bgb, 5, 5, 5, 0)
+    else
+        mlayout = wibox.container.margin(bgb, 0, 0, 0, 0)
+    end
 
     --mywibox[s]:set_widget(layout)
     --mywibox[s]:set_widget(bgb)
@@ -472,7 +530,7 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey,           }, "Left",   function() spawn.spawn("mpc prev", false) end),
     awful.key({ modkey,           }, "Right",  function() spawn.spawn("mpc next", false) end),
     awful.key({ modkey,           }, "Down",  function() spawn.spawn(
-	    "bash -c 'if mpc | grep playing; then mpc pause; else mpc play; fi'", false) end),
+        "bash -c 'if mpc | grep playing; then mpc pause; else mpc play; fi'", false) end),
     awful.key({ modkey,           }, "Escape", awful.tag.history.restore),
 
     awful.key({ modkey,           }, "j",
@@ -520,12 +578,12 @@ globalkeys = awful.util.table.join(
     end),
     awful.key({ modkey, "Shift"   }, "e", awesome.quit),
 
-    awful.key({ modkey,           }, "l",     function () awful.tag.incmwfact( 0.05)    end),
-    awful.key({ modkey,           }, "h",     function () awful.tag.incmwfact(-0.05)    end),
+    awful.key({ modkey,           }, "h",     function () awful.tag.incmwfact( 0.05)    end),
+    awful.key({ modkey,           }, "n",     function () awful.tag.incmwfact(-0.05)    end),
     awful.key({ modkey, "Shift"   }, "h",     function () awful.tag.incnmaster( 1)      end),
-    awful.key({ modkey, "Shift"   }, "l",     function () awful.tag.incnmaster(-1)      end),
+    awful.key({ modkey, "Shift"   }, "n",     function () awful.tag.incnmaster(-1)      end),
     awful.key({ modkey, "Control" }, "h",     function () awful.tag.incncol( 1)         end),
-    awful.key({ modkey, "Control" }, "l",     function () awful.tag.incncol(-1)         end),
+    awful.key({ modkey, "Control" }, "n",     function () awful.tag.incncol(-1)         end),
     awful.key({ modkey,           }, "space", function () awful.layout.inc(layouts,  1) end),
     awful.key({ modkey, "Shift"   }, "space", function () awful.layout.inc(layouts, -1) end),
 
@@ -541,9 +599,10 @@ globalkeys = awful.util.table.join(
     awful.key({ "Shift"           }, "Print", function () spawn.spawn("mixtape-maim.sh -s") end),
     awful.key({ "Control"         }, "Print", function () spawn.spawn("maim -s") end),
     awful.key({ modkey,           }, "F12", function () spawn.spawn("randwallpaper", false) end),
+    awful.key({ modkey,           }, "F11", function () spawn.with_shell("notify-send --expire-time=10000 \"$(fortune)\"", false) end),
 
     -- Prompt
-    awful.key({ modkey },            "r",     function () mypromptbox[mouse.screen]:run() end),
+    --awful.key({ modkey },            "r",     function () mypromptbox[mouse.screen]:run() end),
 
     awful.key({ modkey, "Shift" }, "x",
               function ()
@@ -556,7 +615,39 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey }, "p", function() menubar.show() end),
 
     --
-    awful.key({ modkey, "Control" }, "x", function() spawn.spawn("pkill -f 'x11grab'", false) end)
+    awful.key({ modkey, "Control" }, "x", function() spawn.spawn("pkill -f 'x11grab'", false) end),
+
+    -- padding
+    awful.key({ modkey, "Control" }, "r", function()
+        local amount = 6
+        if padding < 200 then
+            padding = padding + amount
+        end
+        set_paddings()
+    end),
+    awful.key({ modkey, "Control" }, "l", function()
+        local amount = 6
+        if padding - amount >= 0 then
+            padding = padding - amount
+        end
+        set_paddings()
+    end),
+    awful.key({ modkey, "Control" }, "i", function()
+        local amount = 3
+        if theme.useless_gap < 200 then
+            theme.useless_gap = theme.useless_gap + amount
+        end
+        awful.layout.inc(layouts,  1)
+        awful.layout.inc(layouts, -1)
+    end),
+    awful.key({ modkey, "Control" }, "o", function()
+        local amount = 3
+        if theme.useless_gap - amount >= 0 then
+            theme.useless_gap = theme.useless_gap - amount
+        end
+        awful.layout.inc(layouts,  1)
+        awful.layout.inc(layouts, -1)
+    end)
 )
 
 clientkeys = awful.util.table.join(
@@ -614,11 +705,6 @@ for i = 1, 9 do
                           awful.client.toggletag(tag)
                       end
                   end))
-        --awful.key({ }, "Print",
-        --          function ()
-        --              spawn.spawn("scrot -e 'mv $f ~/screenshots/ 2>/dev/null'")
-        --          end))
-
 end
 
 clientbuttons = awful.util.table.join(
@@ -631,24 +717,6 @@ root.keys(globalkeys)
 -- }}}
 
 local border_width = beautiful.border_width
---local border_width = 0
-
---for s = 1, screen.count() do
---    screen[s]:connect_signal("arrange", function ()
---        local clients = awful.client.visible(s)
---        local layout  = awful.layout.getname(awful.layout.get(s))
---
---        -- No borders with only one visible client or in maximized layout
---        if #clients > 1 and layout ~= "max" then
---            for _, c in pairs(clients) do -- Floaters always have borders
---                if not awful.rules.match(c, {class = "Synapse"}) and awful.client.floating.get(c) or layout == "floating" then
---                    c.border_width = beautiful.border_width
---                    c.border_color = beautiful.border_focus
---                end
---            end
---        end
---    end)
---end
 
 -- {{{ Rules
 awful.rules.rules = {
@@ -659,14 +727,14 @@ awful.rules.rules = {
                      focus = awful.client.focus.filter,
                      keys = clientkeys,
                      buttons = clientbuttons } },
-    { rule = { class = "MPlayer" },
-      properties = { floating = true } },
-    { rule = { class = "pinentry" },
-      properties = { floating = true } },
-    { rule = { class = "gimp" },
-      properties = { floating = true } },
-    { rule = { class = "feh" },
-      properties = { floating = true } },
+    --{ rule = { class = "MPlayer" },
+    --  properties = { floating = true } },
+    --{ rule = { class = "pinentry" },
+    --  properties = { floating = true } },
+    --{ rule = { class = "gimp" },
+    --  properties = { floating = true } },
+    --{ rule = { class = "feh" },
+    --  properties = { floating = true } },
     { rule = { class = "csgo_linux" },
       properties = { border_width = 0 } },
     -- Set Firefox to always map on tags number 2 of screen 1.
