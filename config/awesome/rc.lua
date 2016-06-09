@@ -135,6 +135,7 @@ if gaps then
     --}
     theme.useless_gap = 8
 else
+    theme.useless_gap = 0
     size_hints_honor = false
 end
 
