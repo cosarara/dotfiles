@@ -4,3 +4,4 @@ vim/.netrwhist
 /emacs.d/projectile-bookmarks.eld
 nvim/plugged
 nvim/.*
+*.old
