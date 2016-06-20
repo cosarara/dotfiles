@@ -37,6 +37,8 @@ export BSPWM_STACK=/tmp/bspwm.stack
 export PANEL_FIFO=/tmp/panel_fifo
 export XDG_MUSIC_DIR=~/music
 
+export WEECHAT_HOME="$XDG_CONFIG_HOME"/weechat
+
 export GOPATH=~/coses/go
 export PATH=$GOPATH/bin:$PATH
 
@@ -47,3 +49,4 @@ export NVIM_TUI_ENABLE_TRUE_COLOR=1
 export PATH=~/.rakudobrew/bin:$PATH
 
 export MAKEFLAGS=-j5
+

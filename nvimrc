@@ -39,7 +39,7 @@ Plug 'evidens/vim-twig'
 Plug 'tpope/vim-fugitive'
 Plug 'rking/ag.vim'
 Plug 'tikhomirov/vim-glsl'
-Plug 'Shougo/vimproc.vim'
+Plug 'Shougo/vimproc.vim', { 'do': 'make' }
 Plug 'Shougo/unite.vim'
 Plug 'cosarara97/vim-template'
 Plug 'rust-lang/rust.vim'
@@ -68,6 +68,7 @@ Plug 'dahu/vim-asciidoc'
 Plug 'hynek/vim-python-pep8-indent'
 
 "Plug 'tomtom/tcomment_vim'
+Plug 'tpope/vim-commentary'
 
 Plug '~/projects/zig/doc/vim'
 
@@ -82,6 +83,13 @@ Plug 'junegunn/fzf.vim'
 Plug 'jceb/vim-orgmode'
 "Plug 'tpope/vim-speeddating'
 Plug 'mhinz/vim-startify'
+
+Plug 'osyo-manga/vim-over'
+
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+" Plug 'ervandew/supertab'
+
 call plug#end()
 
 let g:gruvbox_italic=1
@@ -91,10 +99,24 @@ colorscheme wasabi256
 
 "set background=dark
 
+" " make YCM compatible with UltiSnips (using supertab)
+" let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+" let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+" let g:SuperTabDefaultCompletionType = '<C-n>'
+
+" better key bindings for UltiSnipsExpandTrigger
+let g:UltiSnipsExpandTrigger = "<c-j>"
+let g:UltiSnipsJumpForwardTrigger = "<c-j>"
+let g:UltiSnipsJumpBackwardTrigger = "<c-k>"
+
 let g:ycm_server_python_interpreter = "/usr/bin/python3"
 let g:ycm_global_ycm_extra_conf = '~/dotfiles/ycm.py'
 
 let vimple_init_vars = 0
+
+let g:unite_split_rule = 'botright'
+let g:unite_source_rec_async_command = ['ag', '--nocolor', '-g', '']
+" call unite#filters#sorter_default#use(['sorter_rank'])
 
 "let g:vim_asciidoc_folding_disabled=1
 
@@ -125,7 +147,7 @@ noremap <C-W>h <C-W>l
 "tnoremap <Esc> <C-\><C-n>
 
 let mapleader = "\<Space>"
-nnoremap <CR> :noh<CR><CR>
+nnoremap <silent> <CR> :noh<CR><CR>
 nnoremap <leader>p :CtrlPTag<CR>
 nnoremap <silent> <Leader>t :TagbarToggle<CR>
 "nnoremap <Leader>b :b
@@ -136,6 +158,14 @@ nnoremap <c-f> :Files<cr>
 nnoremap <Leader>f :Files<cr>
 nnoremap <c-b> :Buffers<cr>
 nnoremap <Leader>b :Buffers<cr>
+
+nnoremap <silent> <leader>s :OverCommandLine<CR>
+xnoremap <silent> <leader>s :OverCommandLine '<,'>s/<CR>
+
+" nnoremap <leader>e :Unite -start-insert file<CR>
+" "nnoremap <leader>f :Unite -start-insert file_rec/neovim<CR>
+" nnoremap <leader>f :Unite -start-insert file_rec/async<CR>
+" nnoremap <leader>b :Unite -start-insert buffer<CR>
 
 set laststatus=2
 

@@ -88,6 +88,7 @@ case $session in
     monster|monsterwm ) exec monsterwm;;
     notion            ) exec notion;;
     openbox           ) exec openbox-session;;
+#    openbox           ) exec openbox --replace;;
     unity             ) exec unity;;
     xfce|xfce4        ) exec startxfce4;;
     xmonad            ) exec xmonad;;
