@@ -133,8 +133,9 @@ if gaps then
     --    awful.layout.suit.floating,
     --    awful.layout.suit.max.fullscreen,
     --}
-    theme.useless_gap = 8
+    theme.useless_gap = 6
 else
+    theme.useless_gap = 0
     size_hints_honor = false
 end
 
@@ -608,7 +609,7 @@ globalkeys = awful.util.table.join(
     awful.key({ "Shift"           }, "Print", function () spawn.spawn("mixtape-maim.sh -s") end),
     awful.key({ "Control"         }, "Print", function () spawn.spawn("maim -s") end),
     awful.key({ modkey,           }, "F12", function () spawn.spawn("randwallpaper", false) end),
-    awful.key({ modkey,           }, "F11", function () spawn.with_shell("notify-send --expire-time=10000 \"$(fortune)\"", false) end),
+    awful.key({ modkey,           }, "F11", function () spawn.spawn("nfortune", false) end),
 
     -- Prompt
     --awful.key({ modkey },            "r",     function () mypromptbox[mouse.screen]:run() end),

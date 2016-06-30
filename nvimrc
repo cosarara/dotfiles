@@ -90,6 +90,9 @@ Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 " Plug 'ervandew/supertab'
 
+Plug '2072/PHP-Indenting-for-VIm'
+
+Plug 'kovisoft/slimv'
 call plug#end()
 
 let g:gruvbox_italic=1
@@ -117,6 +120,12 @@ let vimple_init_vars = 0
 let g:unite_split_rule = 'botright'
 let g:unite_source_rec_async_command = ['ag', '--nocolor', '-g', '']
 " call unite#filters#sorter_default#use(['sorter_rank'])
+"
+let g:slimv_swank_cmd ='! xterm -e sbcl --load ~/coses/start-swank.lisp &' "
+"let g:slimv_swank_cmd ='! xterm -e sbcl --load ~/.config/nvim/plugged/slimv/slime/start-swank.lisp &' "
+"let g:slimv_swank_cmd = '! tmux new-window -d -n REPL-SBCL "sbcl --load ~/.config/nvim/plugged/slimv/slime/start-swank.lisp"'
+"let g:slimv_swank_cmd = 'terminal sbcl --load .config/nvim/plugged/slimv/slime/start-swank.lisp &'
+"let g:slimv_swank_cmd ='terminal sbcl --load ~/coses/start-swank.lisp &' "
 
 "let g:vim_asciidoc_folding_disabled=1
 
