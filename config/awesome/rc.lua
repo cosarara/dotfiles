@@ -133,7 +133,7 @@ if gaps then
     --    awful.layout.suit.floating,
     --    awful.layout.suit.max.fullscreen,
     --}
-    theme.useless_gap = 8
+    theme.useless_gap = 6
 else
     theme.useless_gap = 0
     size_hints_honor = false
