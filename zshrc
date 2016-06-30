@@ -107,7 +107,7 @@ alias killbg='kill ${${(v)jobstates##*:*:}%=*}'
 #ssh-add -l >/dev/null || alias ssh='ssh-add -l >/dev/null || ssh-add && unalias ssh; ssh'
 
 #fortune -a | cowsay -f $(ls /usr/share/cows/ | shuf -n1)
-fortune | cowsay -f /usr/share/cows/hellokitty.cow
+fortune | cowsay -f /usr/share/cows/hellokitty.cow -W 60
 
 . /usr/share/fzf/key-bindings.zsh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
