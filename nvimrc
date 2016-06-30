@@ -82,6 +82,9 @@ Plug 'junegunn/fzf.vim'
 Plug 'jceb/vim-orgmode'
 "Plug 'tpope/vim-speeddating'
 Plug 'mhinz/vim-startify'
+Plug '2072/PHP-Indenting-for-VIm'
+
+Plug 'kovisoft/slimv'
 call plug#end()
 
 let g:gruvbox_italic=1
@@ -95,6 +98,12 @@ let g:ycm_server_python_interpreter = "/usr/bin/python3"
 let g:ycm_global_ycm_extra_conf = '~/dotfiles/ycm.py'
 
 let vimple_init_vars = 0
+
+let g:slimv_swank_cmd ='! xterm -e sbcl --load ~/coses/start-swank.lisp &' "
+"let g:slimv_swank_cmd ='! xterm -e sbcl --load ~/.config/nvim/plugged/slimv/slime/start-swank.lisp &' "
+"let g:slimv_swank_cmd = '! tmux new-window -d -n REPL-SBCL "sbcl --load ~/.config/nvim/plugged/slimv/slime/start-swank.lisp"'
+"let g:slimv_swank_cmd = 'terminal sbcl --load .config/nvim/plugged/slimv/slime/start-swank.lisp &'
+"let g:slimv_swank_cmd ='terminal sbcl --load ~/coses/start-swank.lisp &' "
 
 "let g:vim_asciidoc_folding_disabled=1
 
