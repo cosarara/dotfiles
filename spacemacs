@@ -230,7 +230,7 @@ user code."
  This function is called at the very end of Spacemacs initialization after
 layers configuration. You are free to put any user code."
   (setq powerline-default-separator 'arrow-fade)
-  (spaceline-compile)
+  ;(spaceline-compile)
   (add-hook 'prog-mode-hook #'linum-mode)
   ;;(fringe-mode '(5 . 15))
 
