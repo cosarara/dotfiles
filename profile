@@ -47,3 +47,5 @@ export NVIM_TUI_ENABLE_TRUE_COLOR=1
 export PATH=~/.rakudobrew/bin:$PATH
 
 export MAKEFLAGS=-j5
+
+export STEAM_RUNTIME=0
