@@ -7,6 +7,10 @@ fi
 
 trap 'trap - TERM; kill 0' INT TERM QUIT EXIT
 
+# things piped into a fifo are guaranteed to not
+# be interleaved if they are smaller than PIPE_BUF bytes
+# (512 at min, 4096 on linux)
+
 [ -e "$PANEL_FIFO" ] && rm "$PANEL_FIFO"
 [ -e "$PANEL_FIFO"2 ] && rm "$PANEL_FIFO"2
 mkfifo "$PANEL_FIFO"
