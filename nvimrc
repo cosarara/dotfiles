@@ -93,6 +93,8 @@ Plug 'honza/vim-snippets'
 Plug '2072/PHP-Indenting-for-VIm'
 
 Plug 'kovisoft/slimv'
+
+Plug 'scrooloose/syntastic'
 call plug#end()
 
 let g:gruvbox_italic=1
@@ -133,6 +135,24 @@ let g:airline#extensions#tabline#enabled = 1
 "let g:airline_theme='molokai'
 let g:airline_theme='base16_default'
 let g:airline_powerline_fonts = 1
+
+"set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_quiet_messages = {
+        \ "type":    "style", }
+"let g:syntastic_quiet_messages = {
+"        \ "!level":  "errors",
+"        \ "type":    "style",
+"        \ "regex":   '.*',
+"        \ "file:p":  '.*' }
+let g:syntastic_python_checkers=['flake8']
+let g:syntastic_python_flake8_args='--ignore=E501,E225,E302,E265,E231,E226,F841'
 
 let g:email = 'jaume@delclos.com'
 
