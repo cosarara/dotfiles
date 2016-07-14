@@ -1,3 +1,4 @@
+# vim: ft=zsh
 function virtualenv_info {
     [ $VIRTUAL_ENV ] && echo '('$fg[blue]`basename $VIRTUAL_ENV`%{$reset_color%}') '
 }
@@ -99,4 +100,5 @@ add-zsh-hook precmd userhost_precmd
 #PROMPT=$'
 #%{$red%}%n%{$reset_color%} at %{$orange%}%m%{$reset_color%} in %{$limegreen%}%~%{$reset_color%} $vcs_info_msg_0_$(virtualenv_info)%{$reset_color%}
 #$ '
+#PROMPT=$'${prompt_userhost}%F{blue%}%~%{$reset_color%} $vcs_info_msg_0_$(virtualenv_info)\n%(?.%F{cyan}.%F{red})▸ %{$reset_color%}'
 PROMPT=$'${prompt_userhost}%F{blue%}%~%{$reset_color%} $vcs_info_msg_0_$(virtualenv_info)\n%(?.%F{cyan}.%F{red})> %{$reset_color%}'
