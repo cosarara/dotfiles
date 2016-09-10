@@ -43,6 +43,7 @@ Plug 'Shougo/vimproc.vim', { 'do': 'make' }
 Plug 'Shougo/unite.vim'
 Plug 'cosarara97/vim-template'
 Plug 'rust-lang/rust.vim'
+Plug 'peterhoeg/vim-qml'
 Plug 'AndrewRadev/linediff.vim'
 "Plug 'kovisoft/slimv'
 "Plug 'JazzCore/ctrlp-cmatcher''
@@ -50,9 +51,17 @@ Plug 'rust-lang/rust.vim'
 Plug 'bronson/vim-trailing-whitespace'
 Plug 'dag/vim-fish'
 Plug 'morhetz/gruvbox'
+Plug 'nanotech/jellybeans.vim'
 Plug 'ap/vim-css-color'
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
-autocmd! User YouCompleteMe if !has('vim_starting') | call youcompleteme#Enable() | endif
+Plug 'davidhalter/jedi-vim'
+Plug 'zah/nim.vim'
+"Plug 'Valloric/YouCompleteMe', { 'do': './install.py --all' }
+"autocmd! User YouCompleteMe if !has('vim_starting') | call youcompleteme#Enable() | endif
+
+function! DoRemote(arg)
+  UpdateRemotePlugins
+endfunction
+Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
 
 "Plug 'asciidoc/vim-asciidoc'
 "Plug 'mjakl/vim-asciidoc'
@@ -93,6 +102,8 @@ Plug 'honza/vim-snippets'
 Plug '2072/PHP-Indenting-for-VIm'
 
 Plug 'kovisoft/slimv'
+
+Plug 'scrooloose/syntastic'
 call plug#end()
 
 let g:gruvbox_italic=1
@@ -106,6 +117,8 @@ colorscheme wasabi256
 " let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
 " let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
 " let g:SuperTabDefaultCompletionType = '<C-n>'
+
+let g:deoplete#enable_at_startup = 1
 
 " better key bindings for UltiSnipsExpandTrigger
 let g:UltiSnipsExpandTrigger = "<c-j>"
@@ -133,6 +146,34 @@ let g:airline#extensions#tabline#enabled = 1
 "let g:airline_theme='molokai'
 let g:airline_theme='base16_default'
 let g:airline_powerline_fonts = 1
+
+"set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_quiet_messages = {
+        \ "type":    "style", }
+"let g:syntastic_quiet_messages = {
+"        \ "!level":  "errors",
+"        \ "type":    "style",
+"        \ "regex":   '.*',
+"        \ "file:p":  '.*' }
+let g:syntastic_python_checkers=['flake8']
+let g:syntastic_python_flake8_args='--ignore=E501,E225,E302,E265,E231,E226,F841'
+
+let g:jedi#show_call_signatures = "2"
+set noshowmode
+try
+  set shortmess+=c
+catch /^Vim\%((\a\+)\)\=:E539: Illegal character/
+  autocmd MyAutoCmd VimEnter *
+        \ highlight ModeMsg guifg=bg guibg=bg |
+        \ highlight Question guifg=bg guibg=bg
+endtry
 
 let g:email = 'jaume@delclos.com'
 
@@ -169,7 +210,9 @@ nnoremap <c-b> :Buffers<cr>
 nnoremap <Leader>b :Buffers<cr>
 
 nnoremap <silent> <leader>s :OverCommandLine<CR>
-xnoremap <silent> <leader>s :OverCommandLine '<,'>s/<CR>
+"xnoremap <silent> <leader>s :OverCommandLine '<,'>s/<CR>
+" it actually does it automagically
+xnoremap <silent> <leader>s :OverCommandLine s/<CR>
 
 " nnoremap <leader>e :Unite -start-insert file<CR>
 " "nnoremap <leader>f :Unite -start-insert file_rec/neovim<CR>
@@ -201,6 +244,10 @@ call unite#filters#matcher_default#use(['matcher_fuzzy'])
 "nnoremap <space>/ :Unite grep:. -auto-preview -auto-highlight -no-split<cr>
 
 nnoremap <silent><Leader><C-]> <C-w><C-]><C-w>T
+
+" TODO: I want this to be able to use esc on :terminal, but
+" I can't have it if I want esc to close FZF ;-;
+"tnoremap <Esc> <C-\><C-n>
 
 " kinda like autochdir?
 "autocmd BufEnter * silent! lcd %:p:h

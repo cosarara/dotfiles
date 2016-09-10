@@ -26,6 +26,7 @@ local lain = require("lain")
 local round = require("awful.util").round
 
 local vicious = require("vicious")
+vicious.helpers = require("vicious.helpers")
 
 local common = require("awful.widget.common")
 
@@ -223,12 +224,17 @@ musicwidget:run() -- After all configuration is done, run the widget
 
 --local comp = require("compton_widget")
 
-comp = wibox.widget.textbox()
+comp = wibox.widget.imagebox()
 --comp.running = false
+
+local comp_running_icon = awful.util.getdir("config") .. "icons/compton_16x16.png"
+local comp_not_running_icon = (awful.util.getdir("config") ..
+    "icons/compton_grayscale_16x16.png")
 
 comp.update = function(self)
     self.running = spawn.pread("pgrep compton") ~= ""
-    comp:set_text(comp.running and " C- " or " C+ ")
+    comp:set_image(comp.running and comp_running_icon or comp_not_running_icon)
+    --comp:set_text(comp.running and " C- " or " C+ ")
 end
 
 comp.toggle = function(self)
@@ -246,10 +252,62 @@ comp:buttons(awful.util.table.join(
     awful.button({ }, 1, function () comp:toggle() end)
 ))
 
+-- TODO just dump vicious
+function battery_formatter(widget, data)
+    --local map = {}
+    --map["↯"] =
+    --map["+"] = awful.util.getdir("config") .. "icons/connected.png"
+    local s2 = nil
+    s = awful.util.getdir("config") .. "icons/bat_full.png"
+    if data[1] ~= "↯" then
+        if data[2] < 80 then
+            s = awful.util.getdir("config") .. "icons/bat_low.png"
+        end
+        if data[2] < 25 then
+            s = awful.util.getdir("config") .. "icons/bat_empty.png"
+        end
+    end
+    if data[1] == "+" then
+        widget:set_image2(awful.util.getdir("config") .. "icons/connected.png")
+    else
+        widget:set_image2("")
+    end
+    if s then
+        widget:set_image(s)
+    end
+    local text = string.format(" %d%%", data[2])
+    widget:set_text(text)
+    return text
+    --return vicious.helpers.format("$2%", data)
+end
+
+local batterywidget = nil
 local hostname = io.popen("uname -n"):read()
-local batterywidget = wibox.widget.textbox()
+--local batterywidget = wibox.widget.textbox()
+function make_battery_widget()
+    local l = wibox.layout.fixed.horizontal()
+    local lm = wibox.container.margin(l, dpi(4), dpi(4))
+    local b_icon = wibox.widget.imagebox()
+    local b_icon2 = wibox.widget.imagebox()
+    local b_text = wibox.widget.textbox()
+    l:add(b_icon)
+    l:add(b_text)
+    lm.set_image = function(self, source)
+        b_icon:set_image(source)
+    end
+    lm.set_image2 = function(self, source)
+        b_icon2:set_image(source)
+    end
+    lm.set_text = function(self, source)
+        b_text:set_text(source)
+    end
+    return lm
+end
+
 if hostname == "evangelion" then
-	vicious.register(batterywidget, vicious.widgets.bat, " $1 $2% ", 5, "BAT1")
+    batterywidget = make_battery_widget()
+	vicious.register(batterywidget, vicious.widgets.bat, battery_formatter, 5, "BAT1")
+	--vicious.register(batterywidget, vicious.widgets.bat, " $1 $2% ", 5, "BAT1")
 end
 
 -- {{{ Wallpaper
@@ -491,7 +549,10 @@ for s = 1, screen.count() do
     end
     right_layout:add(separator)
     right_layout:add(comp)
-    right_layout:add(batterywidget)
+
+    if batterywidget then
+        right_layout:add(batterywidget)
+    end
     right_layout:add(musicwidget.widget)
     right_layout:add(mytextclock)
     right_layout:add(mylayoutbox[s])
@@ -657,6 +718,15 @@ globalkeys = awful.util.table.join(
         end
         awful.layout.inc(layouts,  1)
         awful.layout.inc(layouts, -1)
+    end),
+    awful.key({}, "XF86AudioMute", function()
+        spawn.spawn("pulseaudio-ctl mute", false)
+    end),
+    awful.key({}, "XF86AudioLowerVolume", function()
+        spawn.spawn("pulseaudio-ctl down", false)
+    end),
+    awful.key({}, "XF86AudioRaiseVolume", function()
+        spawn.spawn("pulseaudio-ctl up", false)
     end)
 )
 
