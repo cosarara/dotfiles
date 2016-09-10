@@ -50,4 +50,4 @@ export PATH=~/.rakudobrew/bin:$PATH
 
 export MAKEFLAGS=-j5
 
-export STEAM_RUNTIME=0
+export STEAM_RUNTIME=1
