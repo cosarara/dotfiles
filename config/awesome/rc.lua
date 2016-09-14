@@ -52,6 +52,7 @@ if not round then
 end
 
 local gaps = true
+local small = false
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -336,7 +337,8 @@ for s = 1, screen.count() do
     -- Each screen has its own tag table.
     --tags[s] = awful.tag({ 1, 2, 3, 4, 5, 6, 7, 8, 9 }, s, layouts[1])
     tags[s] = awful.tag(
-    { "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX" }, s, layouts[1])
+    --{ "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX" }, s, layouts[1])
+    { "一", "二", "三", "四", "五", "六", "七", "八", "九" }, s, layouts[1])
     --tags[s] = awful.tag({ ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' }, s, layouts[1])
 end
 -- }}}
@@ -351,11 +353,11 @@ myawesomemenu = {
 }
 
 -- mymainmenu = awful.menu({ items = { { "awesome", applicationsmenu.applicationsmenu(), beautiful.awesome_icon },
-mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu },
-                                    { "applications",  applicationsmenu.applicationsmenu() },
-                                    { "open terminal", terminal }
-                                  }
-                        })
+mymainmenu = awful.menu({ items = {
+    { "awesome", myawesomemenu },
+    { "applications",  applicationsmenu.applicationsmenu() },
+    { "open terminal", terminal }
+} })
 
 mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
                                      menu = mymainmenu })
@@ -371,6 +373,10 @@ mytextclock = wibox.widget.textclock(
     " <span color='"..util.ensure_pango_color(theme.clock_color)..
     "'><span font_desc='"..theme.icon_font..
     "'>Õ</span> %a %d-%m %H:%M</span> ")
+smalltextclock = wibox.widget.textclock(
+    " <span color='"..util.ensure_pango_color(theme.clock_color)..
+    "'><span font_desc='"..theme.icon_font..
+    "'>Õ</span>%H:%M</span>")
 
 -- Create a wibox for each screen and add it
 mywibox = {}
@@ -553,8 +559,13 @@ for s = 1, screen.count() do
     if batterywidget then
         right_layout:add(batterywidget)
     end
-    right_layout:add(musicwidget.widget)
-    right_layout:add(mytextclock)
+    if not small then
+        right_layout:add(musicwidget.widget)
+        right_layout:add(mytextclock)
+    else
+        right_layout:add(smalltextclock)
+    end
+
     right_layout:add(mylayoutbox[s])
     local mright_layout = wibox.container.margin(right_layout, 0, 5, 5, 5)
 
@@ -661,7 +672,9 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey, "Control" }, "n", awful.client.restore),
 
     --awful.key({ modkey,           }, "d", function () spawn.spawn("dmenu_run -h 20 -dim 0.5") end),
-    awful.key({ modkey,           }, "d", function () spawn.spawn("rofi -show run") end),
+    --awful.key({ modkey,           }, "d", function () spawn.spawn("rofi -show run") end),
+    awful.key({ modkey,           }, "d", function () spawn.spawn(
+        "rofi -show combi -combi-modi drun,run") end),
     awful.key({ modkey,           }, "\\", function () spawn.spawn("exo-open --launch FileManager") end),
     awful.key({ modkey,           }, "]", function () spawn.spawn("exo-open --launch WebBrowser") end),
    -- awful.key({                   }, "Print", function () spawn.spawn("import /tmp/latest-screenshot.png") end),
@@ -806,7 +819,8 @@ awful.rules.rules = {
                      border_color = beautiful.border_normal,
                      focus = awful.client.focus.filter,
                      keys = clientkeys,
-                     buttons = clientbuttons } },
+                     buttons = clientbuttons,
+                     size_hints_honor = false } },
     --{ rule = { class = "MPlayer" },
     --  properties = { floating = true } },
     --{ rule = { class = "pinentry" },
@@ -817,6 +831,8 @@ awful.rules.rules = {
     --  properties = { floating = true } },
     { rule = { class = "csgo_linux" },
       properties = { border_width = 0 } },
+    { rule = { class = "Steam" },
+      properties = { size_hints_honor = true } },
     -- Set Firefox to always map on tags number 2 of screen 1.
     -- { rule = { class = "Firefox" },
     --   properties = { tag = tags[1][2] } },
@@ -895,6 +911,6 @@ end)
 client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 
-spawn.with_shell("~/.xsession")
+spawn.with_shell("~/.config/autostart.sh")
 
 -- }}}
