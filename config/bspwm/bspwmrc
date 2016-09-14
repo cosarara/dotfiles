@@ -51,7 +51,7 @@ sleep 1
 trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --width 4 --transparent true --alpha 17 --tint 0x34322E --height 16 --distance 4 --margin 120 &
 #stalonetray -i 16 --geometry 1x1+1400+4 -t 1
 
-~/.xsession &
+~/.config/autostart.sh &
 
 killall nm-applet || true
 XDG_CONFIG_HOME=$HOME/.config/bspwm/theme_overrides nm-a

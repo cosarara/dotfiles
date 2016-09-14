@@ -1,6 +1,7 @@
 # zshrc
 
 zstyle ':completion:*' completer _expand _complete _ignored _correct _approximate
+zstyle ':completion:*' menu select
 #zstyle ':completion:*' matcher-list 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 zstyle :compinstall filename '/home/cosarara/.zshrc'
 
@@ -111,6 +112,8 @@ fortune | cowsay -f /usr/share/cows/hellokitty.cow -W 60
 
 . /usr/share/fzf/key-bindings.zsh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+export FZF_CTRL_R_OPTS=-e
 
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 #ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=cyan'

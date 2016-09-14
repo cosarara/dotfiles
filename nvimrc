@@ -165,6 +165,9 @@ let g:syntastic_quiet_messages = {
 let g:syntastic_python_checkers=['flake8']
 let g:syntastic_python_flake8_args='--ignore=E501,E225,E302,E265,E231,E226,F841'
 
+let g:syntastic_twig_twiglint_exec = 'php'
+let g:syntastic_twig_twiglint_exe = 'php /home/jaume/coneix/utils/twig-lint.phar'
+
 let g:jedi#show_call_signatures = "2"
 set noshowmode
 try
@@ -253,6 +256,8 @@ nnoremap <silent><Leader><C-]> <C-w><C-]><C-w>T
 "autocmd BufEnter * silent! lcd %:p:h
 "let g:slimv_swank_cmd ='! xterm -e sbcl --load ~/utils/start-swank.lisp &' "
 
+let g:startify_custom_header =
+\ map(split(system('fortune | cowsay -f hellokitty -W 60'), '\n'), '" ". v:val')
 
 let g:terminal_color_0="#353540"
 let g:terminal_color_1="#8c5760"
