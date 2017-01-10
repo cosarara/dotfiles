@@ -52,3 +52,4 @@ export PATH=~/.rakudobrew/bin:$PATH
 export MAKEFLAGS=-j5
 
 export STEAM_RUNTIME=1
+export CHICKEN_REPOSITORY=~/.local/lib/chicken/8

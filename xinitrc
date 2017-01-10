@@ -37,7 +37,8 @@ export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
 export SDL_VIDEO_MINIMIZE_ON_FOCUS_LOSS=0
 
 #setxkbmap -layout us,es -variant norman, grp:caps_toggle
-setxkbmap -layout jaume,us -option grp:caps_toggle -option compose:menu
+#setxkbmap -layout jaume,us -option grp:caps_toggle -option compose:menu
+setxkbmap -layout jaume,us -option grp:rctrl_rshift_toggle -option compose:menu
 
 eval $(gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
 export SSH_AUTH_SOCK
@@ -47,7 +48,8 @@ export XMODIFIERS=@im=ibus
 export QT_IM_MODULE=ibus
 ibus-daemon -drx
 
-[[ $POLKIT != "no" ]] && lxpolkit &
+#[[ $POLKIT != "no" ]] && lxpolkit &
+[[ $POLKIT != "no" ]] && /usr/lib/mate-polkit/polkit-mate-authentication-agent-1 &
 
 #pactl upload-sample /usr/share/sounds/freedesktop/stereo/bell.oga x11-bell && \
 #pactl load-module module-x11-bell sample=x11-bell display=$DISPLAY &

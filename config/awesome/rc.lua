@@ -740,6 +740,12 @@ globalkeys = awful.util.table.join(
     end),
     awful.key({}, "XF86AudioRaiseVolume", function()
         spawn.spawn("pulseaudio-ctl up", false)
+    end),
+    awful.key({}, "XF86MonBrightnessDown", function()
+        spawn.spawn("light -U 20", false)
+    end),
+    awful.key({}, "XF86MonBrightnessUp", function()
+        spawn.spawn("light -A 20", false)
     end)
 )
 
@@ -759,7 +765,7 @@ clientkeys = awful.util.table.join(
     awful.key({ modkey,           }, "m",
         function (c)
             c.maximized_horizontal = not c.maximized_horizontal
-            c.maximized_vertical   = not c.maximized_vertical
+            c.maximized_vertical   = c.maximized_horizontal
         end)
 )
 

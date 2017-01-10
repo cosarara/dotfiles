@@ -18,6 +18,10 @@ au BufNewFile,BufRead,FileType c set tabstop=4 shiftwidth=4
 au BufNewFile,BufRead,FileType cpp set tabstop=4 shiftwidth=4
 au BufNewFile,BufRead,FileType lua set tabstop=4 shiftwidth=4 expandtab
 au BufNewFile,BufRead,FileType asciidoc set nospell
+au BufNewFile,BufRead,FileType twig set tabstop=4 shiftwidth=4 expandtab
+au BufNewFile,BufRead,FileType html set tabstop=4 shiftwidth=4 expandtab
+au BufNewFile,BufRead,FileType html.twig set tabstop=4 shiftwidth=4 expandtab
+au BufNewFile,BufRead,FileType css set tabstop=4 shiftwidth=4 expandtab
 au BufNewFile,BufRead *.nfo edit ++enc=cp437
 
 call plug#begin('~/.config/nvim/plugged')
@@ -41,7 +45,7 @@ Plug 'rking/ag.vim'
 Plug 'tikhomirov/vim-glsl'
 Plug 'Shougo/vimproc.vim', { 'do': 'make' }
 Plug 'Shougo/unite.vim'
-Plug 'cosarara97/vim-template'
+"Plug 'cosarara97/vim-template'
 Plug 'rust-lang/rust.vim'
 Plug 'peterhoeg/vim-qml'
 Plug 'AndrewRadev/linediff.vim'
@@ -211,6 +215,7 @@ nnoremap <c-f> :Files<cr>
 nnoremap <Leader>f :Files<cr>
 nnoremap <c-b> :Buffers<cr>
 nnoremap <Leader>b :Buffers<cr>
+nnoremap <Leader>t :Tags<cr>
 
 nnoremap <silent> <leader>s :OverCommandLine<CR>
 "xnoremap <silent> <leader>s :OverCommandLine '<,'>s/<CR>
@@ -251,6 +256,8 @@ nnoremap <silent><Leader><C-]> <C-w><C-]><C-w>T
 " TODO: I want this to be able to use esc on :terminal, but
 " I can't have it if I want esc to close FZF ;-;
 "tnoremap <Esc> <C-\><C-n>
+
+let $FZF_DEFAULT_COMMAND = 'ag -g ""'
 
 " kinda like autochdir?
 "autocmd BufEnter * silent! lcd %:p:h
