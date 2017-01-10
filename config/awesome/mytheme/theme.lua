@@ -176,4 +176,7 @@ theme.titlebar_maximized_button_normal_inactive = "/usr/share/awesome/themes/zen
 -- }}}
 -- }}}
 
+theme.systray_icon_spacing = 5
+--theme.bg_systray = "#FF0"
+
 return theme
