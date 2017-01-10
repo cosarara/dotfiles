@@ -1,5 +1,6 @@
 -- Standard awesome library
 local gears = require("gears")
+local timer = gears.timer
 local awful = require("awful")
 awful.rules = require("awful.rules")
 awful.util = require("awful.util")
@@ -239,6 +240,7 @@ comp.update = function(self)
 end
 
 comp.toggle = function(self)
+    comp:update()
     if self.running then
         spawn.spawn("killall compton", false)
     else
@@ -912,5 +914,13 @@ client.connect_signal("focus", function(c) c.border_color = beautiful.border_foc
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 
 spawn.with_shell("~/.config/autostart.sh")
+
+comptimer = timer({ timeout = 5 })
+comptimer:add_signal("timeout", function()
+    comp:update()
+    comptimer:start()
+end)
+comptimer:start()
+
 
 -- }}}
