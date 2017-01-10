@@ -13,7 +13,7 @@ theme.dir = os.getenv("HOME") .. "/.config/awesome/mytheme"
 -- }}}
 
 -- {{{ Styles
-theme.font      = "terminus 8"
+theme.font      = "xos4 Terminus 8"
 theme.icon_font      = "terminusicons2mono 8"
 
 --[[ {{{ Colors
