@@ -356,17 +356,20 @@ layers configuration. You are free to put any user code."
    ["#242424" "#e5786d" "#95e454" "#cae682" "#8ac6f2" "#333366" "#ccaa8f" "#f6f3e8"])
  '(custom-safe-themes
    (quote
-	("cd9b3aacc978a56c806e9440ee8d5a218b80b25f0f0921f60b91ca45ccaf161c" "75b24c84a493cc3e7020dc26bc53d4365a8fdc53de5bf513eb3be2b2fa3e817e" "815474adb35500791b25db745918e60b3fe14352d81b992dba9ab46d476ebe66" "4e31266a5f721d734b9a0340a691065af39e2cf7ca4e48bcd0e269db10e7bae9" "a8f5dc4c7897ed51e954a4a3a929f11653fa924cadd06af91b5e2eca949ffbfd" "86ed5d5a1cfc675b4044bea0ddd8467205c1445679e188016d6562109629af7f" "06f0b439b62164c6f8f84fdda32b62fb50b6d00e8b01c2208e55543a6337433a" "82d2cac368ccdec2fcc7573f24c3f79654b78bf133096f9b40c20d97ec1d8016" "73a2f0be1e371265d9f02259b80c3597c2dd2aab7955c2e8f4fc6eb80496f67e" default)))
+    ("cd9b3aacc978a56c806e9440ee8d5a218b80b25f0f0921f60b91ca45ccaf161c" "75b24c84a493cc3e7020dc26bc53d4365a8fdc53de5bf513eb3be2b2fa3e817e" "815474adb35500791b25db745918e60b3fe14352d81b992dba9ab46d476ebe66" "4e31266a5f721d734b9a0340a691065af39e2cf7ca4e48bcd0e269db10e7bae9" "a8f5dc4c7897ed51e954a4a3a929f11653fa924cadd06af91b5e2eca949ffbfd" "86ed5d5a1cfc675b4044bea0ddd8467205c1445679e188016d6562109629af7f" "06f0b439b62164c6f8f84fdda32b62fb50b6d00e8b01c2208e55543a6337433a" "82d2cac368ccdec2fcc7573f24c3f79654b78bf133096f9b40c20d97ec1d8016" "73a2f0be1e371265d9f02259b80c3597c2dd2aab7955c2e8f4fc6eb80496f67e" default)))
  '(org-file-apps
    (quote
-	((auto-mode . emacs)
-	 ("\\.mm\\'" . default)
-	 ("\\.x?html?\\'" . default)
-	 ("\\.pdf\\'" . "zathura %s"))))
+    ((auto-mode . emacs)
+     ("\\.mm\\'" . default)
+     ("\\.x?html?\\'" . default)
+     ("\\.pdf\\'" . "zathura %s"))))
+ '(package-selected-packages
+   (quote
+    (powerline org alert auto-complete markdown-mode hydra seq magit magit-popup git-commit with-editor iedit csharp-mode auctex rust-mode highlight anzu smartparens evil undo-tree flycheck request helm helm-core popup avy async projectile yasnippet php-mode f company macrostep dash s yapfify uuidgen slime-company py-isort pug-mode org-projectile pcache org-download live-py-mode link-hint hide-comnt git-link eyebrowse evil-visual-mark-mode evil-unimpaired evil-ediff eclim dumb-jump column-enforce-mode cargo yaml-mode ws-butler window-numbering which-key web-mode volatile-highlights vi-tilde-fringe use-package toml-mode toc-org tagedit sql-indent spacemacs-theme spaceline smooth-scrolling smeargle slime slim-mode scss-mode sass-mode restart-emacs rainbow-delimiters racer quelpa pyvenv pytest pyenv-mode py-yapf popwin pip-requirements phpunit phpcbf php-extras php-auto-yasnippets persp-mode pcre2el paradox page-break-lines orgit org-repo-todo org-present org-pomodoro org-plus-contrib org-bullets open-junk-file omnisharp nim-mode neotree move-text mmm-mode markdown-toc magit-gitflow lua-mode lorem-ipsum linum-relative leuven-theme less-css-mode jade-mode info+ indent-guide ido-vertical-mode hy-mode hungry-delete htmlize hlinum hl-todo highlight-parentheses highlight-numbers highlight-indentation help-fns+ helm-themes helm-swoop helm-pydoc helm-projectile helm-mode-manager helm-make helm-gitignore helm-flx helm-descbinds helm-css-scss helm-ag google-translate golden-ratio gnuplot gitconfig-mode gitattributes-mode git-timemachine git-messenger gh-md geiser flycheck-rust flycheck-pos-tip flycheck-nim flx-ido fill-column-indicator fancy-battery expand-region exec-path-from-shell evil-visualstar evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-args evil-anzu eval-sexp-fu emmet-mode emacs-eclim elisp-slime-nav drupal-mode disaster define-word cython-mode color-theme-sanityinc-tomorrow cmake-mode clean-aindent-mode clang-format buffer-move bracketed-paste auto-highlight-symbol auto-compile auctex-latexmk anaconda-mode aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line)))
  '(safe-local-variable-values
    (quote
-	((eval
-	  (setq-default c-basic-offset 4 tab-width 4 indent-tabs-mode t))))))
+    ((eval
+      (setq-default c-basic-offset 4 tab-width 4 indent-tabs-mode t))))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

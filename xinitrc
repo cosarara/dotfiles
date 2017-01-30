@@ -51,8 +51,8 @@ ibus-daemon -drx
 #[[ $POLKIT != "no" ]] && lxpolkit &
 [[ $POLKIT != "no" ]] && /usr/lib/mate-polkit/polkit-mate-authentication-agent-1 &
 
-#pactl upload-sample /usr/share/sounds/freedesktop/stereo/bell.oga x11-bell && \
-#pactl load-module module-x11-bell sample=x11-bell display=$DISPLAY &
+pactl upload-sample /usr/share/sounds/freedesktop/stereo/bell.oga x11-bell && \
+pactl load-module module-x11-bell sample=x11-bell display=$DISPLAY &
 
 xset +fp $HOME/.local/share/fonts/
 
@@ -98,6 +98,7 @@ case $session in
     xfce|xfce4        ) exec startxfce4;;
     xmonad            ) exec xmonad;;
     fvwm              ) exec fvwm-themes-start;;
+    herb              ) exec herbstluftwm --locked;;
     # No known session, try to run it as command
     *) exec $1;;
     #*) echo $session not known >> log;;
