@@ -43,12 +43,14 @@ export WEECHAT_HOME="$XDG_CONFIG_HOME"/weechat
 export GOPATH=~/coses/go
 export PATH=$GOPATH/bin:$PATH
 
+export CHICKEN_REPOSITORY=~/.local/lib/chicken/8
+
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 export SDL_VIDEO_MINIMIZE_ON_FOCUS_LOSS=0
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib
+export LD_LIBRARY_PATH=$HOME/.local/lib:/usr/local/lib:$LD_LIBRARY_PATH
 export NVIM_TUI_ENABLE_TRUE_COLOR=1
 export PATH=~/.rakudobrew/bin:$PATH
 
 export MAKEFLAGS=-j5
 
-export STEAM_RUNTIME=1
+export STEAM_RUNTIME=0
