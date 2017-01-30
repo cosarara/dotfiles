@@ -263,6 +263,12 @@ let $FZF_DEFAULT_COMMAND = 'ag -g ""'
 "autocmd BufEnter * silent! lcd %:p:h
 "let g:slimv_swank_cmd ='! xterm -e sbcl --load ~/utils/start-swank.lisp &' "
 
+let g:syntastic_mode_map = {
+    \ "mode": "active",
+    \ "active_filetypes": [],
+    \ "passive_filetypes": ["twig"] }
+
+
 let g:startify_custom_header =
 \ map(split(system('fortune | cowsay -f hellokitty -W 60'), '\n'), '" ". v:val')
 
