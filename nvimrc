@@ -18,7 +18,9 @@ au BufNewFile,BufRead,FileType c set tabstop=4 shiftwidth=4
 au BufNewFile,BufRead,FileType cpp set tabstop=4 shiftwidth=4
 au BufNewFile,BufRead,FileType lua set tabstop=4 shiftwidth=4 expandtab
 au BufNewFile,BufRead,FileType asciidoc set nospell
+au BufNewFile,BufRead,FileType scheme set ts=2 sw=2 expandtab
 au BufNewFile,BufRead *.nfo edit ++enc=cp437
+au BufNewFile,BufRead *.pks set ft=pks
 
 call plug#begin('~/.config/nvim/plugged')
 "" Make sure you use single quotes
@@ -41,7 +43,7 @@ Plug 'rking/ag.vim'
 Plug 'tikhomirov/vim-glsl'
 Plug 'Shougo/vimproc.vim', { 'do': 'make' }
 Plug 'Shougo/unite.vim'
-Plug 'cosarara97/vim-template'
+"Plug 'cosarara97/vim-template'
 Plug 'rust-lang/rust.vim'
 Plug 'peterhoeg/vim-qml'
 Plug 'AndrewRadev/linediff.vim'
@@ -104,6 +106,10 @@ Plug '2072/PHP-Indenting-for-VIm'
 Plug 'kovisoft/slimv'
 
 Plug 'scrooloose/syntastic'
+
+Plug 'neovim/node-host'
+"Plug 'snoe/nvim-parinfer.js'
+Plug 'tpope/vim-surround'
 call plug#end()
 
 let g:gruvbox_italic=1
@@ -247,6 +253,8 @@ call unite#filters#matcher_default#use(['matcher_fuzzy'])
 "nnoremap <space>/ :Unite grep:. -auto-preview -auto-highlight -no-split<cr>
 
 nnoremap <silent><Leader><C-]> <C-w><C-]><C-w>T
+
+"let g:paredit_mode = 0
 
 " TODO: I want this to be able to use esc on :terminal, but
 " I can't have it if I want esc to close FZF ;-;
