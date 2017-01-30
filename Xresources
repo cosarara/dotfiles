@@ -65,3 +65,12 @@ rofi.levenshtein-sort: true
 rofi.columns: 3
 rofi.terminal: mate-terminal.wrapper
 rofi.modi: run,drun,ssh,window,combi
+
+
+! fonts
+Xft.autohint: 0
+Xft.lcdfilter: lcddefault
+Xft.hintstyle: hintslight
+Xft.hinting: 1
+Xft.antialias: 1
+Xft.rgba: rgb
