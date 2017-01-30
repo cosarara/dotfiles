@@ -45,6 +45,13 @@ xterm*|rxvt*|eterm*|screen*|st*|linux*)
 esac
 
 source ~/.zsh/editor.zsh
+##bindkey "${terminfo[khome]}" beginning-of-line
+##bindkey "${terminfo[kend]}" end-of-line
+#bindkey "^[[H" beginning-of-line
+#bindkey "^[[F" end-of-line
+#bindkey "^[[3~" delete-char
+## dunno what term will send this, but some random blog post suggested it
+#bindkey "^[3;5~" delete-char
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
