@@ -18,4 +18,5 @@ noremap o k
 noremap h l
 noremap l o
 noremap ; i
-noremap m n
+noremap k n
+noremap K N
