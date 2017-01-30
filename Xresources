@@ -65,3 +65,6 @@ rofi.levenshtein-sort: true
 rofi.columns: 3
 rofi.terminal: mate-terminal.wrapper
 rofi.modi: run,drun,ssh,window,combi
+
+! X
+Xft.dpi: 92
