@@ -19,8 +19,11 @@
 
 #trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --width 4 --transparent true --alpha 17 --tint 0x34322E --height 16 --distance 4 --margin 160
 
-killall compton || true
-compton --config ~/.config/compton &
+{
+	sleep 3
+	killall compton || true
+	compton --config ~/.config/compton
+} &
 
 ~/.config/autostart_once.sh
 
