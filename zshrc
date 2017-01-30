@@ -120,6 +120,8 @@ fortune | cowsay -f /usr/share/cows/hellokitty.cow -W 60
 . /usr/share/fzf/key-bindings.zsh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+export FZF_DEFAULT_COMMAND='ag -g ""'
+
 export FZF_CTRL_R_OPTS=-e
 
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
