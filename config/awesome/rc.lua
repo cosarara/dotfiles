@@ -496,6 +496,7 @@ function make_list_update(margin)
     return my_list_update
 end
 
+local si = 1
 --for s = 1, screen.count() do
 awful.screen.connect_for_each_screen(function(s)
     -- Create a promptbox for each screen
@@ -539,7 +540,7 @@ awful.screen.connect_for_each_screen(function(s)
 
     -- Widgets that are aligned to the right
     local right_layout = wibox.layout.fixed.horizontal()
-    if s == 1 then
+    if si == 1 then
         right_layout:add(separator)
         right_layout:add(wibox.container.margin(wibox.widget.systray(), 2, 2, 0, 0))
     end
@@ -584,6 +585,7 @@ awful.screen.connect_for_each_screen(function(s)
     --mywibox[s]:set_widget(bgb)
     s.mywibox:set_widget(mlayout)
     s.mywibox:set_bg("#00000000")
+    si = si + 1
 end)
 -- }}}
 
@@ -668,7 +670,13 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey,           }, "\\", function () awful.spawn("exo-open --launch FileManager") end),
     awful.key({ modkey,           }, "]", function () awful.spawn("exo-open --launch WebBrowser") end),
    -- awful.key({                   }, "Print", function () awful.spawn("import /tmp/latest-screenshot.png") end),
-    awful.key({                   }, "Print", function () awful.spawn("mixtape-maim.sh -g 1920x1080+0+0") end),
+    awful.key({                   }, "Print", function ()
+        if hostname == "evangelion" then
+            awful.spawn("mixtape-maim.sh -g 1600x900+0+0")
+        else
+            awful.spawn("mixtape-maim.sh -g 1920x1080+0+0")
+        end
+    end),
     awful.key({ modkey,           }, "Print", function () awful.spawn("mixtape-maim.sh") end),
     awful.key({ "Shift"           }, "Print", function () awful.spawn("mixtape-maim.sh -s") end),
     awful.key({ "Control"         }, "Print", function () awful.spawn("maim -s") end),
