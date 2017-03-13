@@ -14,6 +14,8 @@ set linebreak
 cmap w!! w !sudo tee %
 
 au BufNewFile,BufRead,FileType php set tabstop=4 shiftwidth=4 expandtab
+au BufNewFile,BufRead,FileType php syntax sync minlines=400
+au BufNewFile,BufRead,FileType html.twig syntax sync minlines=400
 au BufNewFile,BufRead,FileType c set tabstop=4 shiftwidth=4
 au BufNewFile,BufRead,FileType cpp set tabstop=4 shiftwidth=4
 au BufNewFile,BufRead,FileType lua set tabstop=4 shiftwidth=4 expandtab
@@ -23,6 +25,7 @@ au BufNewFile,BufRead,FileType twig set tabstop=4 shiftwidth=4 expandtab
 au BufNewFile,BufRead,FileType html set tabstop=4 shiftwidth=4 expandtab
 au BufNewFile,BufRead,FileType html.twig set tabstop=4 shiftwidth=4 expandtab
 au BufNewFile,BufRead,FileType css set tabstop=4 shiftwidth=4 expandtab
+au BufNewFile,BufRead,FileType kotlin set tabstop=2 shiftwidth=2 expandtab
 au BufNewFile,BufRead *.nfo edit ++enc=cp437
 au BufNewFile,BufRead *.pks set ft=pks
 
@@ -114,6 +117,8 @@ Plug 'scrooloose/syntastic'
 Plug 'neovim/node-host'
 "Plug 'snoe/nvim-parinfer.js'
 Plug 'tpope/vim-surround'
+
+Plug 'udalov/kotlin-vim'
 call plug#end()
 
 let g:gruvbox_italic=1
