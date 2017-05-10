@@ -18,6 +18,8 @@ cmap w!! w !sudo tee %
 set tabstop=4 shiftwidth=4 expandtab
 
 au BufNewFile,BufRead,FileType php set tabstop=4 shiftwidth=4 expandtab
+au BufNewFile,BufRead,FileType php syntax sync minlines=400
+au BufNewFile,BufRead,FileType html.twig syntax sync minlines=400
 au BufNewFile,BufRead,FileType c set tabstop=4 shiftwidth=4
 au BufNewFile,BufRead,FileType cpp set tabstop=4 shiftwidth=4
 au BufNewFile,BufRead,FileType lua set tabstop=4 shiftwidth=4 expandtab
@@ -27,6 +29,7 @@ au BufNewFile,BufRead,FileType twig set tabstop=4 shiftwidth=4 expandtab
 au BufNewFile,BufRead,FileType html set tabstop=4 shiftwidth=4 expandtab
 au BufNewFile,BufRead,FileType html.twig set tabstop=4 shiftwidth=4 expandtab
 au BufNewFile,BufRead,FileType css set tabstop=4 shiftwidth=4 expandtab
+au BufNewFile,BufRead,FileType kotlin set tabstop=2 shiftwidth=2 expandtab
 au BufNewFile,BufRead *.nfo edit ++enc=cp437
 au BufNewFile,BufRead *.pks set ft=pks
 
@@ -37,31 +40,29 @@ call plug#begin('~/.config/nvim/plugged')
 "" On-demand loading
 "Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 "Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
-Plug 'ctrlpvim/ctrlp.vim'
-Plug 'MPiccinato/wombat256'
+"Plug 'ctrlpvim/ctrlp.vim'
+"Plug 'MPiccinato/wombat256'
 Plug 'cosarara97/vim-wasabi-colorscheme'
 Plug 'bling/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'FelikZ/ctrlp-py-matcher'
-Plug 'majutsushi/tagbar'
-Plug 'JazzCore/ctrlp-cmatcher'
+"Plug 'FelikZ/ctrlp-py-matcher'
+"Plug 'majutsushi/tagbar'
+"Plug 'JazzCore/ctrlp-cmatcher'
 Plug 'evidens/vim-twig'
 Plug 'tpope/vim-fugitive'
-Plug 'rking/ag.vim'
-Plug 'tikhomirov/vim-glsl'
+"Plug 'tikhomirov/vim-glsl'
 Plug 'Shougo/vimproc.vim', { 'do': 'make' }
-Plug 'Shougo/unite.vim'
+"Plug 'Shougo/unite.vim'
 "Plug 'cosarara97/vim-template'
 Plug 'rust-lang/rust.vim'
 Plug 'peterhoeg/vim-qml'
-Plug 'AndrewRadev/linediff.vim'
+"Plug 'AndrewRadev/linediff.vim'
 "Plug 'kovisoft/slimv'
 "Plug 'JazzCore/ctrlp-cmatcher''
-Plug 'rust-lang/rust.vim'
 Plug 'bronson/vim-trailing-whitespace'
 Plug 'dag/vim-fish'
-Plug 'morhetz/gruvbox'
-Plug 'nanotech/jellybeans.vim'
+"Plug 'morhetz/gruvbox'
+"Plug 'nanotech/jellybeans.vim'
 Plug 'ap/vim-css-color'
 "Plug 'davidhalter/jedi-vim'
 Plug 'zah/nim.vim'
@@ -77,19 +78,19 @@ Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
 "Plug 'mjakl/vim-asciidoc'
 "Plug 'powerman/asciidoc', { 'branch': 'powerman', 'rtp': 'vim' }
 
-Plug 'vim-scripts/ingo-library'
-Plug 'vim-scripts/SyntaxRange'
-Plug 'dahu/vimple'
-Plug 'dahu/Asif'
-Plug 'Raimondi/VimRegStyle'
-Plug 'dahu/vim-asciidoc'
+"Plug 'vim-scripts/ingo-library'
+"Plug 'vim-scripts/SyntaxRange'
+"Plug 'dahu/vimple'
+"Plug 'dahu/Asif'
+"Plug 'Raimondi/VimRegStyle'
+"Plug 'dahu/vim-asciidoc'
 
 Plug 'hynek/vim-python-pep8-indent'
 
 "Plug 'tomtom/tcomment_vim'
 Plug 'tpope/vim-commentary'
 
-Plug '~/projects/zig/doc/vim'
+"Plug '~/projects/zig/doc/vim'
 
 "" Plugin options
 "Plug 'nsf/gocode', { 'tag': 'v.20150303', 'rtp': 'vim' }
@@ -99,14 +100,14 @@ Plug 'junegunn/fzf', { 'dir': '~/.config/nvim/fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 "" Unmanaged plugin (manually installed and updated)
 "Plug '~/my-prototype-plugin'
-Plug 'jceb/vim-orgmode'
+"Plug 'jceb/vim-orgmode'
 "Plug 'tpope/vim-speeddating'
 Plug 'mhinz/vim-startify'
 
 Plug 'osyo-manga/vim-over'
 
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
+"Plug 'SirVer/ultisnips'
+"Plug 'honza/vim-snippets'
 " Plug 'ervandew/supertab'
 
 Plug '2072/PHP-Indenting-for-VIm'
@@ -115,11 +116,12 @@ Plug 'kovisoft/slimv'
 
 "Plug 'scrooloose/syntastic'
 
-Plug 'neovim/node-host'
+"Plug 'neovim/node-host'
 "Plug 'snoe/nvim-parinfer.js'
 Plug 'tpope/vim-surround'
 
 Plug 'neomake/neomake'
+Plug 'udalov/kotlin-vim'
 call plug#end()
 
 let g:gruvbox_italic=1
@@ -146,8 +148,8 @@ let g:ycm_global_ycm_extra_conf = '~/dotfiles/ycm.py'
 
 let vimple_init_vars = 0
 
-let g:unite_split_rule = 'botright'
-let g:unite_source_rec_async_command = ['ag', '--nocolor', '-g', '']
+"let g:unite_split_rule = 'botright'
+"let g:unite_source_rec_async_command = ['ag', '--nocolor', '-g', '']
 " call unite#filters#sorter_default#use(['sorter_rank'])
 "
 let g:slimv_swank_cmd ='! xterm -e sbcl --load ~/coses/start-swank.lisp &' "
@@ -256,7 +258,7 @@ command! Bbspaces %s/\s\+$
 "let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
 "let g:ctrlp_match_func = {'match' : 'matcher#cmatch' }
 
-call unite#filters#matcher_default#use(['matcher_fuzzy'])
+"call unite#filters#matcher_default#use(['matcher_fuzzy'])
 
 "nnoremap <leader>e :Unite -quick-match buffer<cr>
 "nnoremap <leader>e :Unite -start-insert buffer<cr>
