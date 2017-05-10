@@ -1,5 +1,7 @@
 set shell=zsh
 
+set mouse=a
+
 syntax on
 filetype plugin indent on
 set nu
@@ -12,6 +14,8 @@ set linebreak
 "set autochdir
 
 cmap w!! w !sudo tee %
+
+set tabstop=4 shiftwidth=4 expandtab
 
 au BufNewFile,BufRead,FileType php set tabstop=4 shiftwidth=4 expandtab
 au BufNewFile,BufRead,FileType c set tabstop=4 shiftwidth=4
@@ -59,7 +63,7 @@ Plug 'dag/vim-fish'
 Plug 'morhetz/gruvbox'
 Plug 'nanotech/jellybeans.vim'
 Plug 'ap/vim-css-color'
-Plug 'davidhalter/jedi-vim'
+"Plug 'davidhalter/jedi-vim'
 Plug 'zah/nim.vim'
 "Plug 'Valloric/YouCompleteMe', { 'do': './install.py --all' }
 "autocmd! User YouCompleteMe if !has('vim_starting') | call youcompleteme#Enable() | endif
@@ -109,11 +113,13 @@ Plug '2072/PHP-Indenting-for-VIm'
 
 Plug 'kovisoft/slimv'
 
-Plug 'scrooloose/syntastic'
+"Plug 'scrooloose/syntastic'
 
 Plug 'neovim/node-host'
 "Plug 'snoe/nvim-parinfer.js'
 Plug 'tpope/vim-surround'
+
+Plug 'neomake/neomake'
 call plug#end()
 
 let g:gruvbox_italic=1
@@ -161,22 +167,22 @@ let g:airline_powerline_fonts = 1
 "set statusline+=%{SyntasticStatuslineFlag()}
 "set statusline+=%*
 
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_quiet_messages = {
-        \ "type":    "style", }
+"let g:syntastic_always_populate_loc_list = 1
+"let g:syntastic_auto_loc_list = 1
+"let g:syntastic_check_on_open = 1
+"let g:syntastic_check_on_wq = 0
 "let g:syntastic_quiet_messages = {
-"        \ "!level":  "errors",
-"        \ "type":    "style",
-"        \ "regex":   '.*',
-"        \ "file:p":  '.*' }
-let g:syntastic_python_checkers=['flake8']
-let g:syntastic_python_flake8_args='--ignore=E501,E225,E302,E265,E231,E226,F841'
-
-let g:syntastic_twig_twiglint_exec = 'php'
-let g:syntastic_twig_twiglint_exe = 'php /home/jaume/coneix/utils/twig-lint.phar'
+"        \ "type":    "style", }
+""let g:syntastic_quiet_messages = {
+""        \ "!level":  "errors",
+""        \ "type":    "style",
+""        \ "regex":   '.*',
+""        \ "file:p":  '.*' }
+"let g:syntastic_python_checkers=['flake8']
+"let g:syntastic_python_flake8_args='--ignore=E501,E225,E302,E265,E231,E226,F841'
+"
+"let g:syntastic_twig_twiglint_exec = 'php'
+"let g:syntastic_twig_twiglint_exe = 'php /home/jaume/coneix/utils/twig-lint.phar'
 
 let g:jedi#show_call_signatures = "2"
 set noshowmode
@@ -271,10 +277,10 @@ let $FZF_DEFAULT_COMMAND = 'ag -g ""'
 "autocmd BufEnter * silent! lcd %:p:h
 "let g:slimv_swank_cmd ='! xterm -e sbcl --load ~/utils/start-swank.lisp &' "
 
-let g:syntastic_mode_map = {
-    \ "mode": "active",
-    \ "active_filetypes": [],
-    \ "passive_filetypes": ["twig"] }
+"let g:syntastic_mode_map = {
+"    \ "mode": "active",
+"    \ "active_filetypes": [],
+"    \ "passive_filetypes": ["twig"] }
 
 
 let g:startify_custom_header =
