@@ -24,6 +24,8 @@ vicious.helpers = require("vicious.helpers")
 
 local common = require("awful.widget.common")
 
+local treetile = require("treetile")
+
 local dpi -- = require("beautiful").xresources.apply_dpi
 pcall(function() dpi = require("beautiful").xresources.apply_dpi end)
 if not dpi then
@@ -118,6 +120,7 @@ layouts =
     awful.layout.suit.spiral,
     awful.layout.suit.floating,
     awful.layout.suit.max.fullscreen,
+    treetile,
 }
 if gaps then
     --layouts =
@@ -497,6 +500,7 @@ function make_list_update(margin)
 end
 
 --for s = 1, screen.count() do
+local si = 1
 awful.screen.connect_for_each_screen(function(s)
     -- Create a promptbox for each screen
     s.mypromptbox = awful.widget.prompt()
@@ -539,7 +543,8 @@ awful.screen.connect_for_each_screen(function(s)
 
     -- Widgets that are aligned to the right
     local right_layout = wibox.layout.fixed.horizontal()
-    if s == 1 then
+    if si == 1 then
+        si = si + 1
         right_layout:add(separator)
         right_layout:add(wibox.container.margin(wibox.widget.systray(), 2, 2, 0, 0))
     end
@@ -589,7 +594,7 @@ end)
 
 -- {{{ Mouse bindings
 root.buttons(awful.util.table.join(
-    awful.button({ }, 3, function () mymainmenu:toggle() end)
+--    awful.button({ }, 3, function () mymainmenu:toggle() end)
  --   awful.button({ }, 4, awful.tag.viewnext),
  --   awful.button({ }, 5, awful.tag.viewprev)
 ))
@@ -670,9 +675,12 @@ globalkeys = awful.util.table.join(
    -- awful.key({                   }, "Print", function () awful.spawn("import /tmp/latest-screenshot.png") end),
     awful.key({                   }, "Print", function () awful.spawn("mixtape-maim.sh -g 1920x1080+0+0") end),
     awful.key({ modkey,           }, "Print", function () awful.spawn("mixtape-maim.sh") end),
-    awful.key({ "Shift"           }, "Print", function () awful.spawn("mixtape-maim.sh -s") end),
-    awful.key({ "Control"         }, "Print", function () awful.spawn("maim -s") end),
-    awful.key({ modkey,           }, "F12", function () awful.spawn("randwallpaper", false) end),
+    awful.key({ "Shift"           }, "Print", function () awful.spawn("mixtape-maim.sh -u -s") end),
+    awful.key({ "Control"         }, "Print", function () awful.spawn("maim -s -u") end),
+    --awful.key({ modkey,           }, "F12", function () awful.spawn("randwallpaper", false) end),
+    awful.key({ modkey,           }, "F12", function ()
+        awful.spawn("comp_randwallpaper", false)
+    end),
     awful.key({ modkey,           }, "F11", function () awful.spawn("nfortune", false) end),
 
     -- Prompt
@@ -689,7 +697,7 @@ globalkeys = awful.util.table.join(
               end,
               {description = "lua execute prompt", group = "awesome"}),
     -- Menubar
-    awful.key({ modkey }, "p", function() menubar.show() end),
+    --awful.key({ modkey }, "p", function() menubar.show() end),
 
     --
     awful.key({ modkey, "Control" }, "x", function() awful.spawn("pkill -f 'x11grab'", false) end),
@@ -739,7 +747,9 @@ globalkeys = awful.util.table.join(
     end),
     awful.key({}, "XF86MonBrightnessUp", function()
         awful.spawn("light -A 20", false)
-    end)
+    end),
+    awful.key({ modkey }, "v", treetile.vertical),
+    awful.key({ modkey }, "s", treetile.horizontal)
 )
 
 clientkeys = awful.util.table.join(
@@ -765,6 +775,7 @@ clientkeys = awful.util.table.join(
         function (c)
             c.maximized_horizontal = not c.maximized_horizontal
             c.maximized_vertical   = c.maximized_horizontal
+            c.maximized            = c.maximized_horizontal
         end)
 )
 
@@ -846,6 +857,11 @@ awful.rules.rules = {
       properties = { border_width = 0 } },
     { rule = { class = "Steam" },
       properties = { size_hints_honor = true } },
+    { rule = { class = "Godot" },
+      properties = { floating = true,
+                     maximized = false,
+                     maximized_horizontal = false,
+                     maximized_vertical = false } },
     -- Set Firefox to always map on tags number 2 of screen 1.
     -- { rule = { class = "Firefox" },
     --   properties = { tag = tags[1][2] } },
