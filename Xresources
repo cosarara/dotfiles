@@ -9,8 +9,20 @@ URxvt.perl-ext-common: default,matcher
 URxvt.url-launcher: /usr/bin/xdg-open
 URxvt.matcher.button: 1
 urxvt*depth: 32
-urxvt*background: rgba:1250/1250/1250/f000
+urxvt*background: rgba:1250/1250/1250/f5c2
 URxvt*internalBorder: 15
+
+*internalBorder: 15
+
+!Xterm.vt100.faceName: xos4 Terminus:size=14:antialias=false
+!Xterm.vt100.font: 7x14
+!XTerm.vt100.renderFont: true
+!xterm*font:     *-fixed-*-*-*-18-*
+xterm*font: -*-terminus-medium-*-*-*-*-160-*-*-*-*-*-*
+
+!! fake transparency
+!urxvt*transparent: true
+!urxvt*shading: 30
 !URxvt.internalBorder: 15
 
 !!URxvt Color Scheme
