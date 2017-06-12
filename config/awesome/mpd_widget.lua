@@ -1,6 +1,7 @@
 
 -- based on https://awesomewm.org/recipes/mpc/
 -- and https://github.com/alexander-yakushev/awesompd
+-- and https://github.com/copycat-killer/lain/blob/29dd7ad6fc130627d1f3ef1456e87f7992d6769b/widget/mpd.lua
 
 local awful = require("awful")
 local naughty = require("naughty")
@@ -9,6 +10,7 @@ local textbox = require("wibox.widget.textbox")
 local timer = require("gears.timer")
 local mpd_widget = textbox()
 local state, title, artist, file, album, volume = "stop", "", "", "", "", ""
+local icon_path = nil
 
 mpd_widget.awaiting_n = nil
 
@@ -48,6 +50,10 @@ connection = mpc.new(nil, nil, nil, error_handler,
     "currentsong", function(_, result)
         title, artist, file, album = result.title, result.artist, result.file, result.album
         pcall(update_widget)
+        get_cover(function(path)
+            icon_path = path
+            mpd_widget:notify_track()
+        end)
     end)
 
 function mpd_widget:hide_notification()
@@ -60,17 +66,17 @@ end
 function mpd_widget:notify(hint_title, hint_text, timeout, hint_image)
    self:hide_notification()
    self.notification = naughty.notify(
-   { title      = awful.util.escape(hint_title)
+   { title      = hint_title --awful.util.escape(hint_title)
    , text       = awful.util.escape(hint_text)
    , timeout    = timeout or 3
    , position   = "top_right"
    , icon       = hint_image
-   , icon_size  = 50 --self.album_cover_size
+   , icon_size  = 80 --self.album_cover_size
    })
 end
 
 function mpd_widget:notify_track()
-    self:notify(title, artist .."\n".. album)
+    self:notify(title, artist .."\n".. album, 1, icon_path)
 end
 
 mpd_widget:buttons(awful.util.table.join(
@@ -97,57 +103,37 @@ mpd_widget:connect_signal("mouse::leave", function(c)
     mpd_widget:hide_notification()
 end)
 
--- TODO
-function try_get_local_cover(current_file)
-   if self.mpd_config then
-      local result
-      -- First find the music directory in MPD configuration file
-      local _, _, music_folder = string.find(
-         self.pread('cat ' .. self.mpd_config .. ' | grep -v ^"#" | grep music_directory', "*line"),
-         'music_directory%s+"(.+)"')
-      music_folder = music_folder .. "/"
-      
-      -- If the music_folder is specified with ~ at the beginning,
-      -- replace it with user home directory
-      if string.sub(music_folder, 1, 1) == "~" then
-         local user_folder = self.pread("echo ~", "*line")
-         music_folder = user_folder .. string.sub(music_folder, 2)
-      end
+--
 
-      -- Get the path to the file currently playing.
-      local _, _, current_file_folder = string.find(current_file, '(.+%/).*')
+local easy_async = require("awful.spawn").easy_async
+local shell = require("awful.util").shell
+local cover_pattern = "*\\.(jpg|jpeg|png|gif)$"
+function plsasync(cmd, callback)
+    return easy_async(cmd,
+    function (stdout, stderr, reason, exit_code)
+        callback(stdout)
+    end)
+end
 
-      -- Check if the current file is not some kind of http stream or
-      -- Spotify track (like spotify:track:5r65GeuIoebfJB5sLcuPoC)
-      if not current_file_folder or string.match(current_file, "%w+://") then
-          return -- Let the default image to be the cover
-      end
-
-      local folder = music_folder .. current_file_folder
-      
-      -- Get all images in the folder. Also escape occasional single
-      -- quotes in folder name.
-      local request = format("ls '%s' | grep -P '\\.jpg|\\.png|\\.gif|\\.jpeg'",
-                             string.gsub(folder, "'", "'\\''"))
-
-      local covers = self.pread(request, "*all")
-      local covers_table = self.split(covers)
-      
-      if covers_table.n > 0 then
-         result = folder .. covers_table[1]
-         if covers_table.n > 1 then
-            -- Searching for front cover with grep because Lua regular
-            -- expressions suck:[
-            local front_cover = 
-               self.pread('echo "' .. covers .. 
-                          '" | grep -P -i "cover|front|folder|albumart" | head -n 1', "*line")
-            if front_cover then
-               result = folder .. front_cover
-            end
-         end
-      end
-      return result
-   end   
+function get_cover(callback)
+    --return callback()
+    local music_dir = "/mnt/data/beets/music"
+    if string.match(file, "http.*://") then
+        if callback ~= nil then
+            callback()
+        end
+        return nil
+    end
+    local path = string.format("%s/%s", music_dir, string.match(file, ".*/"))
+    local cover = string.format("find '%s' -maxdepth 1 -type f | egrep -i -m1 '%s'",
+        path:gsub("'", "'\\''"), cover_pattern)
+    plsasync({ shell, "-c", cover }, function(current_icon)
+        local image = current_icon:gsub("\n", "")
+        if #image == 0 then image = nil end
+        if callback ~= nil then
+            callback(image)
+        end
+    end)
 end
 
 return mpd_widget
