@@ -12,7 +12,8 @@ local mpd_widget = textbox()
 local state, title, artist, file, album, volume = "stop", "", "", "", "", ""
 local icon_path = nil
 
-mpd_widget.awaiting_n = nil
+mpd_widget.awaiting_volume = false
+mpd_widget.awaiting_track = false
 
 local function update_widget()
     local text = " <span color='"..theme.music_color.."'><span font_desc='"..theme.icon_font.."'>Î</span> "
@@ -42,17 +43,23 @@ connection = mpc.new(nil, nil, nil, error_handler,
     "status", function(_, result)
         state = result.state
         volume = result.volume
-        if mpd_widget.awaiting_volume ~= nil then
+        if mpd_widget.awaiting_volume then
             mpd_widget:notify("Volume:", volume.." %", 1)
-            mpd_widget.awaiting_volume = nil
+            mpd_widget.awaiting_volume = false
         end
     end,
     "currentsong", function(_, result)
+        if file ~= result.file then
+            mpd_widget.awaiting_track = true
+        end
         title, artist, file, album = result.title, result.artist, result.file, result.album
         pcall(update_widget)
         get_cover(function(path)
             icon_path = path
-            mpd_widget:notify_track()
+            if mpd_widget.awaiting_track then
+                mpd_widget:notify_track()
+                mpd_widget.awaiting_track = false
+            end
         end)
     end)
 
