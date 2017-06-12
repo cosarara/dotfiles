@@ -25,6 +25,8 @@
 	compton --config ~/.config/compton
 } &
 
+#pgrep redshift &> /dev/null || redshift &> /dev/null &
+
 ~/.config/autostart_once.sh
 
 # Start the system tray
