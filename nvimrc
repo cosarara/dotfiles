@@ -122,6 +122,8 @@ Plug 'tpope/vim-surround'
 
 Plug 'neomake/neomake'
 Plug 'udalov/kotlin-vim'
+
+Plug 'suan/vim-instant-markdown'
 call plug#end()
 
 let g:gruvbox_italic=1
@@ -135,6 +137,8 @@ colorscheme wasabi256
 " let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
 " let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
 " let g:SuperTabDefaultCompletionType = '<C-n>'
+
+let g:instant_markdown_autostart = 0
 
 let g:deoplete#enable_at_startup = 1
 
