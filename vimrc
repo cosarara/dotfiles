@@ -20,3 +20,14 @@ noremap l o
 noremap ; i
 noremap k n
 noremap K N
+
+noremap <silent> <expr> i (v:count == 0 ? 'gj' : 'j')
+noremap <silent> <expr> o (v:count == 0 ? 'gk' : 'k')
+noremap h l
+noremap l o
+noremap ; i
+
+noremap <C-W>n <C-W>h
+noremap <C-W>i <C-W>j
+noremap <C-W>o <C-W>k
+noremap <C-W>h <C-W>l
