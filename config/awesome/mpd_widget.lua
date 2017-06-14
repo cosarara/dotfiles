@@ -11,6 +11,7 @@ local timer = require("gears.timer")
 local mpd_widget = textbox()
 local state, title, artist, file, album, volume = "stop", "", "", "", "", ""
 local icon_path = nil
+local error_msg = nil
 
 mpd_widget.awaiting_volume = false
 mpd_widget.awaiting_track = false
@@ -32,7 +33,12 @@ end
 local connection
 
 local function error_handler(err)
-    mpd_widget:set_text("Error: " .. tostring(err))
+    error_msg = tostring(err)
+    --mpd_widget:set_text("Error: " .. tostring(err))
+    local text = " <span color='"..theme.music_color.."'><span font_desc='"..theme.icon_font.."'>Î</span> "
+    text = text .. "Not connected"
+    text = text .. "</span>" -- color
+    mpd_widget.markup = text
     -- Try a reconnect soon-ish
     timer.start_new(10, function()
         connection:send("ping")
@@ -41,6 +47,7 @@ end
 
 connection = mpc.new(nil, nil, nil, error_handler,
     "status", function(_, result)
+        error_msg = nil
         state = result.state
         volume = result.volume
         if mpd_widget.awaiting_volume then
@@ -49,6 +56,7 @@ connection = mpc.new(nil, nil, nil, error_handler,
         end
     end,
     "currentsong", function(_, result)
+        error_msg = nil
         if file ~= result.file then
             mpd_widget.awaiting_track = true
         end
@@ -83,7 +91,11 @@ function mpd_widget:notify(hint_title, hint_text, timeout, hint_image)
 end
 
 function mpd_widget:notify_track()
-    self:notify(title, artist .."\n".. album, 1, icon_path)
+    if error_msg ~= nil then
+        self:notify(error_msg)
+        return
+    end
+    self:notify(title, (artist or "") .."\n".. (album or ""), 1, icon_path)
 end
 
 mpd_widget:buttons(awful.util.table.join(
