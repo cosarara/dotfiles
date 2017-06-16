@@ -21,3 +21,5 @@ mpd
 
 randwallpaper
 
+#cadence-session-start --system-start &
+

@@ -27,9 +27,11 @@ xterm*font: -*-terminus-medium-*-*-*-*-160-*-*-*-*-*-*
 
 !!URxvt Color Scheme
 !!*background:  #080608
-urxvt*background:  #111111
+URxvt*background:  #111111
+xterm*background:  #111111
 !!*foreground:  #E7DCBD
-urxvt*foreground:  #c5c8c6
+URxvt*foreground:  #c5c8c6
+xterm*foreground:  #c5c8c6
 
 !!*color0:  #525252
 !!*color1:  #BF606B

@@ -1,4 +1,5 @@
 export XDG_CONFIG_HOME=~/.config/
+export XDG_TEMPLATES_DIR=~/.local/share/templates/
 export XKB_DEFAULT_LAYOUT=ja
 
 export DEVKITPRO=~/devkitpro
@@ -30,7 +31,7 @@ export WINEARCH="win32"
 export BROWSER="firefox"
 #export QT_STYLE_OVERRIDE="breeze"
 
-export WINEPREFIX="$HOME/.wine"
+#export WINEPREFIX="$HOME/.wine"
 
 export BSPWM_TREE=/tmp/bspwm.tree
 export BSPWM_HISTORY=/tmp/bspwm.history
@@ -54,3 +55,5 @@ export PATH=~/.rakudobrew/bin:$PATH
 export MAKEFLAGS=-j5
 
 export STEAM_RUNTIME=0
+
+export EMU="-r$HOME/coses/inferno-os -c0 -g1024x768"
