@@ -24,7 +24,7 @@ vicious.helpers = require("vicious.helpers")
 
 local common = require("awful.widget.common")
 
-local treetile = require("treetile")
+--local treetile = require("treetile")
 
 local dpi -- = require("beautiful").xresources.apply_dpi
 pcall(function() dpi = require("beautiful").xresources.apply_dpi end)
@@ -120,7 +120,7 @@ layouts =
     awful.layout.suit.spiral,
     awful.layout.suit.floating,
     awful.layout.suit.max.fullscreen,
-    treetile,
+    --treetile,
 }
 if gaps then
     --layouts =
@@ -137,6 +137,7 @@ else
     theme.useless_gap = 0
     size_hints_honor = false
 end
+awful.layout.layouts = layouts
 
 lain.layout.termfair.nmaster = 3
 lain.layout.termfair.ncol = 1
@@ -755,9 +756,9 @@ globalkeys = awful.util.table.join(
     end),
     awful.key({}, "XF86MonBrightnessUp", function()
         awful.spawn("light -A 20", false)
-    end),
-    awful.key({ modkey }, "v", treetile.vertical),
-    awful.key({ modkey }, "s", treetile.horizontal)
+    end)
+    --awful.key({ modkey }, "v", treetile.vertical),
+    --awful.key({ modkey }, "s", treetile.horizontal)
 )
 
 clientkeys = awful.util.table.join(
