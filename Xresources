@@ -27,9 +27,9 @@ xterm*font: -*-terminus-medium-*-*-*-*-160-*-*-*-*-*-*
 
 !!URxvt Color Scheme
 !!*background:  #080608
-*background:  #111111
+urxvt*background:  #111111
 !!*foreground:  #E7DCBD
-*foreground:  #c5c8c6
+urxvt*foreground:  #c5c8c6
 
 !!*color0:  #525252
 !!*color1:  #BF606B
@@ -87,3 +87,5 @@ Xft.antialias: 1
 Xft.rgba: rgb
 ! Xft.dpi: 106
 
+! tk
+*TkTheme: clam
