@@ -18,7 +18,7 @@ cmap w!! w !sudo tee %
 set tabstop=4 shiftwidth=4 expandtab
 
 au BufNewFile,BufRead,FileType php set tabstop=4 shiftwidth=4 expandtab
-au BufNewFile,BufRead,FileType php syntax sync minlines=400
+au BufNewFile,BufRead,FileType php syntax sync minlines=3000
 au BufNewFile,BufRead,FileType html.twig syntax sync minlines=400
 au BufNewFile,BufRead,FileType c set tabstop=4 shiftwidth=4
 au BufNewFile,BufRead,FileType cpp set tabstop=4 shiftwidth=4
@@ -59,7 +59,7 @@ Plug 'peterhoeg/vim-qml'
 "Plug 'AndrewRadev/linediff.vim'
 "Plug 'kovisoft/slimv'
 "Plug 'JazzCore/ctrlp-cmatcher''
-Plug 'bronson/vim-trailing-whitespace'
+Plug 'ntpeters/vim-better-whitespace'
 Plug 'dag/vim-fish'
 "Plug 'morhetz/gruvbox'
 "Plug 'nanotech/jellybeans.vim'

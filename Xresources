@@ -89,3 +89,5 @@ Xft.antialias: 1
 Xft.rgba: rgb
 ! Xft.dpi: 106
 
+! tk
+*TkTheme: clam
