@@ -179,20 +179,25 @@ local comp_running_icon = awful.util.getdir("config") .. "icons/compton_16x16.pn
 local comp_not_running_icon = (awful.util.getdir("config") ..
     "icons/compton_grayscale_16x16.png")
 
-comp.update = function(self)
-    self.running = io.popen("pgrep compton"):read() ~= nil
+comp.update = function(self, f)
+    --self.running = io.popen("pgrep compton"):read() ~= nil
+    awful.spawn.easy_async("pgrep compton", function(o, e, r, c) self.running = c == 0 end)
     comp:set_image(comp.running and comp_running_icon or comp_not_running_icon)
     --comp:set_text(comp.running and " C- " or " C+ ")
+    if f ~= nil then
+        f(self.running)
+    end
 end
 
 comp.toggle = function(self)
-    comp:update()
-    if self.running then
-        awful.spawn("killall compton", false)
-    else
-        awful.spawn("compton --config /home/jaume/.config/compton", false)
-    end
-    self:update()
+    comp:update(function(running)
+        if running then
+            awful.spawn("killall compton", false)
+        else
+            awful.spawn("compton --config /home/jaume/.config/compton", false)
+        end
+        self:update()
+    end)
 end
 
 comp:update()
