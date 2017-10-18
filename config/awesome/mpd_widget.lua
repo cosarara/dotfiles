@@ -19,7 +19,9 @@ mpd_widget.awaiting_track = false
 local function update_widget()
     local text = " <span color='"..theme.music_color.."'><span font_desc='"..theme.icon_font.."'>Î</span> "
     --text = text .. tostring(artist or "") .. " - " .. tostring(title or "")
-    text = text .. tostring(title or "---")
+    local fname = string.gsub(file, ".*/", "")
+    local shorttitle = string.sub(title, 0, 40)
+    text = text .. tostring(shorttitle or fname or "---")
     if state == "pause" then
         text = text .. " (paused)"
     end
