@@ -70,9 +70,9 @@ xterm*foreground:  #c5c8c6
 ! rofi
 rofi.color-enabled: true
 rofi.color-window: argb:e3222222, #fac863, #fac863
-rofi.color-normal: argb:0000000, #d8dee9, argb:0000000, #fac863, #1b2b34
-rofi.color-active: argb:0000000, #6699cc, argb:0000000, #6699cc, #1b2b34
-rofi.color-urgent: argb:0000000, #f99157, argb:0000000, #f99157, #1b2b34
+rofi.color-normal: argb:00000000, #d8dee9, argb:00000000, #fac863, #1b2b34
+rofi.color-active: argb:00000000, #6699cc, argb:00000000, #6699cc, #1b2b34
+rofi.color-urgent: argb:00000000, #f99157, argb:00000000, #f99157, #1b2b34
 rofi.separator-style: solid
 rofi.hide-scrollbar: true
 rofi.levenshtein-sort: true
