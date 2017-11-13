@@ -97,7 +97,7 @@ function mpd_widget:notify_track()
         self:notify(error_msg)
         return
     end
-    self:notify(title, (artist or "") .."\n".. (album or ""), 1, icon_path)
+    self:notify(title or file, (artist or "") .. (artist and "\n" or "") .. (album or ""), 1, icon_path)
 end
 
 mpd_widget:buttons(awful.util.table.join(
