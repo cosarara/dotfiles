@@ -8,7 +8,7 @@ local naughty = require("naughty")
 local mpc = require("mpc")
 local textbox = require("wibox.widget.textbox")
 local timer = require("gears.timer")
-local mpd_widget = textbox()
+local mpd_widget = textbox("uhm")
 local state, title, artist, file, album, volume = "stop", "", "", "", "", ""
 local icon_path = nil
 local error_msg = nil
@@ -20,7 +20,7 @@ local function update_widget()
     local text = " <span color='"..theme.music_color.."'><span font_desc='"..theme.icon_font.."'>Î</span> "
     --text = text .. tostring(artist or "") .. " - " .. tostring(title or "")
     local fname = string.gsub(file, ".*/", "")
-    local shorttitle = string.sub(title, 0, 40)
+    local shorttitle = title and title ~= "" and string.sub(title, 0, 40)
     text = text .. tostring(shorttitle or fname or "---")
     if state == "pause" then
         text = text .. " (paused)"
