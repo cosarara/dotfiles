@@ -34,6 +34,7 @@ local connection
 
 local function error_handler(err)
     error_msg = tostring(err)
+    io.stderr:write(error_msg)
     --mpd_widget:set_text("Error: " .. tostring(err))
     local text = " <span color='"..theme.music_color.."'><span font_desc='"..theme.icon_font.."'>Î</span> "
     text = text .. "Not connected"
@@ -42,6 +43,7 @@ local function error_handler(err)
     -- Try a reconnect soon-ish
     timer.start_new(10, function()
         connection:send("ping")
+        return false
     end)
 end
 
