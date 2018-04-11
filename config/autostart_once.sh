@@ -18,6 +18,7 @@ XDG_CONFIG_HOME=$HOME/.config/bspwm/theme_overrides nm-applet &
 mpd
 
 { killall mpdscribble; sleep 4; mpdscribble; } &
+#{ killall mpdas; sleep 4; mdpas; } &
 
 randwallpaper
 
