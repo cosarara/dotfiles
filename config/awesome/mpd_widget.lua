@@ -8,7 +8,7 @@ local naughty = require("naughty")
 local mpc = require("mpc")
 local textbox = require("wibox.widget.textbox")
 local timer = require("gears.timer")
-local mpd_widget = textbox()
+local mpd_widget = textbox("uhm")
 local state, title, artist, file, album, volume = "stop", "", "", "", "", ""
 local icon_path = nil
 local error_msg = nil
@@ -19,7 +19,9 @@ mpd_widget.awaiting_track = false
 local function update_widget()
     local text = " <span color='"..theme.music_color.."'><span font_desc='"..theme.icon_font.."'>Î</span> "
     --text = text .. tostring(artist or "") .. " - " .. tostring(title or "")
-    text = text .. string.sub(tostring(title or "---"), 1, 20)
+    local fname = string.gsub(file, ".*/", "")
+    local shorttitle = title and title ~= "" and string.sub(title, 0, 40)
+    text = text .. tostring(shorttitle or fname or "---")
     if state == "pause" then
         text = text .. " (paused)"
     end
@@ -97,7 +99,7 @@ function mpd_widget:notify_track()
         self:notify(error_msg)
         return
     end
-    self:notify(title, (artist or "") .."\n".. (album or ""), 1, icon_path)
+    self:notify(title or file, (artist or "") .. (artist and "\n" or "") .. (album or ""), 1, icon_path)
 end
 
 mpd_widget:buttons(awful.util.table.join(

@@ -124,6 +124,8 @@ Plug 'neomake/neomake'
 Plug 'udalov/kotlin-vim'
 
 Plug 'suan/vim-instant-markdown'
+
+Plug 'majutsushi/tagbar'
 call plug#end()
 
 let g:gruvbox_italic=1
@@ -235,6 +237,7 @@ nnoremap <Leader>f :Files<cr>
 nnoremap <c-b> :Buffers<cr>
 nnoremap <Leader>b :Buffers<cr>
 nnoremap <Leader>t :Tags<cr>
+nnoremap <Leader>T :TagbarToggle<cr>
 
 nnoremap <silent> <leader>s :OverCommandLine<CR>
 "xnoremap <silent> <leader>s :OverCommandLine '<,'>s/<CR>
