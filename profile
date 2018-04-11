@@ -7,7 +7,7 @@ export DEVKITARM=$DEVKITPRO/devkitARM
 export DEVKITPPC=$DEVKITPRO/devkitPPC
 
 export PATH=$PATH:$DEVKITARM/bin
-export TONCCODE=$DEVKITPRO/tonc
+export TONCCODE=$DEVKITPRO/tonc-code
 
 export PATH=$HOME/.gem/ruby/2.1.0/bin:$PATH
 export PATH=$HOME/bin:$PATH
@@ -57,3 +57,5 @@ export MAKEFLAGS=-j5
 export STEAM_RUNTIME=0
 
 export EMU="-r$HOME/coses/inferno-os -c0 -g1024x768"
+
+export PATH="$HOME/.cargo/bin:$PATH"
