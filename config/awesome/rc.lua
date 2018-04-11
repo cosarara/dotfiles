@@ -24,6 +24,8 @@ vicious.helpers = require("vicious.helpers")
 
 local common = require("awful.widget.common")
 
+local volumebar_widget = require("volumebar")
+
 --local treetile = require("treetile")
 
 local dpi -- = require("beautiful").xresources.apply_dpi
@@ -512,6 +514,8 @@ awful.screen.connect_for_each_screen(function(s)
     end
     if not small then
         right_layout:add(mpd_widget)
+        right_layout:add(separator)
+        right_layout:add(volumebar_widget)
         right_layout:add(mytextclock)
     else
         right_layout:add(smalltextclock)

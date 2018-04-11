@@ -57,6 +57,7 @@ theme.fg_minimize   = "#ffffff"
 
 theme.clock_color = "#EDE391"
 theme.music_color = "#F28380"
+theme.volume_color = "#81a2be"
 -- }}}
 
 -- {{{ Borders
