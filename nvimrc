@@ -18,8 +18,8 @@ cmap w!! w !sudo tee %
 set tabstop=4 shiftwidth=4 expandtab
 
 au BufNewFile,BufRead,FileType php set tabstop=4 shiftwidth=4 expandtab
-au BufNewFile,BufRead,FileType php syntax sync minlines=3000
-au BufNewFile,BufRead,FileType html.twig syntax sync minlines=400
+au BufNewFile,BufRead,FileType php syntax sync fromstart
+au BufNewFile,BufRead,FileType html.twig syntax sync fromstart
 au BufNewFile,BufRead,FileType c set tabstop=4 shiftwidth=4
 au BufNewFile,BufRead,FileType cpp set tabstop=4 shiftwidth=4
 au BufNewFile,BufRead,FileType lua set tabstop=4 shiftwidth=4 expandtab
@@ -34,6 +34,9 @@ au BufNewFile,BufRead *.nfo edit ++enc=cp437
 au BufNewFile,BufRead *.pks set ft=pks
 
 call plug#begin('~/.config/nvim/plugged')
+Plug 'jpalardy/vim-slime'
+"Plug 'BurningEther/iron.nvim'
+"Plug 'kassio/neoterm'
 "" Make sure you use single quotes
 "" Group dependencies, vim-snippets depends on ultisnips
 "Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
@@ -46,9 +49,8 @@ Plug 'cosarara97/vim-wasabi-colorscheme'
 Plug 'bling/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 "Plug 'FelikZ/ctrlp-py-matcher'
-"Plug 'majutsushi/tagbar'
 "Plug 'JazzCore/ctrlp-cmatcher'
-Plug 'evidens/vim-twig'
+Plug 'lumiliet/vim-twig'
 Plug 'tpope/vim-fugitive'
 "Plug 'tikhomirov/vim-glsl'
 Plug 'Shougo/vimproc.vim', { 'do': 'make' }
@@ -73,6 +75,9 @@ function! DoRemote(arg)
   UpdateRemotePlugins
 endfunction
 Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
+Plug 'zchee/deoplete-jedi'
+"Plug 'sebastianmarkow/deoplete-rust'
+Plug 'racer-rust/vim-racer'
 
 "Plug 'asciidoc/vim-asciidoc'
 "Plug 'mjakl/vim-asciidoc'
@@ -125,7 +130,11 @@ Plug 'udalov/kotlin-vim'
 
 Plug 'suan/vim-instant-markdown'
 
-Plug 'majutsushi/tagbar'
+"Plug 'majutsushi/tagbar'
+
+Plug 'elixir-editors/vim-elixir'
+
+Plug 'ledger/vim-ledger'
 call plug#end()
 
 let g:gruvbox_italic=1
@@ -143,6 +152,9 @@ colorscheme wasabi256
 let g:instant_markdown_autostart = 0
 
 let g:deoplete#enable_at_startup = 1
+"let g:deoplete#sources#rust#racer_binary='which racer'
+"let g:deoplete#sources#rust#rust_source_path='/home/jaume/coses/rust/src'
+let g:racer_experimental_completer = 1
 
 " better key bindings for UltiSnipsExpandTrigger
 let g:UltiSnipsExpandTrigger = "<c-j>"
@@ -175,6 +187,8 @@ let g:airline_skip_empty_sections = 1
 "set statusline+=%#warningmsg#
 "set statusline+=%{SyntasticStatuslineFlag()}
 "set statusline+=%*
+
+let g:neoterm_autoscroll = '1'
 
 "let g:syntastic_always_populate_loc_list = 1
 "let g:syntastic_auto_loc_list = 1
@@ -209,10 +223,12 @@ noremap k n
 noremap K N
 
 noremap n h
-"noremap i j
-"noremap o k
-noremap <silent> <expr> i (v:count == 0 ? 'gj' : 'j')
-noremap <silent> <expr> o (v:count == 0 ? 'gk' : 'k')
+noremap i j
+noremap o k
+noremap <silent> i gj
+noremap <silent> o gk
+"noremap <silent> <expr> i (v:count == 0 ? 'gj' : 'j')
+"noremap <silent> <expr> o (v:count == 0 ? 'gk' : 'k')
 noremap h l
 noremap l o
 noremap ; i
@@ -294,7 +310,7 @@ let $FZF_DEFAULT_COMMAND = 'ag -g ""'
 
 
 let g:startify_custom_header =
-\ map(split(system('fortune | cowsay -f hellokitty -W 60'), '\n'), '" ". v:val')
+\ map(split(system('fortune | cowsay -f hellokitty -W 60 | sed "s/\s$//g"'), '\n'), '" ". v:val')
 
 let g:terminal_color_0="#353540"
 let g:terminal_color_1="#8c5760"
@@ -333,3 +349,6 @@ let g:terminal_color_foreground="#839496"
 "let g:terminal_color_15="#d9dfea"
 "let g:terminal_color_background="#1b2b34"
 "let g:terminal_color_foreground="#c1c6cf"
+
+
+let g:no_ruby_maps = 1
