@@ -35,105 +35,37 @@ au BufNewFile,BufRead *.pks set ft=pks
 
 call plug#begin('~/.config/nvim/plugged')
 Plug 'jpalardy/vim-slime'
-"Plug 'BurningEther/iron.nvim'
-"Plug 'kassio/neoterm'
-"" Make sure you use single quotes
-"" Group dependencies, vim-snippets depends on ultisnips
-"Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
-"" On-demand loading
-"Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-"Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
-"Plug 'ctrlpvim/ctrlp.vim'
-"Plug 'MPiccinato/wombat256'
 Plug 'cosarara97/vim-wasabi-colorscheme'
 Plug 'bling/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-"Plug 'FelikZ/ctrlp-py-matcher'
-"Plug 'JazzCore/ctrlp-cmatcher'
 Plug 'lumiliet/vim-twig'
 Plug 'tpope/vim-fugitive'
-"Plug 'tikhomirov/vim-glsl'
 Plug 'Shougo/vimproc.vim', { 'do': 'make' }
-"Plug 'Shougo/unite.vim'
-"Plug 'cosarara97/vim-template'
 Plug 'rust-lang/rust.vim'
 Plug 'peterhoeg/vim-qml'
-"Plug 'AndrewRadev/linediff.vim'
-"Plug 'kovisoft/slimv'
-"Plug 'JazzCore/ctrlp-cmatcher''
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'dag/vim-fish'
-"Plug 'morhetz/gruvbox'
-"Plug 'nanotech/jellybeans.vim'
 Plug 'ap/vim-css-color'
-"Plug 'davidhalter/jedi-vim'
 Plug 'zah/nim.vim'
-"Plug 'Valloric/YouCompleteMe', { 'do': './install.py --all' }
-"autocmd! User YouCompleteMe if !has('vim_starting') | call youcompleteme#Enable() | endif
-
 function! DoRemote(arg)
   UpdateRemotePlugins
 endfunction
 Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
 Plug 'zchee/deoplete-jedi'
-"Plug 'sebastianmarkow/deoplete-rust'
 Plug 'racer-rust/vim-racer'
-
-"Plug 'asciidoc/vim-asciidoc'
-"Plug 'mjakl/vim-asciidoc'
-"Plug 'powerman/asciidoc', { 'branch': 'powerman', 'rtp': 'vim' }
-
-"Plug 'vim-scripts/ingo-library'
-"Plug 'vim-scripts/SyntaxRange'
-"Plug 'dahu/vimple'
-"Plug 'dahu/Asif'
-"Plug 'Raimondi/VimRegStyle'
-"Plug 'dahu/vim-asciidoc'
-
 Plug 'hynek/vim-python-pep8-indent'
-
-"Plug 'tomtom/tcomment_vim'
 Plug 'tpope/vim-commentary'
-
-"Plug '~/projects/zig/doc/vim'
-
-"" Plugin options
-"Plug 'nsf/gocode', { 'tag': 'v.20150303', 'rtp': 'vim' }
-"" Plugin outside ~/.vim/plugged with post-update hook
-"Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
 Plug 'junegunn/fzf', { 'dir': '~/.config/nvim/fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-"" Unmanaged plugin (manually installed and updated)
-"Plug '~/my-prototype-plugin'
-"Plug 'jceb/vim-orgmode'
-"Plug 'tpope/vim-speeddating'
 Plug 'mhinz/vim-startify'
-
 Plug 'osyo-manga/vim-over'
-
-"Plug 'SirVer/ultisnips'
-"Plug 'honza/vim-snippets'
-" Plug 'ervandew/supertab'
-
 Plug '2072/PHP-Indenting-for-VIm'
-
 Plug 'kovisoft/slimv'
-
-"Plug 'scrooloose/syntastic'
-
-"Plug 'neovim/node-host'
-"Plug 'snoe/nvim-parinfer.js'
 Plug 'tpope/vim-surround'
-
 Plug 'neomake/neomake'
 Plug 'udalov/kotlin-vim'
-
 Plug 'suan/vim-instant-markdown'
-
-"Plug 'majutsushi/tagbar'
-
 Plug 'elixir-editors/vim-elixir'
-
 Plug 'ledger/vim-ledger'
 call plug#end()
 
