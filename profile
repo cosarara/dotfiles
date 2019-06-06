@@ -2,12 +2,15 @@ export XDG_CONFIG_HOME=~/.config/
 export XDG_TEMPLATES_DIR=~/.local/share/templates/
 export XKB_DEFAULT_LAYOUT=ja
 
-export DEVKITPRO=~/devkitpro
-export DEVKITARM=$DEVKITPRO/devkitARM
-export DEVKITPPC=$DEVKITPRO/devkitPPC
+#export DEVKITPRO=~/devkitpro
+#export DEVKITARM=$DEVKITPRO/devkitARM
+#export DEVKITPPC=$DEVKITPRO/devkitPPC
+#export DEVKITPRO=/opt/devkitpro
+#export DEVKITARM=/opt/devkitpro/devkitARM
+#export DEVKITPPC=/opt/devkitpro/devkitPPC
 
-export PATH=$PATH:$DEVKITARM/bin
-export TONCCODE=$DEVKITPRO/tonc-code
+#export PATH=$PATH:$DEVKITARM/bin
+#export TONCCODE=$DEVKITPRO/tonc-code
 
 export PATH=$HOME/.gem/ruby/2.1.0/bin:$PATH
 export PATH=$HOME/bin:$PATH
@@ -27,7 +30,7 @@ export TERMINAL="mate-terminal"
 export EDITOR="nvim"
 export VISUAL="nvim"
 export WINEDLLOVERRIDES="winemenubuilder.exe=d"
-export WINEARCH="win32"
+#export WINEARCH="win32"
 export BROWSER="firefox"
 #export QT_STYLE_OVERRIDE="breeze"
 
@@ -54,8 +57,12 @@ export PATH=~/.rakudobrew/bin:$PATH
 
 export MAKEFLAGS=-j5
 
-export STEAM_RUNTIME=0
+#export STEAM_RUNTIME=0
 
 export EMU="-r$HOME/coses/inferno-os -c0 -g1024x768"
 
 export PATH="$HOME/.cargo/bin:$PATH"
+
+export RUST_SRC_PATH="$HOME/coses/rust/src"
+
+export LUAROCKS_CONFIG=$HOME/.config/luarocks/config.lua
