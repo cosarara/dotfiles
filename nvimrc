@@ -191,7 +191,8 @@ let g:slimv_swank_cmd ='! xterm -e sbcl --load ~/coses/start-swank.lisp &' "
 let g:jedi#show_call_signatures = "2"
 
 function! MyOnBattery()
-  return readfile('/sys/class/power_supply/AC/online') == ['0']
+    let l:path = '/sys/class/power_supply/ADP1/online'
+    return filereadable(l:path) && readfile(l:path) == ['0']
 endfunction
 
 if MyOnBattery()
