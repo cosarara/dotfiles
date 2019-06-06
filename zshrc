@@ -65,13 +65,15 @@ if [ -x /usr/bin/dircolors ]; then
     alias grep='grep --color=auto'
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
-    alias egrep='diff --color=auto'
+    alias diff='diff --color=auto'
 fi
 
 # to only uncomment as a dirty hack if I want changes
 # applied to new shells or something
 #source ~/.profile
 
+alias cp='cp -i'
+alias mv='mv -i'
 alias l='ls'
 alias ll='ls -l'
 
@@ -137,5 +139,14 @@ PERL5LIB="/home/jaume/perl5/lib/perl5${PERL5LIB+:}${PERL5LIB}"; export PERL5LIB;
 PERL_LOCAL_LIB_ROOT="/home/jaume/perl5${PERL_LOCAL_LIB_ROOT+:}${PERL_LOCAL_LIB_ROOT}"; export PERL_LOCAL_LIB_ROOT;
 PERL_MB_OPT="--install_base \"/home/jaume/perl5\""; export PERL_MB_OPT;
 PERL_MM_OPT="INSTALL_BASE=/home/jaume/perl5"; export PERL_MM_OPT;
+
+source ~/.local/share/perl5/etc/bashrc
+
+source ~/.nix-profile/etc/profile.d/nix.sh
+
+#if [ -n "$DESKTOP_SESSION" ];then
+#    eval $(gnome-keyring-daemon --start)
+#    export SSH_AUTH_SOCK
+#fi
 
 #exec fish
