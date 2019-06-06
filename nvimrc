@@ -34,113 +34,62 @@ au BufNewFile,BufRead *.nfo edit ++enc=cp437
 au BufNewFile,BufRead *.pks set ft=pks
 
 call plug#begin('~/.config/nvim/plugged')
+" magic
 Plug 'jpalardy/vim-slime'
-Plug 'cosarara97/vim-wasabi-colorscheme'
-Plug 'bling/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'lumiliet/vim-twig'
+Plug 'kovisoft/slimv' " hrm I don't need 2 slimes
 Plug 'tpope/vim-fugitive'
-Plug 'Shougo/vimproc.vim', { 'do': 'make' }
-Plug 'rust-lang/rust.vim'
-Plug 'peterhoeg/vim-qml'
+Plug 'Shougo/vimproc.vim', { 'do': 'make' } " is this a dependency of something?
 Plug 'ntpeters/vim-better-whitespace'
-Plug 'dag/vim-fish'
-Plug 'ap/vim-css-color'
-Plug 'zah/nim.vim'
-function! DoRemote(arg)
-  UpdateRemotePlugins
-endfunction
-Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'zchee/deoplete-jedi'
 Plug 'racer-rust/vim-racer'
-Plug 'hynek/vim-python-pep8-indent'
-Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-commentary' " I should start using this tbh
+    " fzf is installed system-wide, this is redundant
+    " and yet, how do I load it?
+    " see /usr/share/vim/vimfiles/plugin/fzf.vim /usr/bin/fzf
 Plug 'junegunn/fzf', { 'dir': '~/.config/nvim/fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'mhinz/vim-startify'
-Plug 'osyo-manga/vim-over'
-Plug '2072/PHP-Indenting-for-VIm'
-Plug 'kovisoft/slimv'
-Plug 'tpope/vim-surround'
+Plug 'osyo-manga/vim-over' " how does this work
+Plug 'tpope/vim-surround' " I should start using this
 Plug 'neomake/neomake'
-Plug 'udalov/kotlin-vim'
 Plug 'suan/vim-instant-markdown'
+
+" rice
+Plug 'cosarara/vim-wasabi-colorscheme'
+Plug 'bling/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+
+" language support
+Plug 'lumiliet/vim-twig' " mantained fork of evidens/vim-twig
+Plug 'rust-lang/rust.vim'
+Plug 'peterhoeg/vim-qml'
+Plug 'dag/vim-fish'
+Plug 'ap/vim-css-color'
+Plug 'zah/nim.vim'
+Plug 'hynek/vim-python-pep8-indent'
+Plug 'udalov/kotlin-vim'
 Plug 'elixir-editors/vim-elixir'
 Plug 'ledger/vim-ledger'
 call plug#end()
 
+" RICE
 let g:gruvbox_italic=1
 "colorscheme wombat256
 colorscheme wasabi256
 "colorscheme gruvbox
-
-"set background=dark
-
-" " make YCM compatible with UltiSnips (using supertab)
-" let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
-" let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
-" let g:SuperTabDefaultCompletionType = '<C-n>'
-
-let g:instant_markdown_autostart = 0
-
-let g:deoplete#enable_at_startup = 1
-"let g:deoplete#sources#rust#racer_binary='which racer'
-"let g:deoplete#sources#rust#rust_source_path='/home/jaume/coses/rust/src'
-let g:racer_experimental_completer = 1
-
-" better key bindings for UltiSnipsExpandTrigger
-let g:UltiSnipsExpandTrigger = "<c-j>"
-let g:UltiSnipsJumpForwardTrigger = "<c-j>"
-let g:UltiSnipsJumpBackwardTrigger = "<c-k>"
-
-let g:ycm_server_python_interpreter = "/usr/bin/python3"
-let g:ycm_global_ycm_extra_conf = '~/dotfiles/ycm.py'
-
-let vimple_init_vars = 0
-
-"let g:unite_split_rule = 'botright'
-"let g:unite_source_rec_async_command = ['ag', '--nocolor', '-g', '']
-" call unite#filters#sorter_default#use(['sorter_rank'])
-"
-let g:slimv_swank_cmd ='! xterm -e sbcl --load ~/coses/start-swank.lisp &' "
-"let g:slimv_swank_cmd ='! xterm -e sbcl --load ~/.config/nvim/plugged/slimv/slime/start-swank.lisp &' "
-"let g:slimv_swank_cmd = '! tmux new-window -d -n REPL-SBCL "sbcl --load ~/.config/nvim/plugged/slimv/slime/start-swank.lisp"'
-"let g:slimv_swank_cmd = 'terminal sbcl --load .config/nvim/plugged/slimv/slime/start-swank.lisp &'
-"let g:slimv_swank_cmd ='terminal sbcl --load ~/coses/start-swank.lisp &' "
-
-"let g:vim_asciidoc_folding_disabled=1
 
 let g:airline#extensions#tabline#enabled = 1
 "let g:airline_theme='molokai'
 let g:airline_theme='base16_default'
 let g:airline_powerline_fonts = 1
 let g:airline_skip_empty_sections = 1
+set noshowmode
 
-"set statusline+=%#warningmsg#
-"set statusline+=%{SyntasticStatuslineFlag()}
-"set statusline+=%*
-
+" KEYS AND STUFF
 let g:neoterm_autoscroll = '1'
 
-"let g:syntastic_always_populate_loc_list = 1
-"let g:syntastic_auto_loc_list = 1
-"let g:syntastic_check_on_open = 1
-"let g:syntastic_check_on_wq = 0
-"let g:syntastic_quiet_messages = {
-"        \ "type":    "style", }
-""let g:syntastic_quiet_messages = {
-""        \ "!level":  "errors",
-""        \ "type":    "style",
-""        \ "regex":   '.*',
-""        \ "file:p":  '.*' }
-"let g:syntastic_python_checkers=['flake8']
-"let g:syntastic_python_flake8_args='--ignore=E501,E225,E302,E265,E231,E226,F841'
-"
-"let g:syntastic_twig_twiglint_exec = 'php'
-"let g:syntastic_twig_twiglint_exe = 'php /home/jaume/coneix/utils/twig-lint.phar'
-
-let g:jedi#show_call_signatures = "2"
-set noshowmode
+" wtf is this
 try
   set shortmess+=c
 catch /^Vim\%((\a\+)\)\=:E539: Illegal character/
@@ -192,57 +141,18 @@ nnoremap <silent> <leader>s :OverCommandLine<CR>
 " it actually does it automagically
 xnoremap <silent> <leader>s :OverCommandLine s/<CR>
 
-" nnoremap <leader>e :Unite -start-insert file<CR>
-" "nnoremap <leader>f :Unite -start-insert file_rec/neovim<CR>
-" nnoremap <leader>f :Unite -start-insert file_rec/async<CR>
-" nnoremap <leader>b :Unite -start-insert buffer<CR>
-
-set laststatus=2
-
 command! Bbspaces %s/\s\+$
 
-" breaks tag search
-"let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden
-"      \ --ignore .git
-"      \ --ignore .svn
-"      \ --ignore .hg
-"      \ --ignore .DS_Store
-"      \ --ignore "**/*.pyc"
-"      \ -g ""'
-
-" neither seems faster
-"let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
-"let g:ctrlp_match_func = {'match' : 'matcher#cmatch' }
-
-"call unite#filters#matcher_default#use(['matcher_fuzzy'])
-
-"nnoremap <leader>e :Unite -quick-match buffer<cr>
-"nnoremap <leader>e :Unite -start-insert buffer<cr>
-"nnoremap <leader>f :Unite -start-insert file<cr>
-"nnoremap <space>/ :Unite grep:. -auto-preview -auto-highlight -no-split<cr>
-
 nnoremap <silent><Leader><C-]> <C-w><C-]><C-w>T
-
-"let g:paredit_mode = 0
 
 " TODO: I want this to be able to use esc on :terminal, but
 " I can't have it if I want esc to close FZF ;-;
 "tnoremap <Esc> <C-\><C-n>
 
+" I don't remember why what
 let $FZF_DEFAULT_COMMAND = 'ag -g ""'
 
-" kinda like autochdir?
-"autocmd BufEnter * silent! lcd %:p:h
-"let g:slimv_swank_cmd ='! xterm -e sbcl --load ~/utils/start-swank.lisp &' "
-
-"let g:syntastic_mode_map = {
-"    \ "mode": "active",
-"    \ "active_filetypes": [],
-"    \ "passive_filetypes": ["twig"] }
-
-
-let g:startify_custom_header =
-\ map(split(system('fortune | cowsay -f hellokitty -W 60 | sed "s/\s$//g"'), '\n'), '" ". v:val')
+" RICE
 
 let g:terminal_color_0="#353540"
 let g:terminal_color_1="#8c5760"
@@ -262,25 +172,30 @@ let g:terminal_color_14="#82a2b2"
 let g:terminal_color_15="#b8b8c8"
 let g:terminal_color_background="#09090d"
 let g:terminal_color_foreground="#839496"
-"
-"let g:terminal_color_0="#1b2b34"
-"let g:terminal_color_1="#ed5f67"
-"let g:terminal_color_2="#9ac895"
-"let g:terminal_color_3="#fbc963"
-"let g:terminal_color_4="#669acd"
-"let g:terminal_color_5="#c695c6"
-"let g:terminal_color_6="#5fb4b4"
-"let g:terminal_color_7="#c1c6cf"
-"let g:terminal_color_8="#65737e"
-"let g:terminal_color_9="#fa9257"
-"let g:terminal_color_10="#343d46"
-"let g:terminal_color_11="#4f5b66"
-"let g:terminal_color_12="#a8aebb"
-"let g:terminal_color_13="#ced4df"
-"let g:terminal_color_14="#ac7967"
-"let g:terminal_color_15="#d9dfea"
-"let g:terminal_color_background="#1b2b34"
-"let g:terminal_color_foreground="#c1c6cf"
+
+" what is this
+set laststatus=2
+
+let g:startify_custom_header =
+\ map(split(system('fortune | cowsay -f hellokitty -W 60 | sed "s/\s$//g"'), '\n'), '" ". v:val')
 
 
+" PROGRAMMING
+
+"let g:paredit_mode = 0
+let g:instant_markdown_autostart = 0
+let g:deoplete#enable_at_startup = 1
+let g:racer_experimental_completer = 1
 let g:no_ruby_maps = 1
+let g:slimv_swank_cmd ='! xterm -e sbcl --load ~/coses/start-swank.lisp &' "
+let g:jedi#show_call_signatures = "2"
+
+function! MyOnBattery()
+  return readfile('/sys/class/power_supply/AC/online') == ['0']
+endfunction
+
+if MyOnBattery()
+  call neomake#configure#automake('w')
+else
+  call neomake#configure#automake('nw', 1000)
+endif
