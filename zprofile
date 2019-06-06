@@ -1,4 +1,4 @@
-export LESS='-F -g -i -M -R -S -w -X -z-4'
+#export LESS='-F -g -i -M -R -S -w -X -z-4'
 
 # Set the Less input preprocessor.
 if (( $+commands[lesspipe.sh] )); then
@@ -16,6 +16,6 @@ if [[ ! -d "$TMPPREFIX" ]]; then
   mkdir -p "$TMPPREFIX"
 fi
 
-source .profile
+source ~/.profile
 
 export PATH="$HOME/.cargo/bin:$PATH"
