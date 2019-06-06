@@ -3,7 +3,13 @@ Mwm*foreground: Wheat
 Mwm*activeBackground: Wheat
 Mwm*activeForeground: IndianRed
 
-URxvt.font: -*-terminus-medium-*-*-*-*-160-*-*-*-*-*-*
+!URxvt.font: -*-terminus-medium-*-*-*-*-160-*-*-*-*-*-*
+URxvt*font:             -*-dinapowerline-medium-r-*-*-13-*-*-*-*-*-*-*
+URxvt*boldFont:         -*-dinapowerline-bold-r-*-*-13-*-*-*-*-*-*-*
+URxvt*itallicFont:      -*-dinapowerline-medium-i-*-*-13-*-*-*-*-*-*-*
+URxvt*boldItallicFont:  -*-dinapowerline-bold-i-*-*-13-*-*-*-*-*-*-*
+
+
 URxvt.scrollBar: false
 URxvt.perl-ext-common: default,matcher
 URxvt.url-launcher: /usr/bin/xdg-open
@@ -12,7 +18,11 @@ urxvt*depth: 32
 urxvt*background: rgba:1250/1250/1250/f5c2
 URxvt*internalBorder: 15
 
-*internalBorder: 15
+xterm*internalBorder: 15
+
+!*internalBorder: 15
+!emacs*internalBorder: 15
+emacs*internalBorder: 0
 
 !Xterm.vt100.faceName: xos4 Terminus:size=14:antialias=false
 !Xterm.vt100.font: 7x14
