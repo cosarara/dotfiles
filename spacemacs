@@ -397,7 +397,7 @@ you should place your code here."
 ;  (define-key evil-org-mode-map "k" 'evil-search-next)
 ;  (define-key evil-org-mode-map "K" 'evil-search-previous)
 
-  
+
 ;  noremap n h
 ;  noremap i j
 ;  noremap o k
@@ -407,13 +407,16 @@ you should place your code here."
 ;  noremap k n
 ;  noremap K N
 
-  (define-key evil-visual-state-map "n" 'evil-backward-char)
+  (define-key evil-motion-state-map "n" 'evil-backward-char)
+  (define-key evil-motion-state-map "i" 'evil-next-line)
+  (define-key evil-motion-state-map "o" 'evil-previous-line)
+  (define-key evil-motion-state-map "h" 'evil-forward-char)
+  (define-key evil-motion-state-map ";" 'evil-insert)
+  (define-key evil-motion-state-map "k" 'evil-ex-search-next)
+  (define-key evil-motion-state-map "K" 'evil-ex-search-previous)
+
   (define-key evil-visual-state-map "i" 'evil-next-line)
   (define-key evil-visual-state-map "o" 'evil-previous-line)
-  (define-key evil-visual-state-map "h" 'evil-forward-char)
-  (define-key evil-visual-state-map ";" 'evil-insert)
-  (define-key evil-visual-state-map "k" 'evil-ex-search-next)
-  (define-key evil-visual-state-map "K" 'evil-ex-search-previous)
 
   (define-key evil-window-map "h" 'windmove-right)
   (define-key evil-window-map "n" 'windmove-left)
