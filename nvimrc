@@ -59,6 +59,8 @@ Plug 'suan/vim-instant-markdown'
 Plug 'cosarara/vim-wasabi-colorscheme'
 Plug 'bling/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'rakr/vim-one'
+Plug 'chriskempson/base16-vim'
 
 " language support
 Plug 'lumiliet/vim-twig' " mantained fork of evidens/vim-twig
@@ -74,10 +76,18 @@ Plug 'ledger/vim-ledger'
 call plug#end()
 
 " RICE
+set termguicolors
+
 let g:gruvbox_italic=1
 "colorscheme wombat256
 colorscheme wasabi256
+"colorscheme one
+"set background=light
+"let g:airline_theme='one'
+"let g:airline_base16_improved_contrast=1
+"let g:airline_theme='base16'
 "colorscheme gruvbox
+"colorscheme base16-ia-light
 
 let g:airline#extensions#tabline#enabled = 1
 "let g:airline_theme='molokai'
@@ -178,6 +188,8 @@ set laststatus=2
 
 let g:startify_custom_header =
 \ map(split(system('fortune | cowsay -f hellokitty -W 60 | sed "s/\s$//g"'), '\n'), '" ". v:val')
+"let g:startify_change_to_vcs_root=1
+let g:startify_change_to_dir=0
 
 
 " PROGRAMMING
