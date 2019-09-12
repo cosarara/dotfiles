@@ -49,7 +49,7 @@ if not round then
     end
 end
 
-local gaps = true
+local gaps = false
 local small = false
 
 -- {{{ Error handling
@@ -124,6 +124,8 @@ layouts =
     awful.layout.suit.max.fullscreen,
     --treetile,
 }
+
+local size_hints_honor = true
 if gaps then
     --layouts =
     --{
@@ -485,12 +487,17 @@ awful.screen.connect_for_each_screen(function(s)
     s.mytasklist = awful.widget.tasklist(s, awful.widget.tasklist.filter.currenttags,
         mytasklist.buttons, nil, make_list_update(15), wibox.layout.fixed.horizontal())
 
+    local height = round(beautiful.get_font_height(theme.font) * 2 + 5)
+    if not gaps then
+        height = round(beautiful.get_font_height(theme.font) * 2)
+    end
+
     -- Create the wibox
     s.mywibox = awful.wibar({
         position = "top",
         screen = s,
         font = theme.font,
-        height = round(beautiful.get_font_height(theme.font) * 2 + 5)
+        height = height
     })
 
     -- Widgets that are aligned to the left
@@ -710,10 +717,10 @@ globalkeys = awful.util.table.join(
         awful.spawn("pulseaudio-ctl up", false)
     end),
     awful.key({}, "XF86MonBrightnessDown", function()
-        awful.spawn("light -U 20", false)
+        awful.spawn("light -U 10", false)
     end),
     awful.key({}, "XF86MonBrightnessUp", function()
-        awful.spawn("light -A 20", false)
+        awful.spawn("light -A 10", false)
     end)
     --awful.key({ modkey }, "v", treetile.vertical),
     --awful.key({ modkey }, "s", treetile.horizontal)
@@ -809,7 +816,7 @@ awful.rules.rules = {
                      keys = clientkeys,
                      buttons = clientbuttons,
                      screen = awful.screen.preferred,
-                     --size_hints_honor = false,
+                     size_hints_honor = size_hints_honor,
                      placement = awful.placement.no_overlap+awful.placement.no_offscreen
                  } },
     --{ rule = { class = "MPlayer" },
@@ -834,6 +841,9 @@ awful.rules.rules = {
     -- Set Firefox to always map on tags number 2 of screen 1.
     -- { rule = { class = "Firefox" },
     --   properties = { tag = tags[1][2] } },
+    --
+    --{ rule = { class = "wesnoth" },
+    --  properties = { titlebars_enabled = true, border_width = 5, floating = true } },
 }
 -- }}}
 
@@ -864,6 +874,48 @@ client.connect_signal("manage", function (c, startup)
         -- Prevent clients from being unreachable after screen count changes.
         awful.placement.no_offscreen(c)
     end
+end)
+
+-- Add a titlebar if titlebars_enabled is set to true in the rules.
+client.connect_signal("request::titlebars", function(c)
+    -- buttons for the titlebar
+    local buttons = gears.table.join(
+        awful.button({ }, 1, function()
+            client.focus = c
+            c:raise()
+            awful.mouse.client.move(c)
+        end),
+        awful.button({ }, 3, function()
+            client.focus = c
+            c:raise()
+            awful.mouse.client.resize(c)
+        end)
+    )
+
+    awful.titlebar(c) : setup {
+        { -- Left
+            awful.titlebar.widget.iconwidget(c),
+            buttons = buttons,
+            layout  = wibox.layout.fixed.horizontal
+        },
+        { -- Middle
+            { -- Title
+                align  = "center",
+                widget = awful.titlebar.widget.titlewidget(c)
+            },
+            buttons = buttons,
+            layout  = wibox.layout.flex.horizontal
+        },
+        { -- Right
+            awful.titlebar.widget.floatingbutton (c),
+            awful.titlebar.widget.maximizedbutton(c),
+            awful.titlebar.widget.stickybutton   (c),
+            awful.titlebar.widget.ontopbutton    (c),
+            awful.titlebar.widget.closebutton    (c),
+            layout = wibox.layout.fixed.horizontal()
+        },
+        layout = wibox.layout.align.horizontal
+    }
 end)
 
 -- Enable sloppy focus

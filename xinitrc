@@ -41,6 +41,7 @@ export SDL_VIDEO_MINIMIZE_ON_FOCUS_LOSS=0
 #setxkbmap -layout jaume,us -option grp:caps_toggle -option compose:menu
 setxkbmap -layout jaume,us -option grp:rctrl_rshift_toggle -option compose:menu
 
+dbus-update-activation-environment --systemd DISPLAY
 eval $(gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
 export SSH_AUTH_SOCK
 
@@ -52,8 +53,8 @@ ibus-daemon -drx
 #[[ $POLKIT != "no" ]] && lxpolkit &
 [[ $POLKIT != "no" ]] && /usr/lib/mate-polkit/polkit-mate-authentication-agent-1 &
 
-pactl upload-sample /usr/share/sounds/freedesktop/stereo/bell.oga x11-bell && \
-pactl load-module module-x11-bell sample=x11-bell display=$DISPLAY &
+#pactl upload-sample /usr/share/sounds/freedesktop/stereo/bell.oga x11-bell && \
+#pactl load-module module-x11-bell sample=x11-bell display=$DISPLAY &
 
 xset +fp $HOME/.local/share/fonts/
 
@@ -62,6 +63,7 @@ xsetroot -cursor_name left_ptr
 #randwallpaper
 
 default_session=awesome
+#default_session=openbox
 
 session=${WM:-$default_session}
 session=${1:-$session}

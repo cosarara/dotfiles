@@ -37,6 +37,7 @@ values."
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
+     helm
      ;; auto-completion
      ;; better-defaults
      emacs-lisp
@@ -74,16 +75,18 @@ values."
 	 color-theme-sanityinc-tomorrow
 	 hlinum
 	 )
+   ;; A list of packages that cannot be updated.
+   dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
    dotspacemacs-excluded-packages '()
-   ;;dotspacemacs-excluded-packages
-   ;;'(
-   ;;  smartparens
-   ;;  )
-   ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
-   ;; are declared in a layer which is not a member of
-   ;; the list `dotspacemacs-configuration-layers'. (default t)
-   dotspacemacs-delete-orphan-packages t))
+   ;; Defines the behaviour of Spacemacs when installing packages.
+   ;; Possible values are `used-only', `used-but-keep-unused' and `all'.
+   ;; `used-only' installs only explicitly used packages and uninstall any
+   ;; unused packages as well as their unused dependencies.
+   ;; `used-but-keep-unused' installs only the used packages but won't uninstall
+   ;; them if they become unused. `all' installs *all* packages supported by
+   ;; Spacemacs and never uninstall them. (default is `used-only')
+   dotspacemacs-install-packages 'used-only))
 
 (defun dotspacemacs/init ()
   "Initialization function.
@@ -157,9 +160,7 @@ values."
    ;; If non nil the cursor color matches the state color.
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
-   ;; quickly tweak the mode-line size to make separators not look too crappy.
-   ;; size to make separators look not too crappy.
-   ;;dotspacemacs-default-font '("Source Code Pro"
+   ;; quickly tweak the mode-line size to make separators look not too crappy.
    dotspacemacs-default-font '("xos4 Terminus"
                                :size 14
                                :weight normal
@@ -336,7 +337,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
 
 (defun dotspacemacs/user-config ()
   "Configuration function for user code.
- This function is called at the very end of Spacemacs initialization after
+This function is called at the very end of Spacemacs initialization after
 layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
@@ -360,10 +361,10 @@ you should place your code here."
   (define-key spacemacs-buffer-mode-map "o" 'evil-previous-line)
   (define-key spacemacs-buffer-mode-map "i" 'evil-next-line)
 
-  (define-key evil-normal-state-map "h" 'evil-forward-char)
   (define-key evil-normal-state-map "n" 'evil-backward-char)
-  (define-key evil-normal-state-map "o" 'evil-previous-line)
   (define-key evil-normal-state-map "i" 'evil-next-line)
+  (define-key evil-normal-state-map "o" 'evil-previous-line)
+  (define-key evil-normal-state-map "h" 'evil-forward-char)
   (define-key evil-normal-state-map ";" 'evil-insert)
   (define-key evil-normal-state-map "l" 'evil-open-below)
   (define-key evil-normal-state-map "k" 'evil-ex-search-next)
@@ -396,13 +397,26 @@ you should place your code here."
 ;  (define-key evil-org-mode-map "k" 'evil-search-next)
 ;  (define-key evil-org-mode-map "K" 'evil-search-previous)
 
-  (define-key evil-visual-state-map "h" 'evil-forward-char)
-  (define-key evil-visual-state-map "n" 'evil-backward-char)
-  (define-key evil-visual-state-map "o" 'evil-previous-line)
+
+;  noremap n h
+;  noremap i j
+;  noremap o k
+;  noremap h l
+;  noremap l o
+;  noremap ; i
+;  noremap k n
+;  noremap K N
+
+  (define-key evil-motion-state-map "n" 'evil-backward-char)
+  (define-key evil-motion-state-map "i" 'evil-next-line)
+  (define-key evil-motion-state-map "o" 'evil-previous-line)
+  (define-key evil-motion-state-map "h" 'evil-forward-char)
+  (define-key evil-motion-state-map ";" 'evil-insert)
+  (define-key evil-motion-state-map "k" 'evil-ex-search-next)
+  (define-key evil-motion-state-map "K" 'evil-ex-search-previous)
+
   (define-key evil-visual-state-map "i" 'evil-next-line)
-  (define-key evil-visual-state-map ";" 'evil-insert)
-  (define-key evil-visual-state-map "k" 'evil-ex-search-next)
-  (define-key evil-visual-state-map "K" 'evil-ex-search-previous)
+  (define-key evil-visual-state-map "o" 'evil-previous-line)
 
   (define-key evil-window-map "h" 'windmove-right)
   (define-key evil-window-map "n" 'windmove-left)
@@ -478,7 +492,7 @@ you should place your code here."
      ("\\.pdf\\'" . "zathura %s"))))
  '(package-selected-packages
    (quote
-    (org-category-capture ctable dash-functional goto-chg vimrc-mode dactyl-mode winum spinner log4e shut-up concurrent deferred diminish bind-key packed bind-map haml-mode powerline org alert auto-complete markdown-mode hydra seq magit magit-popup git-commit with-editor iedit csharp-mode auctex rust-mode highlight anzu smartparens evil undo-tree flycheck request helm helm-core popup avy async projectile yasnippet php-mode f company macrostep dash s yapfify uuidgen slime-company py-isort pug-mode org-projectile pcache org-download live-py-mode link-hint hide-comnt git-link eyebrowse evil-visual-mark-mode evil-unimpaired evil-ediff eclim dumb-jump column-enforce-mode cargo yaml-mode ws-butler window-numbering which-key web-mode volatile-highlights vi-tilde-fringe use-package toml-mode toc-org tagedit sql-indent spacemacs-theme spaceline smooth-scrolling smeargle slime slim-mode scss-mode sass-mode restart-emacs rainbow-delimiters racer quelpa pyvenv pytest pyenv-mode py-yapf popwin pip-requirements phpunit phpcbf php-extras php-auto-yasnippets persp-mode pcre2el paradox page-break-lines orgit org-repo-todo org-present org-pomodoro org-plus-contrib org-bullets open-junk-file omnisharp nim-mode neotree move-text mmm-mode markdown-toc magit-gitflow lua-mode lorem-ipsum linum-relative leuven-theme less-css-mode jade-mode info+ indent-guide ido-vertical-mode hy-mode hungry-delete htmlize hlinum hl-todo highlight-parentheses highlight-numbers highlight-indentation help-fns+ helm-themes helm-swoop helm-pydoc helm-projectile helm-mode-manager helm-make helm-gitignore helm-flx helm-descbinds helm-css-scss helm-ag google-translate golden-ratio gnuplot gitconfig-mode gitattributes-mode git-timemachine git-messenger gh-md geiser flycheck-rust flycheck-pos-tip flycheck-nim flx-ido fill-column-indicator fancy-battery expand-region exec-path-from-shell evil-visualstar evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-args evil-anzu eval-sexp-fu emmet-mode emacs-eclim elisp-slime-nav drupal-mode disaster define-word cython-mode color-theme-sanityinc-tomorrow cmake-mode clean-aindent-mode clang-format buffer-move bracketed-paste auto-highlight-symbol auto-compile auctex-latexmk anaconda-mode aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line)))
+    (helm-gitignore gitignore-mode org-category-capture ctable dash-functional goto-chg vimrc-mode dactyl-mode winum spinner log4e shut-up concurrent deferred diminish bind-key packed bind-map haml-mode powerline org alert auto-complete markdown-mode hydra seq magit magit-popup git-commit with-editor iedit csharp-mode auctex rust-mode highlight anzu smartparens evil undo-tree flycheck request helm helm-core popup avy async projectile yasnippet php-mode f company macrostep dash s yapfify uuidgen slime-company py-isort pug-mode org-projectile pcache org-download live-py-mode link-hint hide-comnt git-link eyebrowse evil-visual-mark-mode evil-unimpaired evil-ediff eclim dumb-jump column-enforce-mode cargo yaml-mode ws-butler window-numbering which-key web-mode volatile-highlights vi-tilde-fringe use-package toml-mode toc-org tagedit sql-indent spacemacs-theme spaceline smooth-scrolling smeargle slime slim-mode scss-mode sass-mode restart-emacs rainbow-delimiters racer quelpa pyvenv pytest pyenv-mode py-yapf popwin pip-requirements phpunit phpcbf php-extras php-auto-yasnippets persp-mode pcre2el paradox page-break-lines orgit org-repo-todo org-present org-pomodoro org-plus-contrib org-bullets open-junk-file omnisharp nim-mode neotree move-text mmm-mode markdown-toc magit-gitflow lua-mode lorem-ipsum linum-relative leuven-theme less-css-mode jade-mode info+ indent-guide ido-vertical-mode hy-mode hungry-delete htmlize hlinum hl-todo highlight-parentheses highlight-numbers highlight-indentation help-fns+ helm-themes helm-swoop helm-pydoc helm-projectile helm-mode-manager helm-make helm-flx helm-descbinds helm-css-scss helm-ag google-translate golden-ratio gnuplot gitconfig-mode gitattributes-mode git-timemachine git-messenger gh-md geiser flycheck-rust flycheck-pos-tip flycheck-nim flx-ido fill-column-indicator fancy-battery expand-region exec-path-from-shell evil-visualstar evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-args evil-anzu eval-sexp-fu emmet-mode emacs-eclim elisp-slime-nav drupal-mode disaster define-word cython-mode color-theme-sanityinc-tomorrow cmake-mode clean-aindent-mode clang-format buffer-move bracketed-paste auto-highlight-symbol auto-compile auctex-latexmk anaconda-mode aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line)))
  '(safe-local-variable-values
    (quote
     ((eval

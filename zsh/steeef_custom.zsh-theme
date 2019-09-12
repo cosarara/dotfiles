@@ -89,6 +89,9 @@ function steeef_precmd {
         vcs_info 'prompt'
         PR_GIT_UPDATE=
     fi
+    #window_title="\033]0;${PWD##*/}\007"
+    #echo -ne "$window_title"
+    print -nP "\033]0;term: %~\007"
 }
 add-zsh-hook precmd steeef_precmd
 
