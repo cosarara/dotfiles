@@ -76,7 +76,7 @@ Plug 'ledger/vim-ledger'
 call plug#end()
 
 " RICE
-set termguicolors
+"set termguicolors
 
 let g:gruvbox_italic=1
 "colorscheme wombat256
@@ -95,6 +95,8 @@ let g:airline_theme='base16_default'
 let g:airline_powerline_fonts = 1
 let g:airline_skip_empty_sections = 1
 set noshowmode
+
+let g:better_whitespace_guicolor='#6d4e4e'
 
 " KEYS AND STUFF
 let g:neoterm_autoscroll = '1'
