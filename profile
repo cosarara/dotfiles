@@ -63,6 +63,6 @@ export EMU="-r$HOME/coses/inferno-os -c0 -g1024x768"
 
 export PATH="$HOME/.cargo/bin:$PATH"
 
-export RUST_SRC_PATH="$HOME/coses/rust/src"
+export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
 
 export LUAROCKS_CONFIG=$HOME/.config/luarocks/config.lua
