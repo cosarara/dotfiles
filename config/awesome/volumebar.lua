@@ -6,6 +6,8 @@
 -- copyright 2017 Pavel Makhov
 -- current version
 -- copyright 2019 Jaume Delclòs Coll
+-- bugs:
+-- doesn't subscribe to pulse events and thus gets out of sync
 -------------------------------------------------
 
 local awful = require("awful")
