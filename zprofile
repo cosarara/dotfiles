@@ -17,5 +17,3 @@ if [[ ! -d "$TMPPREFIX" ]]; then
 fi
 
 source ~/.profile
-
-export PATH="$HOME/.cargo/bin:$PATH"

@@ -1,4 +1,4 @@
-#! /bin/sh
+#! /bin/bash
 
 if xdo id -a "$PANEL_WM_NAME" > /dev/null ; then
 	printf "%s\n" "The panel is already running." >&2
@@ -19,8 +19,8 @@ mkfifo "$PANEL_FIFO"2
 bspc config top_padding $PANEL_HEIGHT
 bspc subscribe report > "$PANEL_FIFO" &
 bspc subscribe report > "$PANEL_FIFO"2 &
-xtitle -sf 'T%s' > "$PANEL_FIFO" &
-xtitle -sf 'T%s' > "$PANEL_FIFO"2 &
+xtitle -sf 'T%s\n' > "$PANEL_FIFO" &
+xtitle -sf 'T%s\n' > "$PANEL_FIFO"2 &
 clock -sf 'S%a %d-%m %H:%M' > "$PANEL_FIFO" &
 clock -sf 'S%a %d-%m %H:%M' > "$PANEL_FIFO"2 &
 mpd_info > "$PANEL_FIFO" &

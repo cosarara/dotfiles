@@ -214,3 +214,5 @@ if MyOnBattery()
 else
   call neomake#configure#automake('nw', 1000)
 endif
+
+let g:neomake_html_twig_enabled_makers = []

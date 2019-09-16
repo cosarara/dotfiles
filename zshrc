@@ -5,7 +5,7 @@ fpath=( ~/.zsh/functions $fpath )
 zstyle ':completion:*' completer _expand _complete _ignored _correct _approximate
 zstyle ':completion:*' menu select
 #zstyle ':completion:*' matcher-list 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
-zstyle :compinstall filename '/home/cosarara/.zshrc'
+zstyle :compinstall filename ~/.zshrc
 
 autoload -U compinit promptinit
 compinit
@@ -134,15 +134,15 @@ export FZF_CTRL_R_OPTS=-e
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 #ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=cyan'
 
-PATH="/home/jaume/perl5/bin${PATH+:}${PATH}"; export PATH;
-PERL5LIB="/home/jaume/perl5/lib/perl5${PERL5LIB+:}${PERL5LIB}"; export PERL5LIB;
-PERL_LOCAL_LIB_ROOT="/home/jaume/perl5${PERL_LOCAL_LIB_ROOT+:}${PERL_LOCAL_LIB_ROOT}"; export PERL_LOCAL_LIB_ROOT;
-PERL_MB_OPT="--install_base \"/home/jaume/perl5\""; export PERL_MB_OPT;
-PERL_MM_OPT="INSTALL_BASE=/home/jaume/perl5"; export PERL_MM_OPT;
-
-source ~/.local/share/perl5/etc/bashrc
-
-source ~/.nix-profile/etc/profile.d/nix.sh
+#PATH="/home/jaume/perl5/bin${PATH+:}${PATH}"; export PATH;
+#PERL5LIB="/home/jaume/perl5/lib/perl5${PERL5LIB+:}${PERL5LIB}"; export PERL5LIB;
+#PERL_LOCAL_LIB_ROOT="/home/jaume/perl5${PERL_LOCAL_LIB_ROOT+:}${PERL_LOCAL_LIB_ROOT}"; export PERL_LOCAL_LIB_ROOT;
+#PERL_MB_OPT="--install_base \"/home/jaume/perl5\""; export PERL_MB_OPT;
+#PERL_MM_OPT="INSTALL_BASE=/home/jaume/perl5"; export PERL_MM_OPT;
+#
+#source ~/.local/share/perl5/etc/bashrc
+#
+#source ~/.nix-profile/etc/profile.d/nix.sh
 
 #if [ -n "$DESKTOP_SESSION" ];then
 #    eval $(gnome-keyring-daemon --start)
