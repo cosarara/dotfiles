@@ -12,15 +12,12 @@ export XKB_DEFAULT_LAYOUT=ja
 #export PATH=$PATH:$DEVKITARM/bin
 #export TONCCODE=$DEVKITPRO/tonc-code
 
-export PATH=$HOME/.gem/ruby/2.1.0/bin:$PATH
-export PATH=$HOME/bin:$PATH
-export PATH=$HOME/.local/bin:$PATH
+#export NPM_PACKAGES=/home/jaume/.npm-packages
+#export NODE_PATH=/home/jaume/.npm-packages/lib/node_modules:
+#export PATH=$NPM_PACKAGES/bin:$PATH
 
-export NPM_PACKAGES=/home/jaume/.npm-packages
-export NODE_PATH=/home/jaume/.npm-packages/lib/node_modules:
-export PATH=$NPM_PACKAGES/bin:$PATH
-
-PATH="$(ruby -e 'print Gem.user_dir')/bin:$PATH"
+ruby_path="$(ruby -e 'print Gem.user_dir')/bin"
+export PATH="$ruby_path:$PATH"
 
 export ANDROID_NDK_PATH=/opt/android-ndk
 
@@ -64,5 +61,9 @@ export EMU="-r$HOME/coses/inferno-os -c0 -g1024x768"
 export PATH="$HOME/.cargo/bin:$PATH"
 
 export RUST_SRC_PATH="$HOME/coses/rust/src"
+export RUSTC_WRAPPER=sccache
 
 export LUAROCKS_CONFIG=$HOME/.config/luarocks/config.lua
+
+export PATH=$HOME/bin:$PATH
+export PATH=$HOME/.local/bin:$PATH

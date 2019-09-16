@@ -76,7 +76,7 @@ Plug 'ledger/vim-ledger'
 call plug#end()
 
 " RICE
-set termguicolors
+"set termguicolors
 
 let g:gruvbox_italic=1
 "colorscheme wombat256
@@ -212,3 +212,5 @@ if MyOnBattery()
 else
   call neomake#configure#automake('nw', 1000)
 endif
+
+let g:neomake_html_twig_enabled_makers = []
