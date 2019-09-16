@@ -621,7 +621,7 @@ globalkeys = awful.util.table.join(
         --awful.spawn("killall compton", false)
         awesome.restart()
     end),
-    awful.key({ modkey, "Shift"   }, "e", awesome.quit),
+    awful.key({ modkey, "Control", "Shift"   }, "e", awesome.quit),
 
     awful.key({ modkey,           }, "h",     function () awful.tag.incmwfact( 0.05)    end),
     awful.key({ modkey,           }, "n",     function () awful.tag.incmwfact(-0.05)    end),
