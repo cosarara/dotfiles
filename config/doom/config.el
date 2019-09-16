@@ -68,7 +68,7 @@
 (setf (caar profiler-report-cpu-line-format) 80
       (caar profiler-report-memory-line-format) 80)
 
-; don't make php-mode slow
+; don't make loading big php files slow
 (add-to-list 'doom-detect-indentation-excluded-modes 'php-mode nil #'eq)
 
 (load-theme 'doom-challenger-deep t)
