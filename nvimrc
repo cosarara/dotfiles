@@ -73,6 +73,9 @@ Plug 'hynek/vim-python-pep8-indent'
 Plug 'udalov/kotlin-vim'
 Plug 'elixir-editors/vim-elixir'
 Plug 'ledger/vim-ledger'
+Plug 'vim-scripts/bash-support.vim'
+Plug 'pangloss/vim-javascript'
+Plug 'maxmellon/vim-jsx-pretty'
 call plug#end()
 
 " RICE
@@ -214,3 +217,4 @@ else
 endif
 
 let g:neomake_html_twig_enabled_makers = []
+let g:neomake_sh_enabled_makers = ["shellcheck"]
