@@ -13,26 +13,6 @@ set ignorecase smartcase
 set linebreak
 "set autochdir
 
-cmap w!! w !sudo tee %
-
-set tabstop=4 shiftwidth=4 expandtab
-
-au BufNewFile,BufRead,FileType php set tabstop=4 shiftwidth=4 expandtab
-au BufNewFile,BufRead,FileType php syntax sync fromstart
-au BufNewFile,BufRead,FileType html.twig syntax sync fromstart
-au BufNewFile,BufRead,FileType c set tabstop=4 shiftwidth=4
-au BufNewFile,BufRead,FileType cpp set tabstop=4 shiftwidth=4
-au BufNewFile,BufRead,FileType lua set tabstop=4 shiftwidth=4 expandtab
-au BufNewFile,BufRead,FileType asciidoc set nospell
-au BufNewFile,BufRead,FileType scheme set ts=2 sw=2 expandtab
-au BufNewFile,BufRead,FileType twig set tabstop=4 shiftwidth=4 expandtab
-au BufNewFile,BufRead,FileType html set tabstop=4 shiftwidth=4 expandtab
-au BufNewFile,BufRead,FileType html.twig set tabstop=4 shiftwidth=4 expandtab
-au BufNewFile,BufRead,FileType css set tabstop=4 shiftwidth=4 expandtab
-au BufNewFile,BufRead,FileType kotlin set tabstop=2 shiftwidth=2 expandtab
-au BufNewFile,BufRead *.nfo edit ++enc=cp437
-au BufNewFile,BufRead *.pks set ft=pks
-
 call plug#begin('~/.config/nvim/plugged')
 " magic
 Plug 'jpalardy/vim-slime'
@@ -74,6 +54,10 @@ Plug 'udalov/kotlin-vim'
 Plug 'elixir-editors/vim-elixir'
 Plug 'ledger/vim-ledger'
 call plug#end()
+
+cmap w!! w !sudo tee %
+
+set tabstop=4 shiftwidth=4 expandtab
 
 " RICE
 "set termguicolors
