@@ -1,4 +1,6 @@
-export XDG_CONFIG_HOME=~/.config/
+export XDG_CACHE_HOME=~/.cache
+export XDG_CONFIG_HOME=~/.config
+export XDG_DATA_HOME=~/.local/share
 export XDG_TEMPLATES_DIR=~/.local/share/templates/
 export XKB_DEFAULT_LAYOUT=ja
 
@@ -15,6 +17,11 @@ export XKB_DEFAULT_LAYOUT=ja
 #export NPM_PACKAGES=/home/jaume/.npm-packages
 #export NODE_PATH=/home/jaume/.npm-packages/lib/node_modules:
 #export PATH=$NPM_PACKAGES/bin:$PATH
+export PATH=${XDG_DATA_HOME}/npm/bin:$PATH
+
+export NODE_REPL_HISTORY="$XDG_DATA_HOME"/node_repl_history
+export NPM_CONFIG_USERCONFIG=$XDG_CONFIG_HOME/npm/npmrc
+
 
 ruby_path="$(ruby -e 'print Gem.user_dir')/bin"
 export PATH="$ruby_path:$PATH"
