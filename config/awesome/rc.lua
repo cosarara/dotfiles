@@ -1,4 +1,4 @@
-local local_conf = require("rc.local")
+local local_conf = require("rc_local")
 -- Standard awesome library
 local gears = require("gears")
 local timer = gears.timer
