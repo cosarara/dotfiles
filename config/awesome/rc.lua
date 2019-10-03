@@ -1,3 +1,4 @@
+local local_conf = require("rc.local")
 -- Standard awesome library
 local gears = require("gears")
 local timer = gears.timer
@@ -49,7 +50,7 @@ if not round then
     end
 end
 
-local gaps = false
+local gaps = local_conf.gaps
 local small = false
 
 -- {{{ Error handling
