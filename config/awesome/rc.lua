@@ -722,6 +722,9 @@ globalkeys = awful.util.table.join(
     end),
     awful.key({}, "XF86MonBrightnessUp", function()
         awful.spawn("light -A 10", false)
+    end),
+    awful.key({ "Control" }, "Scroll_Lock", function()
+        awful.spawn("/home/jaume/bin/passthrough_add", false)
     end)
     --awful.key({ modkey }, "v", treetile.vertical),
     --awful.key({ modkey }, "s", treetile.horizontal)
