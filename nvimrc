@@ -41,6 +41,7 @@ Plug 'bling/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'rakr/vim-one'
 Plug 'chriskempson/base16-vim'
+Plug 'junegunn/goyo.vim'
 
 " language support
 Plug 'lumiliet/vim-twig' " mantained fork of evidens/vim-twig
@@ -206,3 +207,38 @@ endif
 let g:neomake_python_enabled_makers = []
 let g:neomake_html_twig_enabled_makers = []
 let g:neomake_sh_enabled_makers = ["shellcheck"]
+"clang-tidy, checkpatch, cppcheck
+let g:neomake_c_enabled_makers = ["clang", "gcc"]
+let g:neomake_c_gcc_maker = {
+\ 'exe': 'gcc',
+\ 'args': ['-Wall', '-Iinclude', '-Wextra', '-Weverything', '-pedantic', '-Wno-sign-conversion'],
+\ }
+let g:neomake_c_clang_maker = {
+\ 'exe': 'clang',
+\ 'args': ['-Wall', '-Iinclude', '-Wextra', '-Weverything', '-pedantic', '-Wno-sign-conversion'],
+\ }
+
+let g:neomake_cpp_enabled_makers = ["clang", "gcc"]
+let g:neomake_cpp_gcc_maker = {
+\ 'exe': 'g++',
+\ 'args': ['-Wall', '-Iinclude', '-Wextra', '-pedantic', '-Wno-sign-conversion', '-std=c++17'],
+\ }
+let g:neomake_cpp_clang_maker = {
+\ 'exe': 'clang++',
+\ 'args': ['-Wall', '-Iinclude', '-Wextra', '-pedantic', '-Wno-sign-conversion', '-std=c++17'],
+\ }
+
+function! ZenMode()
+    Goyo 100
+    set background=light
+    colorscheme one
+endfunction
+
+function! ZenOff()
+    Goyo!
+    set background=dark
+    colorscheme wasabi256
+endfunction
+
+com! Zen call ZenMode()
+com! ZenOff call ZenOff()
