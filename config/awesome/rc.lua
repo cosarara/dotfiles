@@ -199,7 +199,7 @@ comp.toggle = function(self)
         if running then
             awful.spawn("killall compton", false)
         else
-            awful.spawn("compton --config /home/jaume/.config/compton", false)
+            awful.spawn("picom --config /home/jaume/.config/compton", false)
         end
         self:update()
     end)
