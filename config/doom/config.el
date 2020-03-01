@@ -55,6 +55,8 @@
 (autoload 'fennel-mode (expand-file-name "~/.config/doom/fennel-mode") nil t)
 (add-to-list 'auto-mode-alist '("\\.fnl\\'" . fennel-mode))
 
+(autoload 'zen-mode (expand-file-name "~/.config/doom/zen-mode") nil t)
+
 (defun disable-sly-in-fennel ()
   (sly-editing-mode -1)
   (sly-mode -1)
