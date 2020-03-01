@@ -24,21 +24,21 @@ bindkey -e
 source ~/.zsh/steeef_custom.zsh-theme
 #source ~/.zsh/mh.zsh-theme
 
-case "$COLORTERM" in
-	"mate-terminal")
-		TERM='xterm-256color'
-		;;
-	"truecolor")
-		TERM='xterm-256color'
-		;;
-esac
+#case "$COLORTERM" in
+#	"mate-terminal")
+#		TERM='xterm-256color'
+#		;;
+#	"truecolor")
+#		TERM='xterm-256color'
+#		;;
+#esac
 
 case "$TERM" in
 "dumb")
     PS1="> "
     ;;
 xterm*|rxvt*|eterm*|screen*|st*|linux*)
-    PS1=$PS1
+    true
 #    TERM='xterm-256color' # at least till sakura gets its shit together
     ;;
 *)
