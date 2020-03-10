@@ -55,9 +55,8 @@ export CHICKEN_REPOSITORY=~/.local/lib/chicken/8
 
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 export SDL_VIDEO_MINIMIZE_ON_FOCUS_LOSS=0
-export LD_LIBRARY_PATH=$HOME/.local/lib:/usr/local/lib:$LD_LIBRARY_PATH
+#export LD_LIBRARY_PATH=$HOME/.local/lib:/usr/local/lib:$LD_LIBRARY_PATH
 export NVIM_TUI_ENABLE_TRUE_COLOR=1
-export PATH=~/.rakudobrew/bin:$PATH
 
 export MAKEFLAGS=-j5
 
@@ -67,10 +66,20 @@ export EMU="-r$HOME/coses/inferno-os -c0 -g1024x768"
 
 export PATH="$HOME/.cargo/bin:$PATH"
 
-export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
+rust_root="$(rustc --print sysroot)"
+export RUST_SRC_PATH="$rust_root/lib/rustlib/src/rust/src"
 export RUSTC_WRAPPER=sccache
 
 export LUAROCKS_CONFIG=$HOME/.config/luarocks/config.lua
 
 export PATH=$HOME/bin:$PATH
 export PATH=$HOME/.local/bin:$PATH
+
+#mozilla
+export MOZCONFIG=/mnt/data2/mozilla/mozconfig
+
+. /home/jaume/.nix-profile/etc/profile.d/nix.sh
+
+eval "$(/home/jaume/.rakudobrew/bin/rakudobrew init Zsh)"
+
+export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true'

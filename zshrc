@@ -1,3 +1,12 @@
+[ "$TERM" != dumb ] && fortune | cowsay -f /usr/share/cows/hellokitty.cow -W 60
+
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 # zshrc
 
 fpath=( ~/.zsh/functions $fpath )
@@ -21,24 +30,24 @@ bindkey -e
 
 #prompt steeef
 #source ~/.zsh/steeef.zsh-theme
-source ~/.zsh/steeef_custom.zsh-theme
+#source ~/.zsh/steeef_custom.zsh-theme
 #source ~/.zsh/mh.zsh-theme
 
-case "$COLORTERM" in
-	"mate-terminal")
-		TERM='xterm-256color'
-		;;
-	"truecolor")
-		TERM='xterm-256color'
-		;;
-esac
+#case "$COLORTERM" in
+#	"mate-terminal")
+#		TERM='xterm-256color'
+#		;;
+#	"truecolor")
+#		TERM='xterm-256color'
+#		;;
+#esac
 
 case "$TERM" in
 "dumb")
     PS1="> "
     ;;
 xterm*|rxvt*|eterm*|screen*|st*|linux*)
-    PS1=$PS1
+    true
 #    TERM='xterm-256color' # at least till sakura gets its shit together
     ;;
 *)
@@ -57,7 +66,11 @@ source ~/.zsh/editor.zsh
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    if [ -r ~/.dircolors ]; then
+        eval "$(dircolors -b ~/.dircolors)"
+    else
+        eval "$(dircolors -b)"
+    fi
     alias ls='ls --color=auto'
     #alias dir='dir --color=auto'
     #alias vdir='vdir --color=auto'
@@ -122,7 +135,7 @@ alias killbg='kill ${${(v)jobstates##*:*:}%=*}'
 #ssh-add -l >/dev/null || alias ssh='ssh-add -l >/dev/null || ssh-add && unalias ssh; ssh'
 
 #fortune -a | cowsay -f $(ls /usr/share/cows/ | shuf -n1)
-fortune | cowsay -f /usr/share/cows/hellokitty.cow -W 60
+#fortune | cowsay -f /usr/share/cows/hellokitty.cow -W 60
 
 . /usr/share/fzf/key-bindings.zsh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
@@ -150,3 +163,7 @@ source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 #fi
 
 #exec fish
+source ~/dotfiles/powerlevel10k/powerlevel10k.zsh-theme
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/dotfiles/p10k.zsh ]] || source ~/dotfiles/p10k.zsh

@@ -57,6 +57,7 @@ Plug 'ledger/vim-ledger'
 Plug 'vim-scripts/bash-support.vim'
 Plug 'pangloss/vim-javascript'
 Plug 'maxmellon/vim-jsx-pretty'
+Plug 'JuliaEditorSupport/julia-vim'
 call plug#end()
 
 cmap w!! w !sudo tee %
@@ -203,6 +204,7 @@ else
   call neomake#configure#automake('nw', 1000)
 endif
 
+let g:neomake_python_enabled_makers = []
 let g:neomake_html_twig_enabled_makers = []
 let g:neomake_sh_enabled_makers = ["shellcheck"]
 "clang-tidy, checkpatch, cppcheck
