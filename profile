@@ -80,6 +80,7 @@ export MOZCONFIG=/mnt/data2/mozilla/mozconfig
 
 . /home/jaume/.nix-profile/etc/profile.d/nix.sh
 
-eval "$(/home/jaume/.rakudobrew/bin/rakudobrew init Zsh)"
+[ -f /home/jaume/.rakudobrew/bin/rakudobrew ] && \
+    eval "$(/home/jaume/.rakudobrew/bin/rakudobrew init Zsh)"
 
 export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true'

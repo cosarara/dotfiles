@@ -144,6 +144,9 @@ export FZF_DEFAULT_COMMAND='ag -g ""'
 
 export FZF_CTRL_R_OPTS=-e
 
+if [ $TERM = linux ]; then
+    ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=cyan'
+fi
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 #ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=cyan'
 
