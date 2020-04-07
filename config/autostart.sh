@@ -21,8 +21,8 @@
 
 {
 	sleep 3
-	killall compton || true
-	compton --config ~/.config/compton
+	killall picom || true
+	picom --config ~/.config/picom
 } &
 
 #pgrep redshift &> /dev/null || redshift &> /dev/null &

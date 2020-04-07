@@ -186,7 +186,7 @@ local comp_not_running_icon = (awful.util.getdir("config") ..
 
 comp.update = function(self, f)
     --self.running = io.popen("pgrep compton"):read() ~= nil
-    awful.spawn.easy_async("pgrep compton", function(o, e, r, c) self.running = c == 0 end)
+    awful.spawn.easy_async("pgrep picom", function(o, e, r, c) self.running = c == 0 end)
     comp:set_image(comp.running and comp_running_icon or comp_not_running_icon)
     --comp:set_text(comp.running and " C- " or " C+ ")
     if f ~= nil then
@@ -197,7 +197,7 @@ end
 comp.toggle = function(self)
     comp:update(function(running)
         if running then
-            awful.spawn("killall compton", false)
+            awful.spawn("killall picom", false)
         else
             awful.spawn("picom --config /home/jaume/.config/compton", false)
         end
@@ -619,7 +619,7 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey,           }, "Return", function () awful.spawn(terminal) end),
     awful.key({ modkey, "Shift"   }, "r",
       function ()
-        --awful.spawn("killall compton", false)
+        --awful.spawn("killall picom", false)
         awesome.restart()
     end),
     awful.key({ modkey, "Control", "Shift"   }, "e", awesome.quit),
