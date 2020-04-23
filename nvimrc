@@ -20,8 +20,8 @@ Plug 'kovisoft/slimv' " hrm I don't need 2 slimes
 Plug 'tpope/vim-fugitive'
 Plug 'Shougo/vimproc.vim', { 'do': 'make' } " is this a dependency of something?
 Plug 'ntpeters/vim-better-whitespace'
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'zchee/deoplete-jedi'
+"Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+"Plug 'zchee/deoplete-jedi'
 Plug 'racer-rust/vim-racer'
 Plug 'tpope/vim-commentary' " I should start using this tbh
     " fzf is installed system-wide, this is redundant
@@ -54,10 +54,13 @@ Plug 'hynek/vim-python-pep8-indent'
 Plug 'udalov/kotlin-vim'
 Plug 'elixir-editors/vim-elixir'
 Plug 'ledger/vim-ledger'
-Plug 'vim-scripts/bash-support.vim'
+"Plug 'vim-scripts/bash-support.vim'
 Plug 'pangloss/vim-javascript'
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'JuliaEditorSupport/julia-vim'
+Plug 'ziglang/zig.vim'
+
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 
 cmap w!! w !sudo tee %
@@ -187,7 +190,7 @@ let g:startify_change_to_dir=0
 
 "let g:paredit_mode = 0
 let g:instant_markdown_autostart = 0
-let g:deoplete#enable_at_startup = 1
+"let g:deoplete#enable_at_startup = 1
 let g:racer_experimental_completer = 1
 let g:no_ruby_maps = 1
 let g:slimv_swank_cmd ='! xterm -e sbcl --load ~/coses/start-swank.lisp &' "
