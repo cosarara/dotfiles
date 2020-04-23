@@ -134,6 +134,8 @@ alias killbg='kill ${${(v)jobstates##*:*:}%=*}'
 #fi
 #ssh-add -l >/dev/null || alias ssh='ssh-add -l >/dev/null || ssh-add && unalias ssh; ssh'
 
+alias mosh='mosh --bind-server=any'
+
 #fortune -a | cowsay -f $(ls /usr/share/cows/ | shuf -n1)
 #fortune | cowsay -f /usr/share/cows/hellokitty.cow -W 60
 
