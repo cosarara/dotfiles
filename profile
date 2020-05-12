@@ -30,7 +30,7 @@ export ANDROID_NDK_PATH=/opt/android-ndk
 
 export JPM_FIREFOX_BINARY=/usr/bin/firefox
 
-export TERMINAL="konsole"
+export TERMINAL="mate-terminal"
 export EDITOR="nvim"
 export VISUAL="nvim"
 export WINEDLLOVERRIDES="winemenubuilder.exe=d"
@@ -78,7 +78,8 @@ export PATH=$HOME/.local/bin:$PATH
 #mozilla
 export MOZCONFIG=/mnt/data3/mozilla/mozconfig
 
-. /home/jaume/.nix-profile/etc/profile.d/nix.sh
+# messes with XDG_DATA_DIRS which makes emacs crash?
+#. /home/jaume/.nix-profile/etc/profile.d/nix.sh
 
 [ -f /home/jaume/.rakudobrew/bin/rakudobrew ] && \
     eval "$(/home/jaume/.rakudobrew/bin/rakudobrew init Zsh)"
