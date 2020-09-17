@@ -15,7 +15,7 @@ local beautiful = require("beautiful")
 -- Notification library
 local naughty = require("naughty")
 local menubar = require("menubar")
-require("applicationsmenu")
+--require("applicationsmenu")
 --
 local lain = require("lain")
 local round = require("awful.util").round
@@ -301,14 +301,14 @@ myawesomemenu = {
 }
 
 -- mymainmenu = awful.menu({ items = { { "awesome", applicationsmenu.applicationsmenu(), beautiful.awesome_icon },
-mymainmenu = awful.menu({ items = {
-    { "awesome", myawesomemenu },
-    { "applications",  applicationsmenu.applicationsmenu() },
-    { "open terminal", terminal }
-} })
+--mymainmenu = awful.menu({ items = {
+--    { "awesome", myawesomemenu },
+--    { "applications",  applicationsmenu.applicationsmenu() },
+--    { "open terminal", terminal }
+--} })
 
-mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
-                                     menu = mymainmenu })
+--mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
+--                                     menu = mymainmenu })
 
 -- Menubar configuration
 menubar.utils.terminal = terminal -- Set the terminal for applications that require it
