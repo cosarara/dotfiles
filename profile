@@ -7,9 +7,9 @@ export XKB_DEFAULT_LAYOUT=ja
 #export DEVKITPRO=~/devkitpro
 #export DEVKITARM=$DEVKITPRO/devkitARM
 #export DEVKITPPC=$DEVKITPRO/devkitPPC
-#export DEVKITPRO=/opt/devkitpro
-#export DEVKITARM=/opt/devkitpro/devkitARM
-#export DEVKITPPC=/opt/devkitpro/devkitPPC
+export DEVKITPRO=/opt/devkitpro
+export DEVKITARM=/opt/devkitpro/devkitARM
+export DEVKITPPC=/opt/devkitpro/devkitPPC
 
 #export PATH=$PATH:$DEVKITARM/bin
 #export TONCCODE=$DEVKITPRO/tonc-code
