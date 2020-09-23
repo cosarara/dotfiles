@@ -94,12 +94,16 @@ function mpd_widget:notify(hint_title, hint_text, timeout, hint_image)
    })
 end
 
-function mpd_widget:notify_track()
+function mpd_widget:notify_track(permanent)
     if error_msg ~= nil then
         self:notify(error_msg)
         return
     end
-    self:notify(title or file, (artist or "") .. (artist and "\n" or "") .. (album or ""), 1, icon_path)
+    local timeout = 1
+    if permanent ~= nil then
+        timeout = 0
+    end
+    self:notify(title or file, (artist or "") .. (artist and "\n" or "") .. (album or ""), timeout, icon_path)
 end
 
 mpd_widget:buttons(awful.util.table.join(
@@ -118,7 +122,7 @@ mpd_widget:buttons(awful.util.table.join(
 
 mpd_widget:connect_signal("mouse::enter", function(c)
     --instance:update_track()
-    mpd_widget:notify_track()
+    mpd_widget:notify_track(true)
 end)
 
 mpd_widget:connect_signal("mouse::leave", function(c)
