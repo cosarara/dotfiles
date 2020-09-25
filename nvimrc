@@ -32,7 +32,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'mhinz/vim-startify'
 Plug 'osyo-manga/vim-over' " how does this work
 Plug 'tpope/vim-surround' " I should start using this
-Plug 'neomake/neomake'
+"Plug 'neomake/neomake'
 Plug 'suan/vim-instant-markdown'
 
 " rice
@@ -59,6 +59,8 @@ Plug 'pangloss/vim-javascript'
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'JuliaEditorSupport/julia-vim'
 Plug 'ziglang/zig.vim'
+Plug 'kalafut/vim-taskjuggler'
+Plug 'evanleck/vim-svelte', {'branch': 'main'}
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
@@ -201,12 +203,13 @@ function! MyOnBattery()
     return filereadable(l:path) && readfile(l:path) == ['0']
 endfunction
 
-if MyOnBattery()
-  call neomake#configure#automake('w')
-else
-  call neomake#configure#automake('nw', 1000)
-endif
+"if MyOnBattery()
+"  call neomake#configure#automake('w')
+"else
+"  call neomake#configure#automake('nw', 1000)
+"endif
 
+let $MIX_ENV='test'
 let g:neomake_python_enabled_makers = []
 let g:neomake_html_twig_enabled_makers = []
 let g:neomake_sh_enabled_makers = ["shellcheck"]
