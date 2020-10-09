@@ -14,6 +14,7 @@ theme.dir = os.getenv("HOME") .. "/.config/awesome/mytheme"
 
 -- {{{ Styles
 theme.font      = "Terminus 12"
+theme.tasklist_font_focus = "Terminus Bold 12"
 theme.icon_font      = "Terminusicons2Mono 9"
 
 --[[ {{{ Colors
@@ -37,11 +38,12 @@ theme.taglist_bg_occupied   = theme.bg_normal
 --theme.taglist_bg_focus = "#104040EE"
 --theme.taglist_bg_focus = "#101010EE"
 theme.taglist_bg_focus = "#5C5955EE"
---theme.bg_focus      = theme.bg_normal
-theme.bg_focus      = "#FF8080FF"
+theme.bg_focus      = theme.bg_normal
+--theme.bg_focus      = "#FF8080FF"
 theme.bg_urgent     = "#d02e54EE"
 --theme.bg_minimize   = "#444444EE"
 theme.bg_minimize   = "#2A2A2AEE"
+theme.notification_border_color      = "#FF8080FF"
 
 
 --theme.taglist_fg_occupied
@@ -51,9 +53,9 @@ theme.bg_minimize   = "#2A2A2AEE"
 theme.fg_normal     = "#000000"
 --theme.fg_focus      = "#000000"
 --theme.fg_focus      = "#cccccc"
---theme.fg_focus      = "#aaddbb"
+--theme.fg_focus      = "#992e2e"
 --theme.fg_focus      = "#880000"
-theme.fg_focus      = theme.fg_normal
+--theme.fg_focus      = theme.fg_normal
 theme.taglist_fg_focus = "#cccccc"
 theme.fg_urgent     = "#ffffff"
 theme.fg_minimize   = "#ffffff"
