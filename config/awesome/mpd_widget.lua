@@ -3,6 +3,7 @@
 -- and https://github.com/alexander-yakushev/awesompd
 -- and https://github.com/copycat-killer/lain/blob/29dd7ad6fc130627d1f3ef1456e87f7992d6769b/widget/mpd.lua
 
+local local_conf = require("rc_local")
 local awful = require("awful")
 local naughty = require("naughty")
 local mpc = require("mpc")
@@ -144,7 +145,7 @@ end
 
 function get_cover(callback)
     --return callback()
-    local music_dir = "/mnt/data/beets/music"
+    local music_dir = local_conf.music_dir or "/mnt/data/beets/music"
     if string.match(file, "http.*://") then
         if callback ~= nil then
             callback()
