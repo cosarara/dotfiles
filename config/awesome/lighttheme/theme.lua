@@ -13,8 +13,8 @@ theme.dir = os.getenv("HOME") .. "/.config/awesome/mytheme"
 -- }}}
 
 -- {{{ Styles
-theme.font      = "Terminus 10"
-theme.icon_font      = "Terminusicons2Mono 10"
+theme.font      = "Terminus 12"
+theme.icon_font      = "Terminusicons2Mono 9"
 
 --[[ {{{ Colors
 theme.fg_normal  = "#DCDCCC"
@@ -29,7 +29,7 @@ theme.bg_systray = theme.bg_normal
 
 -- {{{ Colors
 --theme.bg_normal     = "#222222FF"
-theme.bg_normal     = "#34322EFF"
+theme.bg_normal     = "#f4f1e4FF"
 theme.taglist_bg_occupied   = theme.bg_normal
 --theme.taglist_bg_empty = "#223322EE"
 --theme.bg_focus      = "#d8d8d8"
@@ -37,7 +37,8 @@ theme.taglist_bg_occupied   = theme.bg_normal
 --theme.taglist_bg_focus = "#104040EE"
 --theme.taglist_bg_focus = "#101010EE"
 theme.taglist_bg_focus = "#5C5955EE"
-theme.bg_focus      = theme.bg_normal
+--theme.bg_focus      = theme.bg_normal
+theme.bg_focus      = "#FF8080FF"
 theme.bg_urgent     = "#d02e54EE"
 --theme.bg_minimize   = "#444444EE"
 theme.bg_minimize   = "#2A2A2AEE"
@@ -47,17 +48,20 @@ theme.bg_minimize   = "#2A2A2AEE"
 --theme.taglist_bg_empty
 --theme.taglist_fg_empty
 
-theme.fg_normal     = "#cccccc"
+theme.fg_normal     = "#000000"
 --theme.fg_focus      = "#000000"
 --theme.fg_focus      = "#cccccc"
-theme.fg_focus      = "#aaddbb"
+--theme.fg_focus      = "#aaddbb"
+--theme.fg_focus      = "#880000"
+theme.fg_focus      = theme.fg_normal
 theme.taglist_fg_focus = "#cccccc"
 theme.fg_urgent     = "#ffffff"
 theme.fg_minimize   = "#ffffff"
 
-theme.clock_color = "#EDE391"
-theme.music_color = "#F28380"
-theme.volume_color = "#81a2be"
+--theme.clock_color = "#EDE391"
+theme.clock_color = "#590f5b"
+theme.music_color = "#992e2e"
+theme.volume_color = "#12314b"
 -- }}}
 
 -- {{{ Borders
@@ -132,34 +136,33 @@ theme.awesome_icon           = "/usr/share/awesome/themes/zenburn/awesome-icon.p
 theme.menu_submenu_icon      = "/usr/share/awesome/themes/default/submenu.png"
 -- }}}
 
+
+local self = "~/.config/awesome/lighttheme/"
+
+theme.layout_icon_size = 12
 -- {{{ Layout
-
-theme.lain_icons          = "/home/jaume/.config/awesome/lain/icons/layout/default/"
-theme.beautiful_icons     = "/usr/share/awesome/themes/default/layouts/"
-theme.layout_termfair     = theme.lain_icons .. "termfairw.png"
-theme.layout_uselessfair  = theme.lain_icons .. "termfairw.png"
-theme.layout_cascade      = theme.lain_icons .. "cascadew.png"
-theme.layout_cascadetile  = theme.lain_icons .. "cascadetilew.png"
-theme.layout_centerwork   = theme.lain_icons .. "centerworkw.png"
-theme.layout_uselesspiral = theme.beautiful_icons .. "spiralw.png"
-theme.layout_uselesstile  = theme.beautiful_icons .. "tilew.png"
-
-theme.layout_tile       = "/usr/share/awesome/themes/zenburn/layouts/tile.png"
-theme.layout_tileleft   = "/usr/share/awesome/themes/zenburn/layouts/tileleft.png"
-theme.layout_tilebottom = "/usr/share/awesome/themes/zenburn/layouts/tilebottom.png"
-theme.layout_tiletop    = "/usr/share/awesome/themes/zenburn/layouts/tiletop.png"
-theme.layout_fairv      = "/usr/share/awesome/themes/zenburn/layouts/fairv.png"
-theme.layout_fairh      = "/usr/share/awesome/themes/zenburn/layouts/fairh.png"
-theme.layout_spiral     = "/usr/share/awesome/themes/zenburn/layouts/spiral.png"
-theme.layout_dwindle    = "/usr/share/awesome/themes/zenburn/layouts/dwindle.png"
-theme.layout_max        = "/usr/share/awesome/themes/zenburn/layouts/max.png"
-theme.layout_fullscreen = "/usr/share/awesome/themes/zenburn/layouts/fullscreen.png"
-theme.layout_magnifier  = "/usr/share/awesome/themes/zenburn/layouts/magnifier.png"
-theme.layout_floating   = "/usr/share/awesome/themes/zenburn/layouts/floating.png"
-theme.layout_cornernw   = "/usr/share/awesome/themes/zenburn/layouts/cornernw.png"
-theme.layout_cornerne   = "/usr/share/awesome/themes/zenburn/layouts/cornerne.png"
-theme.layout_cornersw   = "/usr/share/awesome/themes/zenburn/layouts/cornersw.png"
-theme.layout_cornerse   = "/usr/share/awesome/themes/zenburn/layouts/cornerse.png"
+theme.layout_tile       = self.."layouts/tile.png"
+theme.layout_fairv      = self.."layouts/fair.png"
+theme.layout_termfair   = self.."layouts/termfair.png"
+theme.layout_spiral     = self.."layouts/spiral.png"
+theme.layout_floating   = self.."layouts/floating.png"
+theme.layout_fullscreen = self.."layouts/fullscreen.png"
+--theme.layout_tile       = "/usr/share/awesome/themes/default/layouts/tile.png"
+--theme.layout_tileleft   = "/usr/share/awesome/themes/default/layouts/tileleft.png"
+--theme.layout_tilebottom = "/usr/share/awesome/themes/default/layouts/tilebottom.png"
+--theme.layout_tiletop    = "/usr/share/awesome/themes/default/layouts/tiletop.png"
+--theme.layout_fairv      = "/usr/share/awesome/themes/default/layouts/fairv.png"
+--theme.layout_fairh      = "/usr/share/awesome/themes/default/layouts/fairh.png"
+--theme.layout_spiral     = "/usr/share/awesome/themes/default/layouts/spiral.png"
+--theme.layout_dwindle    = "/usr/share/awesome/themes/default/layouts/dwindle.png"
+--theme.layout_max        = "/usr/share/awesome/themes/default/layouts/max.png"
+--theme.layout_fullscreen = "/usr/share/awesome/themes/default/layouts/fullscreen.png"
+--theme.layout_magnifier  = "/usr/share/awesome/themes/default/layouts/magnifier.png"
+--theme.layout_floating   = "/usr/share/awesome/themes/default/layouts/floating.png"
+--theme.layout_cornernw   = "/usr/share/awesome/themes/default/layouts/cornernw.png"
+--theme.layout_cornerne   = "/usr/share/awesome/themes/default/layouts/cornerne.png"
+--theme.layout_cornersw   = "/usr/share/awesome/themes/default/layouts/cornersw.png"
+--theme.layout_cornerse   = "/usr/share/awesome/themes/default/layouts/cornerse.png"
 -- }}}
 
 -- {{{ Titlebar
@@ -190,5 +193,7 @@ theme.titlebar_maximized_button_normal_inactive = "/usr/share/awesome/themes/zen
 
 theme.systray_icon_spacing = 5
 --theme.bg_systray = "#FF0"
+
+theme.compton_inactive = self.."compton_grayscale_16x16.png"
 
 return theme
