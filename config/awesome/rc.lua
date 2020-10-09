@@ -367,9 +367,10 @@ local tasklist_buttons = awful.util.table.join(
 
 --for s = 1, screen.count() do
 awful.screen.connect_for_each_screen(function(s)
-    local height = round(beautiful.get_font_height(theme.font) * 2 + 5)
+    local font_height = beautiful.get_font_height(theme.font)
+    local height = round(font_height * 2 + 5)
     if not gaps then
-        height = round(beautiful.get_font_height(theme.font) * 2)
+        height = round(font_height * 2)
     end
 
     -- Create a promptbox for each screen
@@ -406,9 +407,22 @@ awful.screen.connect_for_each_screen(function(s)
         filter  = awful.widget.taglist.filter.noempty,
         buttons = taglist_buttons,
         layout   = {
-            spacing = 7,
+            spacing = 0,
             layout  = wibox.layout.fixed.horizontal
         },
+        widget_template = {
+            {
+                {
+                    id     = 'text_role',
+                    widget = wibox.widget.textbox,
+                },
+                left = 7,
+                right = 7,
+                widget = wibox.container.margin
+            },
+            id     = 'background_role',
+            widget = wibox.container.background,
+        }
     }
 
     -- Create a tasklist widget
@@ -430,7 +444,7 @@ awful.screen.connect_for_each_screen(function(s)
                         },
                         --height = 12,
                         -- force to a single line
-                        height = round(beautiful.get_font_height(theme.font)+1),
+                        height = round(font_height+1),
                         strategy = "max",
                         widget = wibox.container.constraint
                     },
