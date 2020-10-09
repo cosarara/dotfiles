@@ -42,6 +42,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'rakr/vim-one'
 Plug 'chriskempson/base16-vim'
 Plug 'junegunn/goyo.vim'
+"Plug 'jsit/disco.vim' " forked locally
 
 " language support
 Plug 'lumiliet/vim-twig' " mantained fork of evidens/vim-twig
@@ -74,9 +75,10 @@ set tabstop=4 shiftwidth=4 expandtab
 
 let g:gruvbox_italic=1
 "colorscheme wombat256
-colorscheme wasabi256
+"colorscheme wasabi256
 "colorscheme one
-"set background=light
+colorscheme disco
+set background=light
 "let g:airline_theme='one'
 "let g:airline_base16_improved_contrast=1
 "let g:airline_theme='base16'
@@ -85,7 +87,8 @@ colorscheme wasabi256
 
 let g:airline#extensions#tabline#enabled = 1
 "let g:airline_theme='molokai'
-let g:airline_theme='base16_default'
+"let g:airline_theme='base16_default'
+let g:airline_theme='minimalist'
 let g:airline_powerline_fonts = 1
 let g:airline_skip_empty_sections = 1
 set noshowmode
@@ -248,3 +251,12 @@ endfunction
 
 com! Zen call ZenMode()
 com! ZenOff call ZenOff()
+
+" we override this to get proper filetype on >=70 col instead of 90
+function GetFileType()
+  return (airline#util#winwidth() < 70 && strlen(&filetype) > 3)
+        \ ? matchstr(&filetype, '...'). (&encoding is? 'utf-8' ? '…' : '>')
+        \ : &filetype
+endfunction
+call airline#parts#define_function('myfiletype', 'GetFileType')
+let g:airline_section_x = airline#section#create_right(['bookmark', 'tagbar', 'vista', 'gutentags', 'omnisharp', 'grepper', 'myfiletype'])
