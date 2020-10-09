@@ -61,9 +61,9 @@ theme.fg_urgent     = "#ffffff"
 theme.fg_minimize   = "#ffffff"
 
 --theme.clock_color = "#EDE391"
-theme.clock_color = "#590f5b"
-theme.music_color = "#992e2e"
-theme.volume_color = "#12314b"
+--theme.clock_color = "#590f5b"
+--theme.music_color = "#992e2e"
+--theme.volume_color = "#12314b"
 -- }}}
 
 -- {{{ Borders
