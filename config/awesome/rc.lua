@@ -25,8 +25,6 @@ vicious.helpers = require("vicious.helpers")
 
 local common = require("awful.widget.common")
 
-local volumebar_widget = require("volumebar")
-
 --local treetile = require("treetile")
 
 local dpi -- = require("beautiful").xresources.apply_dpi
@@ -82,7 +80,13 @@ end
 -- Themes define colours, icons, and wallpapers
 -- beautiful.init("/usr/share/awesome/themes/default/theme.lua")
 --
+
 beautiful.init(local_conf.theme or "~/.config/awesome/mytheme/theme.lua")
+font_height = beautiful.get_font_height(theme.font)
+
+local volumebar_widget = require("volumebar")
+local textwrap = require("textwrap")
+
 --beautiful.init("~/.config/awesome/mytheme.light/theme.lua")
 
 --beautiful.init("/usr/share/awesome/themes/arch/theme.lua")
@@ -242,8 +246,10 @@ function make_battery_widget()
     local b_icon = wibox.widget.imagebox()
     local b_icon2 = wibox.widget.imagebox()
     local b_text = wibox.widget.textbox()
+    b_text.valign = "bottom"
     l:add(b_icon)
-    l:add(b_text)
+    local b_wrap = textwrap(b_text)
+    l:add(b_wrap)
     lm.set_image = function(self, source)
     --    b_icon:set_image(source)
     end
@@ -310,14 +316,21 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 -- Î
 -- {{{ Wibox
 -- Create a textclock widget
-mytextclock = wibox.widget.textclock(
+local mytextclock = wibox.widget.textclock(
     " <span color='"..util.ensure_pango_color(theme.clock_color)..
     "'><span font_desc='"..theme.icon_font..
     "'>Õ</span> %a %d-%m %H:%M</span> ")
-smalltextclock = wibox.widget.textclock(
+
+if small then
+    mytextclock = wibox.widget.textclock(
     " <span color='"..util.ensure_pango_color(theme.clock_color)..
     "'><span font_desc='"..theme.icon_font..
     "'>Õ</span>%H:%M</span>")
+end
+
+mytextclock.valign = "bottom"
+local clockwrap = textwrap(mytextclock)
+mytextclock = clockwrap
 
 -- Create a wibox for each screen and add it
 mywibox = {}
@@ -367,10 +380,9 @@ local tasklist_buttons = awful.util.table.join(
 
 --for s = 1, screen.count() do
 awful.screen.connect_for_each_screen(function(s)
-    local font_height = beautiful.get_font_height(theme.font)
     local height = round(font_height * 2 + 5)
     if not gaps then
-        height = round(font_height * 2)
+        height = round(font_height * 2 + 4)
     end
 
     -- Create a promptbox for each screen
@@ -388,7 +400,7 @@ awful.screen.connect_for_each_screen(function(s)
                 wibox.container.constraint(
                     awful.widget.layoutbox(s),
                     "max", nil, theme.layout_icon_size),
-                    0, 0, 0, 2))
+                    0, 0, 0, 0))
     --    layoutbox_m = round((height - theme.layout_icon_size - 1) / 2)
     --naughty.notify({ preset = naughty.config.presets.critical,
     --                 title = "Oops, there were errors during startup!",
@@ -439,20 +451,30 @@ awful.screen.connect_for_each_screen(function(s)
                 {
                     {
                         {
-                            id     = 'text_role',
-                            widget = wibox.widget.textbox,
+                            {
+                                {
+                                    id     = 'text_role',
+                                    valign = 'bottom',
+                                    widget = wibox.widget.textbox,
+                                },
+                                --bg = "#FF0000FF",
+                                widget = wibox.container.background
+                            },
+                            --height = 12,
+                            -- force to a single line
+                            height = round(font_height+4),
+                            strategy = "exact",
+                            widget = wibox.container.constraint
                         },
-                        --height = 12,
-                        -- force to a single line
-                        height = round(font_height+1),
-                        strategy = "max",
-                        widget = wibox.container.constraint
+                        --bg = "#0000FFFF",
+                        widget = wibox.container.background
                     },
                     -- this is stupid but it doesn't work without it
                     widget = wibox.container.place
                 },
                 left  = 10,
                 right = 10,
+                bottom = 2,
                 widget = wibox.container.margin
             },
             id     = 'background_role',
@@ -491,7 +513,7 @@ awful.screen.connect_for_each_screen(function(s)
         right_layout:add(volumebar_widget)
         right_layout:add(mytextclock)
     else
-        right_layout:add(smalltextclock)
+        right_layout:add(mytextclock)
     end
 
     right_layout:add(s.mylayoutbox)
@@ -613,9 +635,9 @@ globalkeys = awful.util.table.join(
             awful.spawn("mixtape-maim.sh -g 1920x1080+0+0")
         end
     end),
-    awful.key({ modkey,           }, "Print", function () awful.spawn("mixtape-maim.sh") end),
-    awful.key({ "Control"         }, "Print", function () awful.spawn("mixtape-maim.sh -u -s") end),
-    awful.key({ "Shift"           }, "Print", function () awful.spawn("maim -s -u") end),
+    awful.key({ modkey,           }, "Print", function () awful.spawn("mixtape-maim.sh", false) end),
+    awful.key({ "Control"         }, "Print", function () awful.spawn("mixtape-maim.sh -u -s", false) end),
+    awful.key({ "Shift"           }, "Print", function () awful.spawn("maim_clipboard", false) end),
     --awful.key({ modkey,           }, "F12", function () awful.spawn("randwallpaper", false) end),
     awful.key({ modkey,           }, "F12", function ()
         awful.spawn("comp_randwallpaper", false)

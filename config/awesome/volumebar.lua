@@ -17,14 +17,13 @@ local wibox = require("wibox")
 local naughty = require("naughty")
 
 local beautiful = require("beautiful")
-beautiful.init("~/.config/awesome/mytheme/theme.lua")
 local widget_wrapper = wibox.layout.fixed.horizontal()
 local util = require("awful.util")
 
 local request_command = 'amixer -D pulse sget Master'
 
 --local bar_color = "#74aeab"
-local bar_color = theme.volume_color
+local bar_color = theme.volume_bar_color or theme.volume_color
 local mute_color = "#de935f"
 local background_color = "#404a53"
 
@@ -36,11 +35,11 @@ local volumebar_widget = wibox.widget {
     color = bar_color,
     background_color = background_color,
     shape = gears.shape.bar,
-    clip = true,
-    margins       = {
-        top = 6,
-        bottom = 6,
-    },
+    --clip = true,
+    --margins       = {
+    --    top = 6,
+    --    bottom = 6,
+    --},
     widget = wibox.widget.progressbar
 }
 
@@ -79,7 +78,13 @@ local run_update = function(command)
     end)
 end
 
-volumebar_widget:connect_signal("button::press", function(_,_,_,button)
+local constrained = wibox.container.place(
+    wibox.container.margin(
+        wibox.container.constraint(
+            volumebar_widget, "max", nil, 8),
+        0, 0, 2))
+
+constrained:connect_signal("button::press", function(_,_,_,button)
     local command = request_command
     if (button == 4)     then command = "amixer -D pulse sset Master 5%+"
     elseif (button == 5) then command = "amixer -D pulse sset Master 5%-"
@@ -92,8 +97,9 @@ local tb = wibox.widget.textbox("<span font_desc='"..theme.icon_font..
     "' color='"..util.ensure_pango_color(theme.volume_color)..
     "'>Ô</span> ")
 widget_wrapper.tb = tb
-widget_wrapper:add(tb)
-widget_wrapper:add(volumebar_widget)
+local textwrap = require("textwrap")
+widget_wrapper:add(textwrap(tb))
+widget_wrapper:add(constrained)
 
 -- initial state
 run_update(request_command)

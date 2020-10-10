@@ -17,8 +17,9 @@ local error_msg = nil
 mpd_widget.awaiting_volume = false
 mpd_widget.awaiting_track = false
 
+local color = theme.music_color or theme.fg_normal or "#888888"
 local function update_widget()
-    local text = " <span color='"..theme.music_color.."'><span font_desc='"..theme.icon_font.."'>Î</span> "
+    local text = " <span color='"..color.."'><span font_desc='"..theme.icon_font.."'>Î</span> "
     --text = text .. tostring(artist or "") .. " - " .. tostring(title or "")
     local fname = string.gsub(file, ".*/", "")
     local shorttitle = title and title ~= "" and string.sub(title, 0, 40)
@@ -39,7 +40,7 @@ local function error_handler(err)
     error_msg = tostring(err)
     io.stderr:write(error_msg)
     --mpd_widget:set_text("Error: " .. tostring(err))
-    local text = " <span color='"..theme.music_color.."'><span font_desc='"..theme.icon_font.."'>Î</span> "
+    local text = " <span color='"..color.."'><span font_desc='"..theme.icon_font.."'>Î</span> "
     text = text .. "Not connected"
     text = text .. "</span>" -- color
     mpd_widget.markup = text
@@ -164,4 +165,7 @@ function get_cover(callback)
     end)
 end
 
-return mpd_widget
+local textwrap = require("textwrap")
+local wrapper = textwrap(mpd_widget)
+return wrapper
+--return mpd_widget

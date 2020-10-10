@@ -14,6 +14,8 @@ theme.dir = os.getenv("HOME") .. "/.config/awesome/mytheme"
 
 -- {{{ Styles
 theme.font      = "Terminus 12"
+local beautiful = require("beautiful")
+theme.font_height = beautiful.get_font_height(theme.font)
 theme.tasklist_font_focus = "Terminus Bold 12"
 theme.icon_font      = "Terminusicons2Mono 9"
 
@@ -64,6 +66,7 @@ theme.fg_minimize   = "#ffffff"
 --theme.clock_color = "#590f5b"
 --theme.music_color = "#992e2e"
 --theme.volume_color = "#12314b"
+theme.volume_bar_color = "#81a2be"
 -- }}}
 
 -- {{{ Borders
@@ -96,17 +99,6 @@ theme.tasklist_floating = '[f] '
 --theme.taglist_bg_focus  = "#222222EE"
 --theme.taglist_bg_focus = "#000000"
 
--- {{{ Widgets
--- You can add as many variables as
--- you wish and access them by using
--- beautiful.variable in your rc.lua
---theme.fg_widget        = "#AECF96"
---theme.fg_center_widget = "#88A175"
---theme.fg_end_widget    = "#FF5656"
---theme.bg_widget        = "#494B4F"
---theme.border_widget    = "#3F3F3F"
--- }}}
-
 -- {{{ Mouse finder
 theme.mouse_finder_color = "#CC9393"
 -- mouse_finder_[timeout|animate_timeout|radius|factor]
@@ -123,14 +115,6 @@ theme.menu_width  = 100
 -- {{{ Icons
 -- {{{ Taglist
 theme.taglist_disable_icon = true
----- theme.taglist_squares_sel   = "/usr/share/awesome/themes/zenburn/taglist/squarefz.png"
---theme.taglist_squares_sel   = theme.dir .. "/taglist/squarefz.png"
----- theme.taglist_squares_unsel = "/usr/share/awesome/themes/zenburn/taglist/squarez.png"
---theme.taglist_squares_unsel   = theme.dir .. "/taglist/squarez.png"
-----theme.taglist_disable_icon = "true"
-----theme.taglist_squares_sel   = ""
-----theme.taglist_squares_unsel = ""
-----theme.taglist_squares_resize = "false"
 -- }}}
 
 -- {{{ Misc
@@ -149,22 +133,6 @@ theme.layout_termfair   = self.."layouts/termfair.png"
 theme.layout_spiral     = self.."layouts/spiral.png"
 theme.layout_floating   = self.."layouts/floating.png"
 theme.layout_fullscreen = self.."layouts/fullscreen.png"
---theme.layout_tile       = "/usr/share/awesome/themes/default/layouts/tile.png"
---theme.layout_tileleft   = "/usr/share/awesome/themes/default/layouts/tileleft.png"
---theme.layout_tilebottom = "/usr/share/awesome/themes/default/layouts/tilebottom.png"
---theme.layout_tiletop    = "/usr/share/awesome/themes/default/layouts/tiletop.png"
---theme.layout_fairv      = "/usr/share/awesome/themes/default/layouts/fairv.png"
---theme.layout_fairh      = "/usr/share/awesome/themes/default/layouts/fairh.png"
---theme.layout_spiral     = "/usr/share/awesome/themes/default/layouts/spiral.png"
---theme.layout_dwindle    = "/usr/share/awesome/themes/default/layouts/dwindle.png"
---theme.layout_max        = "/usr/share/awesome/themes/default/layouts/max.png"
---theme.layout_fullscreen = "/usr/share/awesome/themes/default/layouts/fullscreen.png"
---theme.layout_magnifier  = "/usr/share/awesome/themes/default/layouts/magnifier.png"
---theme.layout_floating   = "/usr/share/awesome/themes/default/layouts/floating.png"
---theme.layout_cornernw   = "/usr/share/awesome/themes/default/layouts/cornernw.png"
---theme.layout_cornerne   = "/usr/share/awesome/themes/default/layouts/cornerne.png"
---theme.layout_cornersw   = "/usr/share/awesome/themes/default/layouts/cornersw.png"
---theme.layout_cornerse   = "/usr/share/awesome/themes/default/layouts/cornerse.png"
 -- }}}
 
 -- {{{ Titlebar
