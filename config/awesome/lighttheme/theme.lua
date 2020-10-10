@@ -164,6 +164,7 @@ theme.titlebar_maximized_button_normal_inactive = "/usr/share/awesome/themes/zen
 theme.systray_icon_spacing = 5
 --theme.bg_systray = "#FF0"
 
-theme.compton_inactive = self.."compton_grayscale_16x16.png"
+theme.compton_active = self.."compton_22x22.png"
+theme.compton_inactive = self.."compton_grayscale_22x22.png"
 
 return theme

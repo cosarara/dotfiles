@@ -499,10 +499,14 @@ awful.screen.connect_for_each_screen(function(s)
     -- Widgets that are aligned to the right
     local right_layout = wibox.layout.fixed.horizontal()
     right_layout:add(separator)
-    right_layout:add(wibox.container.margin(wibox.widget.systray(), 2, 2, 0, 0))
+    right_layout:add(wibox.container.place(
+        wibox.container.constraint(
+            wibox.container.margin(wibox.widget.systray(), 2, 2, 0, 0),
+            "exact", nil, 22)))
     --right_layout:add(wibox.widget.systray())
     right_layout:add(separator)
-    right_layout:add(comp)
+    right_layout:add(wibox.container.place(
+        wibox.container.constraint(comp, "exact", nil, 22)))
 
     if batterywidget then
         right_layout:add(batterywidget)
@@ -517,7 +521,7 @@ awful.screen.connect_for_each_screen(function(s)
     end
 
     right_layout:add(s.mylayoutbox)
-    local mright_layout = wibox.container.margin(right_layout, 0, 5, 5, 5)
+    local mright_layout = wibox.container.margin(right_layout, 0, 5, 0, 0)
 
     -- Now bring it all together (with the tasklist in the middle)
     local layout = wibox.layout.align.horizontal()
