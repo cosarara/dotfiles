@@ -634,12 +634,12 @@ globalkeys = awful.util.table.join(
    -- awful.key({                   }, "Print", function () awful.spawn("import /tmp/latest-screenshot.png") end),
     awful.key({                   }, "Print", function ()
         if hostname == "evangelion" then
-            awful.spawn("mixtape-maim.sh -g 1600x900+0+0")
+            awful.spawn("mixtape-maim.sh -u -g 1600x900+0+0")
         else
-            awful.spawn("mixtape-maim.sh -g 1920x1080+0+0")
+            awful.spawn("mixtape-maim.sh -u -g 1920x1080+0+0")
         end
     end),
-    awful.key({ modkey,           }, "Print", function () awful.spawn("mixtape-maim.sh", false) end),
+    awful.key({ modkey,           }, "Print", function () awful.spawn("mixtape-maim.sh -u", false) end),
     awful.key({ "Control"         }, "Print", function () awful.spawn("mixtape-maim.sh -u -s", false) end),
     awful.key({ "Shift"           }, "Print", function () awful.spawn("maim_clipboard", false) end),
     --awful.key({ modkey,           }, "F12", function () awful.spawn("randwallpaper", false) end),
