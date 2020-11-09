@@ -159,8 +159,6 @@ source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 #PERL_MM_OPT="INSTALL_BASE=/home/jaume/perl5"; export PERL_MM_OPT;
 #
 #source ~/.local/share/perl5/etc/bashrc
-#
-#source ~/.nix-profile/etc/profile.d/nix.sh
 
 #if [ -n "$DESKTOP_SESSION" ];then
 #    eval $(gnome-keyring-daemon --start)
