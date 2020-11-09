@@ -88,7 +88,7 @@ set background=light
 let g:airline#extensions#tabline#enabled = 1
 "let g:airline_theme='molokai'
 "let g:airline_theme='base16_default'
-let g:airline_theme='minimalist'
+let g:airline_theme='mnml'
 let g:airline_powerline_fonts = 1
 let g:airline_skip_empty_sections = 1
 set noshowmode
