@@ -19,11 +19,11 @@
 
 #trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --width 4 --transparent true --alpha 17 --tint 0x34322E --height 16 --distance 4 --margin 160
 
-{
-	sleep 3
-	killall picom || true
-	picom --config ~/.config/picom
-} &
+#{
+#	sleep 3
+#	killall picom || true
+#	picom --config ~/.config/picom
+#} &
 
 #pgrep redshift &> /dev/null || redshift &> /dev/null &
 
