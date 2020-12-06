@@ -93,6 +93,7 @@ let g:airline_powerline_fonts = 1
 let g:airline_skip_empty_sections = 1
 set noshowmode
 
+let g:better_whitespace_ctermcolor='lightred'
 let g:better_whitespace_guicolor='#6d4e4e'
 
 " KEYS AND STUFF
