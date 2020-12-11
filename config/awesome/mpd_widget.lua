@@ -85,15 +85,17 @@ function mpd_widget:hide_notification()
 end
 
 function mpd_widget:notify(hint_title, hint_text, timeout, hint_image)
-   self:hide_notification()
-   self.notification = naughty.notify(
-   { title      = hint_title --awful.util.escape(hint_title)
-   , text       = awful.util.escape(hint_text)
-   , timeout    = timeout or 3
-   , position   = "top_right"
-   , icon       = hint_image
-   , icon_size  = 80 --self.album_cover_size
-   })
+    local new_notification = naughty.notify(
+    { title      = hint_title --awful.util.escape(hint_title)
+    , text       = awful.util.escape(hint_text)
+    , timeout    = timeout or 3
+    , position   = "top_right"
+    , icon       = hint_image
+    , icon_size  = 80 --self.album_cover_size
+    })
+    -- we hide after showing the new one to prevent flicker
+    self:hide_notification()
+    self.notification = new_notification
 end
 
 function mpd_widget:notify_track(permanent)
