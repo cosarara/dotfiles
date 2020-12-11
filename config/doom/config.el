@@ -73,7 +73,13 @@
 ; don't make loading big php files slow
 (add-to-list 'doom-detect-indentation-excluded-modes 'php-mode nil #'eq)
 
-(load-theme 'doom-challenger-deep t)
+(setq doom-font (font-spec :family "Terminus" :size 17 :weight 'bold))
+;      doom-variable-pitch-font (font-spec :family "Fira Sans") ; inherits `doom-font''s :size
+;      doom-unicode-font (font-spec :family "Input Mono Narrow" :size 12)
+;      doom-big-font (font-spec :family "Fira Mono" :size 19))
+
+(setq doom-theme 'doom-one-light)
+;(load-theme 'doom-challenger-deep t)
 ;(load-theme 'doom-sourcerer t)
 ;(load-theme 'doom-dracula t)
 ;(load-theme 'doom-vibrant t)

@@ -565,6 +565,8 @@ globalkeys = awful.util.table.join(
     --awful.key({ modkey,           }, "Right",  awful.tag.viewnext       ),
     awful.key({ modkey,           }, "Left",   function() awful.spawn("mpc prev", false) end),
     awful.key({ modkey,           }, "Right",  function() awful.spawn("mpc next", false) end),
+    awful.key({                   }, "XF86AudioPlay",  function() awful.spawn(
+        "bash -c 'if mpc | grep playing; then mpc pause; else mpc play; fi'", false) end),
     awful.key({ modkey,           }, "Down",  function() awful.spawn(
         "bash -c 'if mpc | grep playing; then mpc pause; else mpc play; fi'", false) end),
     awful.key({ modkey,           }, "Escape", awful.tag.history.restore),

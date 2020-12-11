@@ -78,12 +78,9 @@ export PATH=$HOME/.local/bin:$PATH
 #mozilla
 export MOZCONFIG=/mnt/data3/mozilla/mozconfig
 
-# messes with XDG_DATA_DIRS which makes emacs crash?
-#. /home/jaume/.nix-profile/etc/profile.d/nix.sh
-
 [ -f /home/jaume/.rakudobrew/bin/rakudobrew ] && \
     eval "$(/home/jaume/.rakudobrew/bin/rakudobrew init Zsh)"
 
 export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true'
 
-DOTNET_CLI_TELEMETRY_OPTOUT=1
+export DOTNET_CLI_TELEMETRY_OPTOUT=1
