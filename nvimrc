@@ -78,7 +78,8 @@ let g:gruvbox_italic=1
 "colorscheme wasabi256
 "colorscheme one
 colorscheme disco
-set background=light
+" background is actually automatically detected now: https://github.com/neovim/neovim/pull/9509
+"set background=light
 "let g:airline_theme='one'
 "let g:airline_base16_improved_contrast=1
 "let g:airline_theme='base16'
