@@ -701,13 +701,13 @@ globalkeys = awful.util.table.join(
         awful.layout.inc(layouts, -1)
     end),
     awful.key({}, "XF86AudioMute", function()
-        awful.spawn("pulseaudio-ctl mute", false)
+        awful.spawn("pactl -- set-sink-volume 0 toggle", false)
     end),
     awful.key({}, "XF86AudioLowerVolume", function()
-        awful.spawn("pulseaudio-ctl down", false)
+        awful.spawn("pactl -- set-sink-volume 0 -5%", false)
     end),
     awful.key({}, "XF86AudioRaiseVolume", function()
-        awful.spawn("pulseaudio-ctl up", false)
+        awful.spawn("pactl -- set-sink-volume 0 +5%", false)
     end),
     awful.key({}, "XF86MonBrightnessDown", function()
         awful.spawn("light -U 10", false)

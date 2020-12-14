@@ -74,7 +74,9 @@ end
 
 local run_update = function(command)
     spawn.easy_async(command, function(...)
-        update_graphic(widget_wrapper, ...)
+        spawn.easy_async("amixer -D pulse get Master", function(...)
+            update_graphic(widget_wrapper, ...)
+        end)
     end)
 end
 
@@ -86,9 +88,9 @@ local constrained = wibox.container.place(
 
 constrained:connect_signal("button::press", function(_,_,_,button)
     local command = request_command
-    if (button == 4)     then command = "amixer -D pulse sset Master 5%+"
-    elseif (button == 5) then command = "amixer -D pulse sset Master 5%-"
-    elseif (button == 1) then command = "amixer -D pulse sset Master toggle"
+    if (button == 4)     then command = "pactl -- set-sink-volume 0 +5%"
+    elseif (button == 5) then command = "pactl -- set-sink-volume 0 -5%"
+    elseif (button == 1) then command = "pactl set-sink-mute 0 toggle"
     end
     run_update(command)
 end)

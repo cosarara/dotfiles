@@ -22,8 +22,9 @@ local function update_widget()
     local text = " <span color='"..color.."'><span font_desc='"..theme.icon_font.."'>Î</span> "
     --text = text .. tostring(artist or "") .. " - " .. tostring(title or "")
     local fname = string.gsub(file, ".*/", "")
-    local shorttitle = title and title ~= "" and string.sub(title, 0, 40)
+    local shorttitle = title and title ~= "" and string.sub(title, 0, 25)
     text = text .. tostring(shorttitle or fname or "---")
+    text = text:gsub("&", "&amp;")
     if state == "pause" then
         text = text .. " (paused)"
     end
@@ -67,7 +68,7 @@ connection = mpc.new(nil, nil, nil, error_handler,
             mpd_widget.awaiting_track = true
         end
         title, artist, file, album = result.title, result.artist, result.file, result.album
-        pcall(update_widget)
+        update_widget()
         get_cover(function(path)
             icon_path = path
             if mpd_widget.awaiting_track then
@@ -85,15 +86,17 @@ function mpd_widget:hide_notification()
 end
 
 function mpd_widget:notify(hint_title, hint_text, timeout, hint_image)
-   self:hide_notification()
-   self.notification = naughty.notify(
-   { title      = hint_title --awful.util.escape(hint_title)
-   , text       = awful.util.escape(hint_text)
-   , timeout    = timeout or 3
-   , position   = "top_right"
-   , icon       = hint_image
-   , icon_size  = 80 --self.album_cover_size
-   })
+    local new_notification = naughty.notify(
+    { title      = hint_title --awful.util.escape(hint_title)
+    , text       = awful.util.escape(hint_text)
+    , timeout    = timeout or 3
+    , position   = "top_right"
+    , icon       = hint_image
+    , icon_size  = 80 --self.album_cover_size
+    })
+    -- we hide after showing the new one to prevent flicker
+    self:hide_notification()
+    self.notification = new_notification
 end
 
 function mpd_widget:notify_track(permanent)
@@ -125,6 +128,7 @@ mpd_widget:buttons(awful.util.table.join(
 mpd_widget:connect_signal("mouse::enter", function(c)
     --instance:update_track()
     mpd_widget:notify_track(true)
+    update_widget()
 end)
 
 mpd_widget:connect_signal("mouse::leave", function(c)
