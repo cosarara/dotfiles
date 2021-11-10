@@ -21,7 +21,7 @@ local color = theme.music_color or theme.fg_normal or "#888888"
 local function update_widget()
     local text = " <span color='"..color.."'><span font_desc='"..theme.icon_font.."'>Î</span> "
     --text = text .. tostring(artist or "") .. " - " .. tostring(title or "")
-    local fname = string.gsub(file, ".*/", "")
+    local fname = string.gsub(file or "", ".*/", "")
     local shorttitle = title and title ~= "" and string.sub(title, 0, 25)
     text = text .. tostring(shorttitle or fname or "---")
     text = text:gsub("&", "&amp;")
