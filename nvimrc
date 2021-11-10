@@ -63,8 +63,23 @@ Plug 'ziglang/zig.vim'
 Plug 'kalafut/vim-taskjuggler'
 Plug 'evanleck/vim-svelte', {'branch': 'main'}
 
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'nvim-treesitter/playground'
+
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
+
+lua <<EOF
+local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
+parser_config.sql = {
+  install_info = {
+    url = "~/projects/tree-sitter-sql", -- local path or git repo
+    files = {"src/parser.c"}
+  },
+  --filetype = "sql", -- if filetype does not agrees with parser name
+  --used_by = {"bar", "baz"} -- additional filetypes that use this parser
+}
+EOF
 
 cmap w!! w !sudo tee %
 
@@ -79,7 +94,8 @@ let g:gruvbox_italic=1
 "colorscheme one
 colorscheme disco
 " background is actually automatically detected now: https://github.com/neovim/neovim/pull/9509
-"set background=light
+" but not yet in tmux
+set background=light
 "let g:airline_theme='one'
 "let g:airline_base16_improved_contrast=1
 "let g:airline_theme='base16'
@@ -262,3 +278,14 @@ function GetFileType()
 endfunction
 call airline#parts#define_function('myfiletype', 'GetFileType')
 let g:airline_section_x = airline#section#create_right(['bookmark', 'tagbar', 'vista', 'gutentags', 'omnisharp', 'grepper', 'myfiletype'])
+
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+  highlight = {
+    enable = true,
+  },
+  indent = {
+    enable = true,
+  },
+}
+EOF
