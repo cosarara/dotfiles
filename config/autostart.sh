@@ -7,6 +7,8 @@
 #xsetroot -cursor_name left_ptr &
 #xrdb -merge ~/.Xdefaults &
 
+xset -b
+
 # Start a window compositor. This ensures Google Chrome paints correctly.
 #xcompmgr -n &
 #if [[ "$DISPLAY" == ":0" ]]; then
