@@ -292,12 +292,12 @@ set_paddings()
 
 -- {{{ Menu
 -- Create a laucher widget and a main menu
-myawesomemenu = {
-   { "manual", terminal .. " -e man awesome" },
-   { "edit config", editor_cmd .. " " .. awesome.conffile },
-   { "restart", awesome.restart },
-   { "quit", awesome.quit }
-}
+-- myawesomemenu = {
+--    { "manual", terminal .. " -e man awesome" },
+--    { "edit config", editor_cmd .. " " .. awesome.conffile },
+--    { "restart", awesome.restart },
+--    { "quit", awesome.quit }
+-- }
 
 -- mymainmenu = awful.menu({ items = { { "awesome", applicationsmenu.applicationsmenu(), beautiful.awesome_icon },
 --mymainmenu = awful.menu({ items = {
@@ -308,6 +308,18 @@ myawesomemenu = {
 
 --mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
 --                                     menu = mymainmenu })
+
+screenshot_upload_menu = awful.menu({ items = {
+    { "upload", function () awful.spawn({"up", "/tmp/maim.png"}) end },
+    { "cancel", function () end }
+} })
+
+function screenshot(args)
+    awful.spawn.easy_async("maim_clipboard "..args,
+    function (out, err, reason, code)
+        screenshot_upload_menu:show()
+    end)
+end
 
 -- Menubar configuration
 menubar.utils.terminal = terminal -- Set the terminal for applications that require it
@@ -636,14 +648,21 @@ globalkeys = awful.util.table.join(
    -- awful.key({                   }, "Print", function () awful.spawn("import /tmp/latest-screenshot.png") end),
     awful.key({                   }, "Print", function ()
         if hostname == "evangelion" then
-            awful.spawn("mixtape-maim.sh -u -g 1600x900+0+0")
+            --awful.spawn("mixtape-maim.sh -u -g 1600x900+0+0")
+            screenshot("-u -g 1600x900+0+0")
         else
-            awful.spawn("mixtape-maim.sh -u -g 1920x1080+0+0")
+            --awful.spawn("mixtape-maim.sh -u -g 1920x1080+0+0")
+            screenshot("-u -g 1920x1080+0+0")
         end
     end),
-    awful.key({ modkey,           }, "Print", function () awful.spawn("mixtape-maim.sh -u", false) end),
-    awful.key({ "Control"         }, "Print", function () awful.spawn("mixtape-maim.sh -u -s", false) end),
-    awful.key({ "Shift"           }, "Print", function () awful.spawn("maim_clipboard", false) end),
+    awful.key({ modkey,           }, "Print", function () screenshot("-u -s") end),
+    --awful.key({ "Control"         }, "Print", function () awful.spawn("mixtape-maim.sh -u -s", false) end),
+    awful.key({ "Shift"           }, "Print", function ()
+        screenshot("-u")
+        --awful.spawn.easy_async("maim_clipboard", function (out, err, reason, code)
+        --    screenshot_upload_menu:show()
+        --end)
+    end),
     --awful.key({ modkey,           }, "F12", function () awful.spawn("randwallpaper", false) end),
     awful.key({ modkey,           }, "F12", function ()
         awful.spawn("comp_randwallpaper", false)
