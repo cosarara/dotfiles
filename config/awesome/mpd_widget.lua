@@ -17,12 +17,18 @@ local error_msg = nil
 mpd_widget.awaiting_volume = false
 mpd_widget.awaiting_track = false
 
+function utf8_sub(s, i, j)
+    len = string.len(s)
+    codes = {utf8.codepoint(s, 1, len)}
+    return utf8.char(table.unpack(codes, 1, math.min(j, #codes)))
+end
+
 local color = theme.music_color or theme.fg_normal or "#888888"
 local function update_widget()
     local text = " <span color='"..color.."'><span font_desc='"..theme.icon_font.."'>Î</span> "
     --text = text .. tostring(artist or "") .. " - " .. tostring(title or "")
     local fname = string.gsub(file or "", ".*/", "")
-    local shorttitle = title and title ~= "" and string.sub(title, 0, 25)
+    local shorttitle = title and title ~= "" and utf8_sub(title, 0, 25)
     text = text .. tostring(shorttitle or fname or "---")
     text = text:gsub("&", "&amp;")
     if state == "pause" then
