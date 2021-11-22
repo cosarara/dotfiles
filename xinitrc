@@ -39,9 +39,9 @@ export SDL_VIDEO_MINIMIZE_ON_FOCUS_LOSS=0
 
 #setxkbmap -layout us,es -variant norman, grp:caps_toggle
 #setxkbmap -layout jaume,us -option grp:caps_toggle -option compose:menu
-setxkbmap -layout jaume,us -option grp:rctrl_rshift_toggle -option compose:menu
+#setxkbmap -layout jaume,us -option grp:rctrl_rshift_toggle -option compose:menu
 
-dbus-update-activation-environment --systemd DISPLAY
+dbus-update-activation-environment --systemd --all
 eval $(gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
 export SSH_AUTH_SOCK
 
