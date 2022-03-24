@@ -40,7 +40,7 @@ export BROWSER="firefox"
 
 #export WINEPREFIX="$HOME/.wine"
 
-export BSPWM_TREE=/tmp/bspwm.tree
+#export BSPWM_TREE=/tmp/bspwm.tree
 export BSPWM_HISTORY=/tmp/bspwm.history
 export BSPWM_STACK=/tmp/bspwm.stack
 export PANEL_FIFO=/tmp/panel_fifo
