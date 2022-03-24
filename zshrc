@@ -20,27 +20,11 @@ autoload -U compinit promptinit
 compinit
 promptinit
 
-# End of lines added by compinstall
-# Lines configured by zsh-newuser-install
 HISTFILE=~/.histfile
 HISTSIZE=10000000
 SAVEHIST=10000000
 setopt appendhistory autocd extendedglob
 bindkey -e
-
-#prompt steeef
-#source ~/.zsh/steeef.zsh-theme
-#source ~/.zsh/steeef_custom.zsh-theme
-#source ~/.zsh/mh.zsh-theme
-
-#case "$COLORTERM" in
-#	"mate-terminal")
-#		TERM='xterm-256color'
-#		;;
-#	"truecolor")
-#		TERM='xterm-256color'
-#		;;
-#esac
 
 case "$TERM" in
 "dumb")
@@ -56,13 +40,6 @@ xterm*|rxvt*|eterm*|screen*|st*|linux*)
 esac
 
 source ~/.zsh/editor.zsh
-##bindkey "${terminfo[khome]}" beginning-of-line
-##bindkey "${terminfo[kend]}" end-of-line
-#bindkey "^[[H" beginning-of-line
-#bindkey "^[[F" end-of-line
-#bindkey "^[[3~" delete-char
-## dunno what term will send this, but some random blog post suggested it
-#bindkey "^[3;5~" delete-char
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
@@ -94,23 +71,7 @@ alias maxima=rmaxima
 
 alias ansicat=~/utils/ansicat.py
 
-function unzipd() {
-	zip=$(readlink -f -- "$1")
-	dir="$(basename -- "$1" .zip)"
-	if [[ -d "$dir" ]]; then
-		echo dir exists
-		return
-	fi
-	mkdir -- "$dir"
-	unzip "$zip" -d ./"$dir"
-}
-
-# some more ls aliases
-#alias ll='ls -l'
-#alias la='ls -A'
-#alias l='ls -CF'
-
-[[ $TTY == "/dev/tty1" ]] && exec startx
+[[ $TTY == "/dev/tty1" ]] && echo 'starting X11' && exec startx
 
 alias top=htop
 alias vim=nvim
