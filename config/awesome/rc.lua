@@ -111,7 +111,8 @@ modkey = "Mod1"
 
 layouts =
 {
-    awful.layout.suit.tile,
+    awful.layout.suit.tile.right,
+    awful.layout.suit.tile.left,
     awful.layout.suit.fair,
     lain.layout.termfair,
     awful.layout.suit.spiral,
@@ -395,6 +396,9 @@ awful.screen.connect_for_each_screen(function(s)
     local height = round(font_height * 2 + 5)
     if not gaps then
         height = round(font_height * 2 + 4)
+    end
+    if local_conf.height then
+        height = theme.height
     end
 
     -- Create a promptbox for each screen
@@ -720,7 +724,7 @@ globalkeys = awful.util.table.join(
         awful.layout.inc(layouts, -1)
     end),
     awful.key({}, "XF86AudioMute", function()
-        awful.spawn("pactl -- set-sink-volume 0 toggle", false)
+        awful.spawn("pactl set-sink-mute 0 toggle", false)
     end),
     awful.key({}, "XF86AudioLowerVolume", function()
         awful.spawn("pactl -- set-sink-volume 0 -5%", false)
