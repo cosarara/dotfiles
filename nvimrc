@@ -62,6 +62,7 @@ Plug 'JuliaEditorSupport/julia-vim'
 Plug 'ziglang/zig.vim'
 Plug 'kalafut/vim-taskjuggler'
 Plug 'evanleck/vim-svelte', {'branch': 'main'}
+Plug 'ttm/tokipona'
 
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-treesitter/playground'
@@ -271,7 +272,7 @@ com! Zen call ZenMode()
 com! ZenOff call ZenOff()
 
 " we override this to get proper filetype on >=70 col instead of 90
-function GetFileType()
+function! GetFileType()
   return (airline#util#winwidth() < 70 && strlen(&filetype) > 3)
         \ ? matchstr(&filetype, '...'). (&encoding is? 'utf-8' ? '…' : '>')
         \ : &filetype
