@@ -82,7 +82,7 @@ end
 --
 
 beautiful.init(local_conf.theme or "~/.config/awesome/mytheme/theme.lua")
-font_height = beautiful.get_font_height(theme.font)
+font_height = local_conf.font_height or beautiful.get_font_height(theme.font)
 
 local volumebar_widget = require("volumebar")
 local textwrap = require("textwrap")
@@ -95,7 +95,7 @@ local textwrap = require("textwrap")
 -- beautiful.init("/usr/share/awesome/themes/niceandclean/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
-terminal = "i3-sensible-terminal"
+terminal = "x-terminal-emulator"
 editor = os.getenv("EDITOR") or "nano"
 editor_cmd = terminal .. " -e " .. editor
 
@@ -263,18 +263,19 @@ function make_battery_widget()
     return lm
 end
 
-if hostname == "evangelion" then
+if local_conf.battery then
     batterywidget = make_battery_widget()
-    vicious.register(batterywidget, vicious.widgets.bat, battery_formatter, 5, "BAT1")
+    vicious.register(batterywidget, vicious.widgets.bat, battery_formatter, 5,
+                     local_conf.battery)
     --vicious.register(batterywidget, vicious.widgets.bat, " $1 $2% ", 5, "BAT1")
 end
 
 -- {{{ Wallpaper
---if beautiful.wallpaper then
---    for s = 1, screen.count() do
---        gears.wallpaper.maximized(beautiful.wallpaper, s, true)
---    end
---end
+if local_conf.wallpaper then
+    for s = 1, screen.count() do
+        gears.wallpaper.maximized(local_conf.wallpaper, s, true)
+    end
+end
 -- }}}
 
 local padding = 0
@@ -398,7 +399,7 @@ awful.screen.connect_for_each_screen(function(s)
         height = round(font_height * 2 + 4)
     end
     if local_conf.height then
-        height = theme.height
+        height = local_conf.height
     end
 
     -- Create a promptbox for each screen
@@ -417,10 +418,6 @@ awful.screen.connect_for_each_screen(function(s)
                     awful.widget.layoutbox(s),
                     "max", nil, theme.layout_icon_size),
                     0, 0, 0, 0))
-    --    layoutbox_m = round((height - theme.layout_icon_size - 1) / 2)
-    --naughty.notify({ preset = naughty.config.presets.critical,
-    --                 title = "Oops, there were errors during startup!",
-    --                 text = height.."!"..theme.layout_icon_size.."!!"..layoutbox_m })
     else
         s.mylayoutbox = awful.widget.layoutbox(s)
     end
@@ -470,7 +467,7 @@ awful.screen.connect_for_each_screen(function(s)
                             {
                                 {
                                     id     = 'text_role',
-                                    valign = 'bottom',
+                                    valign = 'center',
                                     widget = wibox.widget.textbox,
                                 },
                                 --bg = "#FF0000FF",
@@ -557,7 +554,7 @@ awful.screen.connect_for_each_screen(function(s)
     if gaps then
         mlayout = wibox.container.margin(bgb, 5, 5, 5, 0)
     else
-        mlayout = wibox.container.margin(bgb, 0, 0, 0, 0)
+        mlayout = bgb --wibox.container.margin(bgb, 0, 0, 0, 0)
     end
 
     --mywibox[s]:set_widget(layout)
@@ -724,13 +721,13 @@ globalkeys = awful.util.table.join(
         awful.layout.inc(layouts, -1)
     end),
     awful.key({}, "XF86AudioMute", function()
-        awful.spawn("pactl set-sink-mute 0 toggle", false)
+        awful.spawn("pactl set-sink-mute @DEFAULT_SINK@ toggle", false)
     end),
     awful.key({}, "XF86AudioLowerVolume", function()
-        awful.spawn("pactl -- set-sink-volume 0 -5%", false)
+        awful.spawn("pactl -- set-sink-volume @DEFAULT_SINK@ -5%", false)
     end),
     awful.key({}, "XF86AudioRaiseVolume", function()
-        awful.spawn("pactl -- set-sink-volume 0 +5%", false)
+        awful.spawn("pactl -- set-sink-volume @DEFAULT_SINK@ +5%", false)
     end),
     awful.key({}, "XF86MonBrightnessDown", function()
         awful.spawn("light -U 10", false)

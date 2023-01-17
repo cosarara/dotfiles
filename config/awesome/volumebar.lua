@@ -88,9 +88,9 @@ local constrained = wibox.container.place(
 
 constrained:connect_signal("button::press", function(_,_,_,button)
     local command = request_command
-    if (button == 4)     then command = "pactl -- set-sink-volume 0 +5%"
-    elseif (button == 5) then command = "pactl -- set-sink-volume 0 -5%"
-    elseif (button == 1) then command = "pactl set-sink-mute 0 toggle"
+    if (button == 4)     then command = "pactl -- set-sink-volume @DEFAULT_SINK@ +5%"
+    elseif (button == 5) then command = "pactl -- set-sink-volume @DEFAULT_SINK@ -5%"
+    elseif (button == 1) then command = "pactl set-sink-mute @DEFAULT_SINK@ toggle"
     end
     run_update(command)
 end)
