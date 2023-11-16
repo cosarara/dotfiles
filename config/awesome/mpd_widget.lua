@@ -146,7 +146,7 @@ end)
 
 local easy_async = require("awful.spawn").easy_async
 local shell = require("awful.util").shell
-local cover_pattern = "*\\.(jpg|jpeg|png|gif)$"
+local cover_pattern = ".*\\.(jpg|jpeg|png|gif)$"
 function plsasync(cmd, callback)
     return easy_async(cmd,
     function (stdout, stderr, reason, exit_code)
@@ -164,7 +164,7 @@ function get_cover(callback)
         return nil
     end
     local path = string.format("%s/%s", music_dir, string.match(file, ".*/"))
-    local cover = string.format("find '%s' -maxdepth 1 -type f | egrep -i -m1 '%s'",
+    local cover = string.format("find '%s' -maxdepth 1 -type f | grep -E -i -m1 '%s'",
         path:gsub("'", "'\\''"), cover_pattern)
     plsasync({ shell, "-c", cover }, function(current_icon)
         local image = current_icon:gsub("\n", "")
