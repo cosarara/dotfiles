@@ -15,8 +15,8 @@ set linebreak
 
 call plug#begin('~/.config/nvim/plugged')
 " magic
-Plug 'jpalardy/vim-slime'
-Plug 'kovisoft/slimv' " hrm I don't need 2 slimes
+"Plug 'jpalardy/vim-slime'
+"Plug 'kovisoft/slimv' " hrm I don't need 2 slimes
 Plug 'tpope/vim-fugitive'
 Plug 'Shougo/vimproc.vim', { 'do': 'make' } " is this a dependency of something?
 Plug 'ntpeters/vim-better-whitespace'
@@ -84,7 +84,7 @@ EOF
 
 cmap w!! w !sudo tee %
 
-set tabstop=4 shiftwidth=4 expandtab
+set tabstop=4 shiftwidth=4 expandtab textwidth=0
 
 " RICE
 "set termguicolors
