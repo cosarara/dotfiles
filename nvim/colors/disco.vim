@@ -25,6 +25,25 @@ let s:color_map = {
 	\'White'       : 15,
 \}
 
+let s:gui_color_map = {
+	\'Black'       : "#000000",
+	\'DarkRed'     : "#992e2e",
+	\'DarkGreen'   : "#60800d",
+	\'DarkYellow'  : "#af5f00",
+	\'DarkBlue'    : "#2564a2",
+	\'DarkMagenta' : "#590f5b",
+	\'DarkCyan'    : "#205665",
+	\'LightGray'   : "#888a85",
+	\'DarkGray'    : "#6c6c6c",
+	\'Red'         : "#c54444",
+	\'Green'       : "#2a7817",
+	\'Yellow'      : "#c87f25",
+	\'Blue'        : "#667e95",
+	\'Magenta'     : "#813d7a",
+	\'Cyan'        : "#39b1a1",
+	\'White'       : "#8a8a8a",
+\}
+
 " Sets the highlighting for the given group. {{{
 " From github.com/jsit/vim-tomorrow-theme
 " Originally by Chris Kempson and contributors
@@ -32,7 +51,7 @@ fun! <SID>set_colors(group, fg, bg, attr)
 
 	if !empty(a:fg)
 		if type(a:fg) == 1 " If a:bg is a string, look it up for cterm
-			exec "hi " . a:group . " guifg=" . a:fg . " ctermfg=" . get(s:color_map, a:fg)
+			exec "hi " . a:group . " guifg=" . get(s:gui_color_map, a:fg) . " ctermfg=" . get(s:color_map, a:fg)
 		else
 			exec "hi " . a:group . " guifg=" . a:fg . " ctermfg=" . a:fg
 		endif
@@ -40,7 +59,7 @@ fun! <SID>set_colors(group, fg, bg, attr)
 
 	if !empty(a:bg)
 		if type(a:bg) == 1 && a:bg != 'NONE' " If a:bg is a string, look it up for cterm
-			exec "hi " . a:group . " guibg=" .  a:bg . " ctermbg=" . get(s:color_map, a:bg)
+			exec "hi " . a:group . " guibg=" . get(s:gui_color_map, a:bg) . " ctermbg=" . get(s:color_map, a:bg)
 		else
 			exec "hi " . a:group . " guibg=" . a:bg . " ctermbg=" . a:bg
 		endif
@@ -233,7 +252,8 @@ call <SID>set_colors("NonText"    , s:dimtwo          , ""      , "")
 if &background == "dark" && has('gui_running')
 	call <SID>set_colors("Normal" , "White" , "Black" , "")
 else
-	call <SID>set_colors("Normal" , ""      , ""      , "")
+	"call <SID>set_colors("Normal" , ""      , ""      , "")
+	hi Normal guifg=#000000 guibg=#f1ede7 ctermbg=NONE ctermfg=NONE
 endif
 
 call <SID>set_colors("InfoPopup", s:fg, s:dim, "")
@@ -276,6 +296,8 @@ if (s:italic)
 else
 	call <SID>set_colors("Todo"       , s:yellow   , "NONE" , "reverse")
 endif
+
+call <SID>set_colors("CocInlayHint"     , s:dimtwo    , s:bg          , "")
 
 " End Highlight Groups }}}
 
